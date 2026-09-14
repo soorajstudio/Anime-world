@@ -6,15 +6,12 @@
   <link data-precedence="next" href="css/71575726a3ef2165.css" rel="stylesheet"/>
   <link data-precedence="next" href="css/34819e657e5eb9e5.css" rel="stylesheet"/>
   <link data-precedence="next" href="css/439387ef31413be4.css" rel="stylesheet"/>
-  <title>Anime World '26 | Studio 333 Official Experience</title>
-  <meta content="Step into Anime World 2026 presented by Studio 333. Explore iconic anime universes, legendary characters, 3D convention passes, battle arenas, and immersive anime showcases." name="description"/>
-  <meta content="Anime World, Studio 333, Demon Slayer, One Piece, Dragon Ball, Naruto, Anime Fest, Convention, Otaku Pass" name="keywords"/>
-  <meta content="index, follow" name="robots"/>
-  <link href="Images/skull.jpg" rel="shortcut icon"/>
+  <title>Anime World | The Ultimate Anime & Manga Database</title>
+  <meta content="Discover the best anime in the world, top trending series, legendary manga masterpieces, iconic characters, and simulcast schedules." name="description"/>
+  <meta content="Anime World, Trending Anime, Best Anime, Best Manga, Jujutsu Kaisen, Demon Slayer, Attack on Titan, One Piece, Berserk, Solo Leveling" name="keywords"/>
   <link href="Images/skull.jpg" rel="icon" type="image/jpeg"/>
   <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@400;600;700;800&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    /* Custom & Embedded Font Definitions with Fallbacks */
     @font-face {
       font-family: 'Michroma';
       src: url('fonts/Michroma.ttf') format('truetype'),
@@ -39,23 +36,34 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: #080a0f;
+      background-color: #06080d;
     }
     body {
-      background-color: #080a0f;
-      color: #fff;
+      background-color: #06080d;
+      color: #e5e7eb;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
     }
 
-    /* Loader Auto-Fade Animation */
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #080b12; }
+    ::-webkit-scrollbar-thumb { background: #e63946; border-radius: 3px; }
+
+    /* Loader */
     @keyframes loaderAutoFade {
       0% { opacity: 1; visibility: visible; }
       85% { opacity: 0; visibility: visible; }
       100% { opacity: 0; visibility: hidden; display: none !important; }
     }
+    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spinMedium { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+    @keyframes spinFast { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .animate-spin-slow { animation: spinSlow 14s linear infinite !important; }
+    .animate-spin-medium { animation: spinMedium 9s linear infinite !important; }
+    .animate-spin-fast { animation: spinFast 4.5s linear infinite !important; }
 
-    /* Infinite Marquee */
+    /* Marquee */
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -63,53 +71,82 @@
     .animate-marquee {
       display: inline-flex !important;
       width: max-content !important;
-      animation: marquee 22s linear infinite !important;
+      animation: marquee 24s linear infinite !important;
     }
-    .animate-marquee:hover {
-      animation-play-state: paused;
+    .animate-marquee:hover { animation-play-state: paused; }
+
+    /* Sidebar Navigation Dock (Fixed Left, 64px, perfectly spaced, zero overlaps) */
+    .sidebar-dock {
+      width: 64px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 3000;
+      background: rgba(8, 11, 18, 0.96);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+    }
+    .sidebar-nav-btn {
+      width: 100%;
+      height: 52px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border-left: 3px solid transparent;
+      color: rgba(255, 255, 255, 0.45);
+    }
+    .sidebar-nav-btn:hover, .sidebar-nav-btn.is-active {
+      border-left-color: #e63946;
+      background: rgba(230, 57, 70, 0.12);
+      color: #ffffff;
+    }
+    .sidebar-nav-btn .nav-num {
+      font-family: 'Michroma', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .sidebar-nav-btn .nav-tag {
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+    .sidebar-nav-btn.is-active .nav-num {
+      color: #e63946;
     }
 
-    /* Rotational Spinner Animations */
-    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes spinMedium { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-    @keyframes spinFast { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes pulseGlow {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(230, 57, 70, 0.45)); }
-      50% { transform: scale(1.08); filter: drop-shadow(0 0 28px rgba(230, 57, 70, 0.85)); }
+    /* Equalizer for OST */
+    .eq-bar {
+      display: inline-block;
+      width: 3px;
+      height: 12px;
+      background: #e63946;
+      margin: 0 1.5px;
+      border-radius: 1px;
+      animation: eqDance 0.7s ease-in-out infinite alternate;
     }
+    .eq-bar:nth-child(2) { animation-delay: 0.15s; height: 16px; }
+    .eq-bar:nth-child(3) { animation-delay: 0.35s; height: 9px; }
+    .eq-bar:nth-child(4) { animation-delay: 0.1s; height: 14px; }
+    .eq-paused .eq-bar {
+      animation-play-state: paused !important;
+      height: 3px !important;
+    }
+    @keyframes eqDance { 0% { height: 3px; } 100% { height: 16px; } }
 
-    .animate-spin-slow { animation: spinSlow 14s linear infinite !important; }
-    .animate-spin-medium { animation: spinMedium 9s linear infinite !important; }
-    .animate-spin-fast { animation: spinFast 4.5s linear infinite !important; }
-    #page-loader .logo { animation: pulseGlow 2.5s ease-in-out infinite !important; }
-
-    /* Vertical Sidebar Dock (Left) Navigation */
-    .sidebar-nav-item {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .sidebar-nav-item:hover, .sidebar-nav-item.is-active {
-      max-height: 140px !important;
-    }
-    .sidebar-nav-item:hover > div:first-child,
-    .sidebar-nav-item.is-active > div:first-child {
-      height: 100% !important;
-      opacity: 0.95 !important;
-      background: #e63946 !important;
-    }
-    .sidebar-nav-item:hover .sidebar-label,
-    .sidebar-nav-item.is-active .sidebar-label {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-    .sidebar-nav-item:hover .sidebar-label span,
-    .sidebar-nav-item.is-active .sidebar-label span,
-    .sidebar-nav-item:hover span[style*=rotate],
-    .sidebar-nav-item.is-active span[style*=rotate] {
-      color: #ffffff !important;
-      font-weight: 700 !important;
-    }
-
-    /* Modal System */
+    /* Modals */
     .custom-modal-backdrop {
       position: fixed;
       inset: 0;
@@ -121,888 +158,976 @@
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.35s ease;
+      transition: opacity 0.3s ease;
     }
-    .custom-modal-backdrop.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .custom-modal-backdrop.active { opacity: 1; pointer-events: auto; }
     .custom-modal-box {
-      background: #0f131a;
+      background: #0d121c;
       border: 1px solid rgba(230, 57, 70, 0.4);
       border-radius: 1.25rem;
       max-width: 92vw;
-      width: 680px;
+      width: 700px;
       max-height: 88vh;
       overflow-y: auto;
       padding: 2.25rem;
       color: white;
       box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.95), 0 0 35px rgba(230, 57, 70, 0.3);
       transform: scale(0.92) translateY(20px);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .custom-modal-backdrop.active .custom-modal-box {
       transform: scale(1) translateY(0);
     }
 
-    /* Equalizer Bar Animation for Audio */
-    .eq-bar {
-      display: inline-block;
-      width: 3px;
-      height: 14px;
-      background: #e63946;
-      margin: 0 1.5px;
-      border-radius: 1px;
-      animation: eqDance 0.8s ease-in-out infinite alternate;
+    /* Fonts Utility */
+    .akira-font { font-family: 'Akira Expanded', sans-serif; }
+    .michroma-font { font-family: 'Michroma', sans-serif; }
+    .bebas-font { font-family: 'Bebas Neue', sans-serif; }
+
+    /* Card Hover Animations */
+    .anime-card {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.35s;
     }
-    .eq-bar:nth-child(2) { animation-delay: 0.2s; height: 18px; }
-    .eq-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
-    .eq-bar:nth-child(4) { animation-delay: 0.1s; height: 16px; }
-    .eq-paused .eq-bar {
-      animation-play-state: paused !important;
-      height: 4px !important;
-    }
-    @keyframes eqDance {
-      0% { height: 4px; }
-      100% { height: 18px; }
+    .anime-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(230, 57, 70, 0.35);
+      border-color: rgba(230, 57, 70, 0.6);
     }
 
-    /* 3D Ticket / Pass Carousel Transitions */
-    .ticket-card {
+    /* 3D Manga Carousel Transitions */
+    .manga-card {
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    .artist-card {
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    .character-card {
+      transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    .artist-card:hover {
-      filter: brightness(1.25) !important;
+    .character-card:hover {
+      filter: brightness(1.2) !important;
     }
 
-    /* Glowing Accents & Scanline Textures */
+    /* Cyber Scanlines Effect */
     .cyber-scanlines {
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.04) 2px, rgba(255, 255, 255, 0.04) 4px);
-    }
-    .akira-font {
-      font-family: 'Akira Expanded', sans-serif;
-    }
-    .michroma-font {
-      font-family: 'Michroma', sans-serif;
-    }
-    .integral-font {
-      font-family: 'Fontspring', sans-serif;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px);
     }
   </style>
 </head>
-<body class="relative overflow-x-hidden bg-[#080a0f] text-white">
+<body class="relative bg-[#06080d] text-gray-200 antialiased">
 
-  <!-- Audio Element (Studio 333 Theme) -->
+  <!-- Ambient Audio Element -->
   <audio id="anime-bg-audio" loop preload="none">
     <source src="breakupanimation/audio.mp3" type="audio/mpeg">
   </audio>
 
   <!-- CYBER-CHRONO LOADER SCREEN -->
-  <div class="fixed inset-0 z-[10000] flex items-center justify-center bg-[#07090e]" id="page-loader" style="animation: loaderAutoFade 0.7s ease 1.2s forwards; pointer-events: none;">
+  <div class="fixed inset-0 z-[10000] flex items-center justify-center bg-[#06080d]" id="page-loader" style="animation: loaderAutoFade 0.7s ease 1.1s forwards; pointer-events: none;">
     <div class="relative flex flex-col items-center gap-6">
-      <div class="relative w-56 h-56 flex items-center justify-center">
+      <div class="relative w-52 h-52 flex items-center justify-center">
         <div class="ring absolute inset-0 border border-red-500/25 rounded-full animate-spin-slow"></div>
-        <div class="ring absolute inset-[18%] border-t-2 border-r-2 border-red-500/40 rounded-full animate-spin-medium"></div>
-        <div class="ring absolute inset-[36%] border-b-2 border-l-2 border-yellow-500/50 rounded-full animate-spin-fast"></div>
+        <div class="ring absolute inset-[18%] border-t-2 border-r-2 border-red-500/50 rounded-full animate-spin-medium"></div>
+        <div class="ring absolute inset-[36%] border-b-2 border-l-2 border-yellow-400/60 rounded-full animate-spin-fast"></div>
         <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
           <circle class="stroke-red-950/30" cx="50" cy="50" fill="none" r="47" stroke-width="1"></circle>
-          <circle class="stroke-red-500" cx="50" cy="50" fill="none" r="47" stroke-linecap="round" stroke-width="1.5" style="filter: drop-shadow(0 0 8px #e63946); stroke-dasharray: 295; stroke-dashoffset: 75;" transform="rotate(-90 50 50)"></circle>
+          <circle class="stroke-red-500" cx="50" cy="50" fill="none" r="47" stroke-linecap="round" stroke-width="1.5" style="filter: drop-shadow(0 0 8px #e63946); stroke-dasharray: 295; stroke-dashoffset: 70;" transform="rotate(-90 50 50)"></circle>
         </svg>
         <div class="logo relative flex flex-col items-center">
-          <img alt="Studio 333 Logo" class="w-16 h-16 rounded-lg object-contain filter drop-shadow-lg" src="Images/skull.jpg"/>
-          <span class="michroma-font text-[10px] tracking-[0.3em] text-red-400 mt-2">STUDIO 333</span>
+          <img alt="Anime World" class="w-16 h-16 rounded-lg object-contain filter drop-shadow-[0_0_15px_rgba(230,57,70,0.8)]" src="Images/skull.jpg"/>
         </div>
       </div>
-      <div class="michroma-font text-xs tracking-[0.4em] text-white/70">INITIALIZING ANIME WORLD...</div>
+      <div class="michroma-font text-xs tracking-[0.4em] text-white/80">ANIME WORLD // LOADING ARCHIVE...</div>
     </div>
   </div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="transition-opacity duration-500 opacity-100" id="main-content">
-    <div class="michroma-font">
+  <!-- FIXED LEFT VERTICAL SIDEBAR DOCK (Desktop) -->
+  <aside class="hidden md:flex sidebar-dock">
+    <!-- Top Logo -->
+    <div class="flex flex-col items-center gap-1">
+      <a href="#section-1" class="w-10 h-10 rounded-lg bg-black border border-red-500/40 flex items-center justify-center overflow-hidden hover:scale-105 transition">
+        <img alt="Studio 333" class="w-full h-full object-cover" src="Images/skull.jpg"/>
+      </a>
+      <span class="text-[9px] text-red-500 font-extrabold tracking-wider font-mono">AW</span>
+    </div>
 
-      <!-- DESKTOP VERTICAL SIDEBAR DOCK (FIXED LEFT) -->
-      <aside class="hidden md:block fixed top-0 left-0 h-screen w-12 z-[3000] bg-[#090c12]/95 border-r border-white/10 backdrop-blur-md">
-        <div class="relative h-full flex flex-col justify-between items-center py-4">
-          <div class="mt-2">
-            <button aria-label="Toggle menu" class="w-9 h-9 flex items-center justify-center rounded border border-white/10 hover:border-red-500 hover:bg-red-500/20 transition-all text-white">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"></path></svg>
-            </button>
+    <!-- 8 Distinct, Non-Overlapping Nav Items -->
+    <nav class="w-full flex flex-col my-auto">
+      <div class="sidebar-nav-btn is-active" data-target="section-1" title="Home">
+        <span class="nav-num">01</span>
+        <span class="nav-tag">HOME</span>
+      </div>
+      <div class="sidebar-nav-btn" data-target="section-2" title="Trending">
+        <span class="nav-num">02</span>
+        <span class="nav-tag">TREND</span>
+      </div>
+      <div class="sidebar-nav-btn" data-target="section-3" title="Top Anime">
+        <span class="nav-num">03</span>
+        <span class="nav-tag">TOP</span>
+      </div>
+      <div class="sidebar-nav-btn" data-target="section-4" title="Manga Vault">
+        <span class="nav-num">04</span>
+        <span class="nav-tag">MANGA</span>
+      </div>
+      <div class="sidebar-nav-btn" data-target="section-5" title="Characters">
+        <span class="nav-num">05</span>
+        <span class="nav-tag">HEROES</span>
+      </div>
+      <div class="sidebar-nav-btn" data-target="section-6" title="Genres">
+        <span class="nav-num">06</span>
+        <span class="nav-tag">GENRES</span>
+      </div>
+      <div class="sidebar-nav-btn" data-target="section-7" title="Schedule">
+        <span class="nav-num">07</span>
+        <span class="nav-tag">AIRING</span>
+      </div>
+      <div class="sidebar-nav-btn" data-target="section-8" title="Community">
+        <span class="nav-num">08</span>
+        <span class="nav-tag">CLUB</span>
+      </div>
+    </nav>
+
+    <!-- Bottom Audio Equalizer Button -->
+    <div class="flex flex-col items-center">
+      <button id="sidebar-audio-toggle" class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:border-red-500/50 flex items-center justify-center transition" title="Toggle OST Sound">
+        <div class="flex items-end h-3.5 eq-paused" id="sidebar-eq">
+          <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+        </div>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MOBILE TOP BAR -->
+  <div class="md:hidden top-0 left-0 right-0 fixed z-[500] bg-[#07090f]/95 border-b border-white/10 backdrop-blur-md">
+    <div class="flex items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-2.5">
+        <img alt="Studio 333 Logo" class="w-7 h-7 rounded object-contain" src="Images/skull.jpg"/>
+        <span class="text-xs font-bold tracking-wider text-red-500">ANIME WORLD</span>
+      </div>
+      <div class="flex items-center gap-3 text-xs">
+        <button id="mobile-audio-toggle" class="px-2.5 py-1 bg-white/5 border border-white/10 rounded flex items-center gap-1.5">
+          <span class="text-[10px]">OST</span>
+          <div class="flex items-end h-3 eq-paused" id="mobile-eq">
+            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
           </div>
+        </button>
+        <button aria-label="Toggle menu" class="w-7 h-7 flex items-center justify-center border border-white/10 rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="w-full h-[2px] bg-white/5">
+      <div class="bg-red-500 h-full transition-all duration-150 ease-out" id="mobile-scroll-bar" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <!-- MAIN VIEWPORT CONTENT (Padded 64px on desktop) -->
+  <div class="md:ml-16">
+
+    <!-- TOP DESKTOP HUD NAVBAR -->
+    <header class="hidden md:flex fixed top-0 right-0 left-16 z-40 items-center justify-between px-8 py-4 bg-gradient-to-b from-[#06080d]/90 to-transparent backdrop-blur-sm pointer-events-none">
+      <div class="pointer-events-auto flex items-center gap-3">
+        <span class="px-3 py-1 bg-red-600/15 border border-red-500/40 rounded-full text-[11px] font-semibold text-red-400 tracking-wider">
+          /// DEFINITIVE ANIME & MANGA DATABASE
+        </span>
+      </div>
+      <div class="pointer-events-auto flex items-center gap-3 text-xs tracking-wider">
+        <button id="desktop-audio-toggle" class="flex items-center gap-2 px-4 py-2 bg-black/60 hover:bg-red-600/20 border border-white/15 hover:border-red-500/50 rounded-full backdrop-blur-md transition text-white">
+          <span id="audio-status-label">OST: PLAY</span>
+          <div class="flex items-end h-3.5 eq-paused" id="desktop-eq">
+            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+          </div>
+        </button>
+        <button class="nav-directory-btn px-4 py-2 bg-black/60 hover:bg-white/10 border border-white/15 rounded-full backdrop-blur-md transition text-white">
+          CATALOGUE
+        </button>
+        <a href="#section-2" class="px-5 py-2 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full shadow-[0_0_20px_rgba(230,57,70,0.5)] transition text-xs tracking-widest">
+          EXPLORE NOW
+        </a>
+      </div>
+    </header>
+
+
+    <!-- ==================== SECTION 1: HERO PORTAL ==================== -->
+    <section id="section-1" class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-16 px-6 overflow-hidden">
+      <!-- Background Cyber Atmosphere -->
+      <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+        <img alt="Hero Atmosphere" class="w-full h-full object-cover" src="Images/image_28.png" onerror="this.style.display='none'"/>
+      </div>
+      <!-- Glowing Red Center Radial -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
+        <!-- Tag Pill -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 bg-red-600/20 border border-red-500/50 rounded-full mb-6 shadow-[0_0_15px_rgba(230,57,70,0.3)]">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+          <span class="text-xs font-bold tracking-[0.25em] text-red-300">DISCOVER &bull; STREAM &bull; TRACK &bull; DISCUSS</span>
+        </div>
+
+        <!-- Fully Visible & Prominent Akira Title -->
+        <h1 class="akira-font text-5xl sm:text-7xl md:text-8xl tracking-widest text-white drop-shadow-[0_0_40px_rgba(230,57,70,0.7)] leading-none my-2">
+          ANIME<br/>
+          <span class="text-transparent" style="-webkit-text-stroke: 2px #e63946;">WORLD</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-sm sm:text-base text-gray-300 max-w-2xl mt-5 leading-relaxed font-normal">
+          The ultimate sanctuary for Japanese animation and legendary manga. Dive into trending seasonal broadcasts, all-time greatest masterpieces, and detailed character lore.
+        </p>
+
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 my-8 text-center w-full max-w-3xl">
+          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+            <div class="akira-font text-lg sm:text-xl text-red-500">12,500+</div>
+            <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Anime Catalogued</div>
+          </div>
+          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+            <div class="akira-font text-lg sm:text-xl text-yellow-400">9.8 / 10</div>
+            <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Top MAL Score</div>
+          </div>
+          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+            <div class="akira-font text-lg sm:text-xl text-blue-400">8,900+</div>
+            <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Manga Vault</div>
+          </div>
+          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+            <div class="akira-font text-lg sm:text-xl text-purple-400">4.5M+</div>
+            <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Otaku Fans</div>
+          </div>
+        </div>
+
+        <!-- Hero Graphic Composition -->
+        <div class="relative w-full max-w-md aspect-square flex items-center justify-center my-2">
+          <img alt="Cyber HUD Wheel" class="absolute w-full h-full object-contain animate-spin-slow opacity-30 pointer-events-none" src="Images/image_11.png" onerror="this.style.display='none'"/>
+          <img alt="Tanjiro Hinokami Kagura" class="relative z-10 w-[78%] max-h-[340px] object-contain filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.9)]" src="Images/tanjro.png"/>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-wrap gap-4 mt-6 z-20">
+          <a href="#section-2" class="px-8 py-3.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl shadow-[0_0_30px_rgba(230,57,70,0.6)] transition text-xs tracking-widest flex items-center gap-2">
+            <span>EXPLORE TRENDING</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="#section-3" class="px-8 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl transition text-xs tracking-widest">
+            ALL-TIME TOP 100
+          </a>
+          <a href="#section-4" class="px-8 py-3.5 bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/50 text-yellow-300 rounded-xl transition text-xs tracking-widest">
+            BEST MANGA
+          </a>
+        </div>
+      </div>
+
+      <!-- Infinite Marquee Tape -->
+      <div class="w-full overflow-hidden border-y border-white/10 bg-[#090d14] py-3 mt-14">
+        <div class="whitespace-nowrap animate-marquee flex text-xs tracking-[0.3em] font-semibold text-white/80">
+          <span class="mx-8 text-red-500">/// JUJUTSU KAISEN &bull; CULLING GAME</span>
+          <span class="mx-8">/// DEMON SLAYER &bull; INFINITY CASTLE ARC</span>
+          <span class="mx-8 text-yellow-400">/// ONE PIECE &bull; EGGHEAD ISLAND</span>
+          <span class="mx-8">/// ATTACK ON TITAN &bull; COMPLETE EDITION</span>
+          <span class="mx-8 text-blue-400">/// BERSERK &bull; THE BLACK SWORDSMAN</span>
+          <span class="mx-8">/// BLEACH &bull; THOUSAND-YEAR BLOOD WAR</span>
+          <span class="mx-8 text-purple-400">/// SOLO LEVELING &bull; SHADOW MONARCH</span>
+          <span class="mx-8 text-red-500">/// JUJUTSU KAISEN &bull; CULLING GAME</span>
+          <span class="mx-8">/// DEMON SLAYER &bull; INFINITY CASTLE ARC</span>
+          <span class="mx-8 text-yellow-400">/// ONE PIECE &bull; EGGHEAD ISLAND</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== SECTION 2: TRENDING ANIME (HOT RIGHT NOW) ==================== -->
+    <section id="section-2" class="py-20 px-6 bg-[#080b12] border-t border-white/10">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
+          <div>
+            <div class="text-xs text-red-500 tracking-[0.25em] mb-1">02 // CURRENT SEASON HIGHLIGHTS</div>
+            <h2 class="akira-font text-3xl sm:text-4xl text-white">HOT & TRENDING ANIME</h2>
+          </div>
+          <span class="text-xs text-gray-400 tracking-wider">UPDATED LIVE FROM COMMUNITY RATINGS</span>
+        </div>
+
+        <!-- Trending Grid of 4 Elite Series -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          <div class="my-auto">
-            <div class="text-[13px] text-red-500 font-bold tracking-[0.45em] whitespace-nowrap" style="transform: rotate(90deg); transform-origin: center;">
-              ANIME WORLD
-            </div>
-          </div>
-
-          <!-- Section Navigation Buttons 01 to 08 -->
-          <div class="w-full flex flex-col items-center">
-            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300 is-active" data-target="section-1">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 100%; opacity: 0.95;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-bold text-white" style="transform: rotate(90deg)">01/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-100" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>HOME</span>
-                  </div>
-                </div>
+          <!-- Card 1: Jujutsu Kaisen -->
+          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+            <div class="relative aspect-[3/4] overflow-hidden">
+              <img alt="Jujutsu Kaisen" class="w-full h-full object-cover" src="Images/jujutsu_kaisen.jpg"/>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-red-600 text-white font-black text-[10px] rounded tracking-widest">
+                🔥 TRENDING #1
               </div>
-            </div>
-
-            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-2">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">02/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>EXPLORE</span>
-                  </div>
-                </div>
+              <div class="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md text-yellow-400 font-bold text-xs rounded">
+                ⭐ 9.2
               </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0e131d] via-transparent to-transparent"></div>
             </div>
-
-            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-3">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">03/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>ARENA</span>
-                  </div>
-                </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] text-red-400 font-semibold tracking-wider uppercase">Studio MAPPA &bull; 47 Eps</span>
+                <h3 class="font-bold text-lg text-white mt-1">Jujutsu Kaisen</h3>
+                <p class="text-xs text-gray-400 mt-2 line-clamp-3">
+                  Sorcerers duel deadly Curses in modern Shibuya. Yuji Itadori harnesses Sukuna's fearsome energy while Gojo Satoru commands infinite void.
+                </p>
               </div>
-            </div>
-
-            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-4">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">04/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>PASSES</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-5">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">05/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>HEROES</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-6">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">06/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>MECHA</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-7">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">07/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>GAMING</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="group relative w-full border-t border-b border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-8">
-              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
-              <div class="relative z-10 w-full flex flex-col items-center">
-                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">08/</span>
-                <div class="w-full flex justify-center mt-2 mb-4">
-                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
-                    <span>EXPO</span>
-                  </div>
-                </div>
+              <div class="flex items-center justify-between pt-4 mt-4 border-t border-white/10">
+                <span class="text-[10px] text-gray-400">Action &bull; Dark Fantasy</span>
+                <a href="#section-5" class="text-xs text-red-400 hover:text-red-300 font-semibold tracking-wide">
+                  View Lore &rarr;
+                </a>
               </div>
             </div>
           </div>
-        </div>
-      </aside>
 
-      <!-- MOBILE TOP NAVBAR -->
-      <div class="md:hidden top-0 left-0 right-0 fixed z-[500] bg-[#0a0d14]/95 border-b border-white/10 backdrop-blur-md">
-        <div class="flex items-center justify-between px-4 py-3">
-          <div class="flex items-center gap-3">
-            <img alt="Studio 333 Logo" class="w-7 h-7 rounded object-contain" src="Images/skull.jpg"/>
-            <span class="text-xs font-bold tracking-wider text-red-500">ANIME WORLD</span>
-          </div>
-          <div class="flex items-center gap-3 text-xs">
-            <button id="mobile-audio-toggle" class="px-2 py-1 bg-white/5 border border-white/10 rounded flex items-center gap-1.5">
-              <span class="text-[10px]">SOUND</span>
-              <div class="flex items-end h-3 eq-paused" id="mobile-eq">
-                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+          <!-- Card 2: Demon Slayer -->
+          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+            <div class="relative aspect-[3/4] overflow-hidden">
+              <img alt="Demon Slayer" class="w-full h-full object-cover" src="Images/ds.jpg"/>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-red-600 text-white font-black text-[10px] rounded tracking-widest">
+                🔥 TRENDING #2
               </div>
-            </button>
-            <button aria-label="Toggle menu" class="w-7 h-7 flex items-center justify-center border border-white/10 rounded">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"></path></svg>
-            </button>
+              <div class="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md text-yellow-400 font-bold text-xs rounded">
+                ⭐ 9.4
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0e131d] via-transparent to-transparent"></div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] text-red-400 font-semibold tracking-wider uppercase">Studio Ufotable &bull; 55 Eps</span>
+                <h3 class="font-bold text-lg text-white mt-1">Demon Slayer: Kimetsu no Yaiba</h3>
+                <p class="text-xs text-gray-400 mt-2 line-clamp-3">
+                  Tanjiro Kamado wields the Hinokami Kagura to restore his demonic sister Nezuko, battling Upper Rank Moons in breathtaking cinematic animation.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-4 mt-4 border-t border-white/10">
+                <span class="text-[10px] text-gray-400">Historical &bull; Swordplay</span>
+                <a href="#section-5" class="text-xs text-red-400 hover:text-red-300 font-semibold tracking-wide">
+                  View Lore &rarr;
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-        <!-- Scroll progress bar -->
-        <div class="w-full h-[2px] bg-white/5">
-          <div class="bg-red-500 h-full transition-all duration-150 ease-out" id="mobile-scroll-bar" style="width: 0%"></div>
+
+          <!-- Card 3: Chainsaw Man -->
+          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+            <div class="relative aspect-[3/4] overflow-hidden">
+              <img alt="Chainsaw Man" class="w-full h-full object-cover" src="Images/chainsaw_man.jpg"/>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-yellow-500 text-black font-black text-[10px] rounded tracking-widest">
+                🔥 TRENDING #3
+              </div>
+              <div class="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md text-yellow-400 font-bold text-xs rounded">
+                ⭐ 8.9
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0e131d] via-transparent to-transparent"></div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] text-yellow-400 font-semibold tracking-wider uppercase">Studio MAPPA &bull; 12 Eps</span>
+                <h3 class="font-bold text-lg text-white mt-1">Chainsaw Man</h3>
+                <p class="text-xs text-gray-400 mt-2 line-clamp-3">
+                  Denji merges with the Chainsaw Devil Pochita to hunt fiends for Public Safety. Unhinged carnage, cinematic direction, and chaotic dark fantasy.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-4 mt-4 border-t border-white/10">
+                <span class="text-[10px] text-gray-400">Action &bull; Psychological</span>
+                <a href="#section-4" class="text-xs text-yellow-400 hover:text-yellow-300 font-semibold tracking-wide">
+                  View Lore &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Bleach TYBW -->
+          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+            <div class="relative aspect-[3/4] overflow-hidden">
+              <img alt="Bleach TYBW" class="w-full h-full object-cover" src="Images/bleach.jpg"/>
+              <div class="absolute top-3 left-3 px-2.5 py-1 bg-blue-600 text-white font-black text-[10px] rounded tracking-widest">
+                🔥 TRENDING #4
+              </div>
+              <div class="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md text-yellow-400 font-bold text-xs rounded">
+                ⭐ 9.1
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0e131d] via-transparent to-transparent"></div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] text-blue-400 font-semibold tracking-wider uppercase">Studio Pierrot &bull; 26+ Eps</span>
+                <h3 class="font-bold text-lg text-white mt-1">Bleach: Thousand-Year Blood War</h3>
+                <p class="text-xs text-gray-400 mt-2 line-clamp-3">
+                  The Quincy King Yhwach invades the Soul Society. Ichigo Kurosaki awakens his true Zanpakuto heritage in this breathtaking high-budget finale.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-4 mt-4 border-t border-white/10">
+                <span class="text-[10px] text-gray-400">Shonen &bull; Supernatural</span>
+                <a href="#section-7" class="text-xs text-blue-400 hover:text-blue-300 font-semibold tracking-wide">
+                  View Lore &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- MAIN WRAPPER (Offset for Sidebar) -->
-      <div class="md:ml-12">
 
-        <!-- ==================== SECTION 1: HERO ==================== -->
-        <section class="h-full relative" id="section-1">
-          <!-- Top Desktop HUD Actions -->
-          <div class="hidden absolute top-6 right-8 z-40 md:flex items-center gap-4">
-            <!-- Audio Toggle Player -->
-            <button id="audio-toggle-btn" class="flex items-center gap-2.5 px-4 py-2 bg-black/60 hover:bg-red-600/30 border border-white/15 hover:border-red-500/60 rounded-full backdrop-blur-md transition-all text-xs tracking-wider">
-              <span id="audio-status-text" class="text-white/80">OST: PLAY</span>
-              <div class="flex items-end h-3.5 eq-paused" id="desktop-eq">
-                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+    <!-- ==================== SECTION 3: ALL-TIME GREATEST ANIME (TOP RATED IN THE WORLD) ==================== -->
+    <section id="section-3" class="py-20 px-6 bg-[#06080d] border-t border-white/10 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
+          <div>
+            <div class="text-xs text-yellow-400 tracking-[0.25em] mb-1">03 // HALL OF FAME</div>
+            <h2 class="akira-font text-3xl sm:text-4xl text-white">BEST ANIME IN THE WORLD</h2>
+          </div>
+          <span class="text-xs text-gray-400 tracking-wider">ALL-TIME CRITICALLY ACCLAIMED MASTERPIECES</span>
+        </div>
+
+        <!-- Leaderboard Style Cards -->
+        <div class="space-y-4">
+          
+          <!-- Rank 1: FMAB -->
+          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4">
+              <span class="akira-font text-3xl sm:text-4xl text-yellow-400">01</span>
+              <img alt="FMAB" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/fmab.jpg"/>
+            </div>
+            <div class="flex-1 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                <span class="px-2 py-0.5 bg-yellow-500/20 text-yellow-300 text-[10px] font-bold rounded">MAL #1 HIGHEST RATED</span>
+                <span class="text-xs text-gray-400">Studio Bones &bull; 64 Episodes</span>
               </div>
-            </button>
-            <button class="map-trigger px-4 py-2 bg-black/60 hover:bg-white/10 border border-white/15 rounded-full backdrop-blur-md transition-all text-xs tracking-wider text-white">
-              MAP
-            </button>
-            <button aria-label="Toggle menu" class="px-4 py-2 bg-black/60 hover:bg-white/10 border border-white/15 rounded-full backdrop-blur-md transition-all text-xs tracking-wider text-white">
-              INDEX
-            </button>
-            <button class="login-trigger px-5 py-2 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full shadow-[0_0_20px_rgba(230,57,70,0.5)] transition-all text-xs tracking-widest">
-              GET PASS
-            </button>
+              <h3 class="font-bold text-xl text-white">Fullmetal Alchemist: Brotherhood</h3>
+              <p class="text-xs text-gray-400 mt-1 max-w-2xl">
+                Edward and Alphonse Elric commit the ultimate taboo of human transmutation and embark on an epic quest for the Philosopher's Stone to regain their bodies.
+              </p>
+            </div>
+            <div class="text-center sm:text-right">
+              <div class="akira-font text-2xl text-yellow-400">⭐ 9.8</div>
+              <div class="text-[10px] text-gray-400 tracking-wider">3.2M VOTES</div>
+            </div>
           </div>
 
-          <section class="relative min-h-screen flex items-center justify-center px-5 py-8 pt-20 overflow-hidden">
-            <!-- Cyber Background Grid Lines -->
-            <div class="absolute inset-0 z-0 opacity-25 pointer-events-none">
-              <img alt="Hero Cyber Grid" class="w-full h-full object-cover" src="Images/image_28.png" onerror="this.style.display='none'"/>
+          <!-- Rank 2: Attack on Titan -->
+          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4">
+              <span class="akira-font text-3xl sm:text-4xl text-gray-300">02</span>
+              <img alt="Attack on Titan" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/aot.jpg"/>
             </div>
-
-            <!-- Wireframe Grid Layer -->
-            <div class="absolute inset-0 z-10 pointer-events-none">
-              <div class="flex flex-col h-full w-full">
-                <div class="flex flex-nowrap h-[20%]">
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                </div>
-                <div class="flex flex-nowrap h-[60%]">
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                </div>
-                <div class="flex flex-nowrap h-[20%]">
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                  <div class="flex-1 border-[0.5px] border-white/10"></div>
-                </div>
+            <div class="flex-1 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                <span class="px-2 py-0.5 bg-red-600/20 text-red-300 text-[10px] font-bold rounded">GLOBAL PHENOMENON</span>
+                <span class="text-xs text-gray-400">Wit Studio / MAPPA &bull; 87 Episodes</span>
               </div>
+              <h3 class="font-bold text-xl text-white">Attack on Titan (Shingeki no Kyojin)</h3>
+              <p class="text-xs text-gray-400 mt-1 max-w-2xl">
+                Humanity fights giant man-eating Titans within giant walled cities. Eren Yeager uncovers dark ancestral truths, escalating into a catastrophic war for global freedom.
+              </p>
             </div>
-
-            <!-- Central Content & Big Title -->
-            <div class="relative z-20 flex flex-col items-center justify-center text-center max-w-6xl mx-auto mt-6">
-              <div class="flex items-center gap-3 px-4 py-1.5 bg-red-600/15 border border-red-500/40 rounded-full mb-6">
-                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                <span class="text-[11px] md:text-xs font-semibold text-red-300 tracking-[0.25em]">/// STUDIO 333 PRESENTS &bull; GLOBAL CONVENTION</span>
-              </div>
-
-              <!-- Main Stencil Title -->
-              <h1 class="akira-font text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-widest text-white drop-shadow-[0_0_35px_rgba(230,57,70,0.6)] leading-tight">
-                ANIME<br/><span class="text-transparent" style="-webkit-text-stroke: 2px #e63946;">WORLD</span>
-              </h1>
-
-              <!-- Hero Coordinates & Dates -->
-              <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-6 text-xs sm:text-sm text-white/80 tracking-widest">
-                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded">OCTOBER 24 &bull; 25 &bull; 26</span>
-                <span class="text-red-500 font-bold">|</span>
-                <span>TOKYO &bull; ARENA 333</span>
-                <span class="text-red-500 font-bold">|</span>
-                <span class="text-yellow-400 font-semibold">SEASON 2026</span>
-              </div>
-
-              <!-- Character & Wheel Graphic Composition -->
-              <div class="relative w-full max-w-lg aspect-square mt-4 flex items-center justify-center">
-                <!-- Rotating HUD Ring -->
-                <img alt="HUD Wheel" class="absolute w-[80%] h-[80%] object-contain animate-spin-slow opacity-40 pointer-events-none" src="Images/image_11.png" onerror="this.style.display='none'"/>
-                <!-- Hero Character (Tanjiro) -->
-                <img alt="Hero Tanjiro" class="relative z-10 w-[70%] max-h-[380px] object-contain filter drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)]" src="Images/tanjro.png"/>
-              </div>
-
-              <!-- Hero CTA Buttons -->
-              <div class="flex flex-wrap gap-4 mt-6 z-30">
-                <a href="#section-4" class="px-8 py-3.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg shadow-[0_0_30px_rgba(230,57,70,0.6)] transition-all text-xs tracking-widest flex items-center gap-2">
-                  <span>BOOK OTAKU PASS</span>
-                  <span>&rarr;</span>
-                </a>
-                <a href="#section-2" class="px-8 py-3.5 bg-white/5 hover:bg-white/15 border border-white/20 text-white rounded-lg transition-all text-xs tracking-widest">
-                  EXPLORE SESSIONS
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <!-- Infinite Marquee Ticker -->
-          <div class="w-full overflow-hidden border-y border-white/10 bg-[#0d121c] py-2.5">
-            <div class="whitespace-nowrap animate-marquee flex text-xs tracking-[0.3em] font-semibold text-white/80">
-              <span class="mx-8 text-red-500">/// DEMON SLAYER: INFINITY CASTLE</span>
-              <span class="mx-8">/// ONE PIECE: EGGHEAD ARC</span>
-              <span class="mx-8 text-yellow-400">/// DRAGON BALL DAIMA</span>
-              <span class="mx-8">/// JUJUTSU KAISEN: CULLING GAME</span>
-              <span class="mx-8 text-red-500">/// ATTACK ON TAIWAN SCREENING</span>
-              <span class="mx-8">/// STUDIO 333 EXCLUSIVE</span>
-              <span class="mx-8 text-red-500">/// DEMON SLAYER: INFINITY CASTLE</span>
-              <span class="mx-8">/// ONE PIECE: EGGHEAD ARC</span>
-              <span class="mx-8 text-yellow-400">/// DRAGON BALL DAIMA</span>
-              <span class="mx-8">/// JUJUTSU KAISEN: CULLING GAME</span>
-              <span class="mx-8 text-red-500">/// ATTACK ON TAIWAN SCREENING</span>
-              <span class="mx-8">/// STUDIO 333 EXCLUSIVE</span>
+            <div class="text-center sm:text-right">
+              <div class="akira-font text-2xl text-red-400">⭐ 9.7</div>
+              <div class="text-[10px] text-gray-400 tracking-wider">3.8M VOTES</div>
             </div>
           </div>
-        </section>
+
+          <!-- Rank 3: Steins;Gate -->
+          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4">
+              <span class="akira-font text-3xl sm:text-4xl text-amber-600">03</span>
+              <img alt="Steins Gate" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/steinsgate.jpg"/>
+            </div>
+            <div class="flex-1 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                <span class="px-2 py-0.5 bg-blue-500/20 text-blue-300 text-[10px] font-bold rounded">SCI-FI MASTERPIECE</span>
+                <span class="text-xs text-gray-400">White Fox &bull; 24 Episodes</span>
+              </div>
+              <h3 class="font-bold text-xl text-white">Steins;Gate</h3>
+              <p class="text-xs text-gray-400 mt-1 max-w-2xl">
+                Self-proclaimed mad scientist Rintaro Okabe accidentally discovers time travel using a modified microwave, triggering timeline divergences with tragic consequences.
+              </p>
+            </div>
+            <div class="text-center sm:text-right">
+              <div class="akira-font text-2xl text-blue-400">⭐ 9.7</div>
+              <div class="text-[10px] text-gray-400 tracking-wider">2.4M VOTES</div>
+            </div>
+          </div>
+
+          <!-- Rank 4: One Piece -->
+          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4">
+              <span class="akira-font text-3xl sm:text-4xl text-gray-500">04</span>
+              <img alt="One Piece" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/op.jpg"/>
+            </div>
+            <div class="flex-1 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                <span class="px-2 py-0.5 bg-purple-500/20 text-purple-300 text-[10px] font-bold rounded">GUINNESS WORLD RECORD</span>
+                <span class="text-xs text-gray-400">Toei Animation &bull; 1100+ Episodes</span>
+              </div>
+              <h3 class="font-bold text-xl text-white">One Piece</h3>
+              <p class="text-xs text-gray-400 mt-1 max-w-2xl">
+                Monkey D. Luffy sails the Grand Line with his crew in search of Gol D. Roger's legendary treasure to become the King of the Pirates.
+              </p>
+            </div>
+            <div class="text-center sm:text-right">
+              <div class="akira-font text-2xl text-purple-400">⭐ 9.6</div>
+              <div class="text-[10px] text-gray-400 tracking-wider">2.9M VOTES</div>
+            </div>
+          </div>
+
+          <!-- Rank 5: Vinland Saga -->
+          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4">
+              <span class="akira-font text-3xl sm:text-4xl text-gray-500">05</span>
+              <img alt="Vinland Saga" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/vinland.jpg"/>
+            </div>
+            <div class="flex-1 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                <span class="px-2 py-0.5 bg-green-500/20 text-green-300 text-[10px] font-bold rounded">SEINEN GOAT</span>
+                <span class="text-xs text-gray-400">Wit Studio / MAPPA &bull; 48 Episodes</span>
+              </div>
+              <h3 class="font-bold text-xl text-white">Vinland Saga</h3>
+              <p class="text-xs text-gray-400 mt-1 max-w-2xl">
+                Thorfinn raises blades in 11th-century Viking Europe seeking vengeance against his father's killer, eventually learning true strength lies in peace.
+              </p>
+            </div>
+            <div class="text-center sm:text-right">
+              <div class="akira-font text-2xl text-green-400">⭐ 9.5</div>
+              <div class="text-[10px] text-gray-400 tracking-wider">1.6M VOTES</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
 
-        <!-- ==================== SECTION 2: EXPLORE HIGH-IMPACT SLABS ==================== -->
-        <section id="section-2" class="w-full bg-[#0a0d14] flex flex-col items-center justify-center gap-4 px-4 py-16">
-          <div class="w-full max-w-7xl mx-auto flex items-end justify-between mb-4 border-b border-white/10 pb-4">
+    <!-- ==================== SECTION 4: 3D MANGA VAULT CAROUSEL ==================== -->
+    <section id="section-4" class="py-24 px-6 bg-[#080b12] border-t border-white/10 flex flex-col items-center justify-center overflow-hidden">
+      <div class="text-center mb-12">
+        <div class="text-xs text-red-500 tracking-[0.25em] mb-2">04 // LITERARY MASTERWORKS</div>
+        <h2 class="akira-font text-3xl sm:text-5xl lg:text-6xl text-white">BEST MANGA IN THE WORLD</h2>
+        <p class="text-xs sm:text-sm text-gray-400 tracking-widest mt-2">Legendary hand-drawn works that redefined sequential art history.</p>
+      </div>
+
+      <!-- 3D Stacked Manga Volumes -->
+      <div class="relative w-full max-w-4xl h-[400px] sm:h-[440px] flex items-center justify-center">
+        
+        <!-- Manga 0: BERSERK -->
+        <div class="manga-card absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#1c1114] to-[#2a1418] border-2 border-red-500 shadow-[0_20px_60px_rgba(230,57,70,0.35)]" data-manga-idx="0" style="transform: translateY(0px) scale(1.05); z-index: 30; opacity: 1;">
+          <div class="flex items-start justify-between border-b border-red-500/30 pb-4">
             <div>
-              <div class="text-xs text-red-500 tracking-[0.25em] mb-1">02 // CATEGORIES</div>
-              <h2 class="akira-font text-2xl sm:text-4xl text-white">CONVENTION TRACKS</h2>
+              <div class="text-[10px] sm:text-xs text-red-400 tracking-[0.3em] font-bold">DARK FANTASY GOAT &bull; 41 VOLUMES</div>
+              <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">BERSERK</h3>
             </div>
-            <span class="text-xs text-white/50 tracking-wider">SELECT A TRACK TO EXPAND</span>
+            <span class="px-3 py-1 bg-red-600 text-white font-extrabold text-xs rounded tracking-widest">
+              MAL 9.9
+            </span>
           </div>
-
-          <!-- Slab 1: Shonen Screenings -->
-          <a class="relative w-full max-w-7xl h-[28vh] sm:h-[32vh] overflow-hidden cursor-pointer bg-[#121620] group border border-white/10 rounded-xl transition-all hover:border-red-500/60" href="#section-4">
-            <div class="absolute inset-0 bg-cover bg-center brightness-50 transition-transform duration-700 group-hover:scale-105" style="background-image:url('Images/op.jpg');"></div>
-            <div class="relative z-10 w-full h-full p-6 sm:p-8 flex items-center justify-between">
-              <div class="max-w-xl">
-                <div class="text-[10px] sm:text-xs tracking-[0.2em] text-red-400 font-semibold mb-1">EXCLUSIVE PREMIERES</div>
-                <div class="akira-font text-2xl sm:text-4xl lg:text-5xl font-black italic tracking-tight text-white drop-shadow-md">
-                  SHONEN CINEMA
-                </div>
-                <p class="text-xs sm:text-sm text-white/70 mt-2 line-clamp-2">
-                  Uncut 4K IMAX screenings of One Piece Film Red, Demon Slayer Swordsmith Village, and exclusive Jujutsu Kaisen world premieres.
-                </p>
-              </div>
-              <div class="flex flex-col items-end gap-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-red-600 group-hover:border-red-600 transition-all">
-                  <svg class="w-5 h-5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-                <!-- Hazard Stripes from brokenwebsite -->
-                <div class="hidden sm:flex gap-1">
-                  <div class="w-[5px] h-6 -skew-x-12 bg-red-500"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-red-500"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-red-500"></div>
-                </div>
-              </div>
+          <div class="grid grid-cols-3 gap-4 my-5 text-xs">
+            <div>
+              <div class="text-gray-400 text-[10px]">MANGAKA</div>
+              <div class="font-bold text-white mt-0.5">Kentaro Miura</div>
             </div>
-            <div class="absolute inset-0 pointer-events-none cyber-scanlines opacity-20"></div>
-          </a>
-
-          <!-- Slab 2: Combat Arena -->
-          <a class="relative w-full max-w-7xl h-[28vh] sm:h-[32vh] overflow-hidden cursor-pointer bg-[#121620] group border border-white/10 rounded-xl transition-all hover:border-yellow-500/60" href="#section-3">
-            <div class="absolute inset-0 bg-cover bg-center brightness-50 transition-transform duration-700 group-hover:scale-105" style="background-image:url('Images/ds.jpg');"></div>
-            <div class="relative z-10 w-full h-full p-6 sm:p-8 flex items-center justify-between">
-              <div class="max-w-xl">
-                <div class="text-[10px] sm:text-xs tracking-[0.2em] text-yellow-400 font-semibold mb-1">CHAMPIONSHIP ARENA</div>
-                <div class="akira-font text-2xl sm:text-4xl lg:text-5xl font-black italic tracking-tight text-white drop-shadow-md">
-                  COSPLAY & COMBAT
-                </div>
-                <p class="text-xs sm:text-sm text-white/70 mt-2 line-clamp-2">
-                  World Cosplay Summit qualifiers and martial combat choreo tournament with international celebrity judges.
-                </p>
-              </div>
-              <div class="flex flex-col items-end gap-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-yellow-500 group-hover:border-yellow-500 transition-all">
-                  <svg class="w-5 h-5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-                <div class="hidden sm:flex gap-1">
-                  <div class="w-[5px] h-6 -skew-x-12 bg-yellow-400"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-yellow-400"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-yellow-400"></div>
-                </div>
-              </div>
+            <div>
+              <div class="text-gray-400 text-[10px]">PROTAGONIST</div>
+              <div class="font-bold text-white mt-0.5">Guts (Black Swordsman)</div>
             </div>
-            <div class="absolute inset-0 pointer-events-none cyber-scanlines opacity-20"></div>
-          </a>
-
-          <!-- Slab 3: Creator Conclave -->
-          <a class="relative w-full max-w-7xl h-[28vh] sm:h-[32vh] overflow-hidden cursor-pointer bg-[#121620] group border border-white/10 rounded-xl transition-all hover:border-purple-500/60" href="#section-8">
-            <div class="absolute inset-0 bg-cover bg-center brightness-50 transition-transform duration-700 group-hover:scale-105" style="background-image:url('Images/g.jpg');"></div>
-            <div class="relative z-10 w-full h-full p-6 sm:p-8 flex items-center justify-between">
-              <div class="max-w-xl">
-                <div class="text-[10px] sm:text-xs tracking-[0.2em] text-purple-400 font-semibold mb-1">MANGA MASTERCLASS</div>
-                <div class="akira-font text-2xl sm:text-4xl lg:text-5xl font-black italic tracking-tight text-white drop-shadow-md">
-                  CREATOR PANELS
-                </div>
-                <p class="text-xs sm:text-sm text-white/70 mt-2 line-clamp-2">
-                  Direct masterclasses with seasoned mangaka, anime voice actors (seiyuu), and animation directors from Tokyo studios.
-                </p>
-              </div>
-              <div class="flex flex-col items-end gap-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-purple-600 group-hover:border-purple-600 transition-all">
-                  <svg class="w-5 h-5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-                <div class="hidden sm:flex gap-1">
-                  <div class="w-[5px] h-6 -skew-x-12 bg-purple-500"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-purple-500"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
-                  <div class="w-[5px] h-6 -skew-x-12 bg-purple-500"></div>
-                </div>
-              </div>
-            </div>
-            <div class="absolute inset-0 pointer-events-none cyber-scanlines opacity-20"></div>
-          </a>
-        </section>
-
-
-        <!-- ==================== SECTION 3: ARENA SHOWCASE (CIRCUIT LINES) ==================== -->
-        <section id="section-3" class="relative min-h-screen bg-[#070a0f] py-20 overflow-hidden border-t border-white/10">
-          <!-- Animated Circuit Paths from brokenwebsite -->
-          <div class="absolute inset-0 pointer-events-none z-0 opacity-40">
-            <svg class="w-full h-full">
-              <defs>
-                <linearGradient id="animeCircuit" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#e63946" stop-opacity="0"></stop>
-                  <stop offset="50%" stop-color="#e63946" stop-opacity="0.9"></stop>
-                  <stop offset="100%" stop-color="#f4c542" stop-opacity="0"></stop>
-                </linearGradient>
-              </defs>
-              <path d="M0,80 Q250,160 500,80 T1000,80" fill="none" stroke="url(#animeCircuit)" stroke-width="2"></path>
-              <path d="M0,220 Q350,300 700,220 T1400,220" fill="none" stroke="url(#animeCircuit)" stroke-width="1.5"></path>
-              <path d="M150,400 Q600,480 950,400 T1600,400" fill="none" stroke="url(#animeCircuit)" stroke-width="1"></path>
-            </svg>
-          </div>
-
-          <div class="relative z-10 max-w-7xl mx-auto px-6">
-            <!-- Section Header -->
-            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-10">
-              <div>
-                <div class="text-xs text-red-500 tracking-[0.25em] mb-1">03 // BATTLEFIELD</div>
-                <h2 class="akira-font text-3xl sm:text-5xl text-white">COLOSSEUM ARENA</h2>
-              </div>
-              <!-- Loading Indicator Items from brokenwebsite -->
-              <div class="hidden sm:flex items-center gap-1">
-                <div class="w-2.5 h-6 bg-red-500 animate-pulse"></div>
-                <div class="w-2.5 h-6 bg-red-500/80 animate-pulse" style="animation-delay: 0.1s"></div>
-                <div class="w-2.5 h-6 bg-red-500/60 animate-pulse" style="animation-delay: 0.2s"></div>
-                <div class="w-2.5 h-6 bg-red-500/40 animate-pulse" style="animation-delay: 0.3s"></div>
-              </div>
-            </div>
-
-            <!-- Banner / Event Hero Image -->
-            <div class="w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl relative">
-              <img alt="Val Event Banner" class="w-full h-auto object-cover max-h-[460px]" src="Images/val-eventBanner.png"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-[#070a0f] via-transparent to-transparent"></div>
-            </div>
-
-            <!-- Arena Stats Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-              <div class="p-6 bg-[#0e131d] border border-white/10 rounded-xl">
-                <div class="text-xs text-red-400 font-semibold tracking-widest mb-1">TATAMI COMBAT ZONE</div>
-                <div class="akira-font text-2xl text-white mb-2">24 x 24 METERS</div>
-                <p class="text-xs text-white/60">Reinforced hydraulic combat tatami engineered for sword choreography, stunt battles, and wirework demonstrations.</p>
-              </div>
-              <div class="p-6 bg-[#0e131d] border border-white/10 rounded-xl">
-                <div class="text-xs text-yellow-400 font-semibold tracking-widest mb-1">GRAND PRIZE POOL</div>
-                <div class="akira-font text-2xl text-white mb-2">&yen; 1,500,000</div>
-                <p class="text-xs text-white/60">Trophies, official studio contracts, trip to Tokyo Anime Fair, and custom hand-forged Nichirin swords for top champions.</p>
-              </div>
-              <div class="p-6 bg-[#0e131d] border border-white/10 rounded-xl flex items-center justify-between">
-                <div>
-                  <div class="text-xs text-purple-400 font-semibold tracking-widest mb-1">EVENT COORDINATES</div>
-                  <div class="text-sm font-bold text-white">35.6762° N &bull; 139.6503° E</div>
-                  <div class="text-xs text-white/50 mt-1">HALL 333 // MAIN STAGE</div>
-                </div>
-                <button class="map-trigger px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded text-xs tracking-wider">
-                  VIEW MAP
-                </button>
-              </div>
+            <div>
+              <div class="text-gray-400 text-[10px]">STATUS</div>
+              <div class="font-bold text-white mt-0.5">Legendary Canon</div>
             </div>
           </div>
-        </section>
+          <p class="text-xs text-gray-300 line-clamp-3">
+            Born from a corpse beneath a hanging tree, Guts defies cosmic destiny and the God Hand with the Dragon Slayer sword. The undisputed pinnacle of dark fantasy manga.
+          </p>
+        </div>
 
-
-        <!-- ==================== SECTION 4: 3D PASSES & TICKETS CAROUSEL ==================== -->
-        <section id="section-4" class="relative w-full py-24 bg-[#0a0d14] flex flex-col items-center justify-center overflow-hidden border-t border-white/10">
-          <div class="text-center mb-12">
-            <div class="text-xs text-red-500 tracking-[0.25em] mb-2">04 // ACCESS TIERS</div>
-            <h2 class="akira-font text-4xl sm:text-6xl lg:text-7xl text-white">CONVENTION PASSES</h2>
-            <p class="text-xs sm:text-sm text-white/60 tracking-widest mt-3">One pass. Every universe of Anime World '26.</p>
+        <!-- Manga 1: VAGABOND -->
+        <div class="manga-card absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#171c26] to-[#121822] border border-blue-500/50 shadow-2xl" data-manga-idx="1" style="transform: translateY(40px) scale(0.95); z-index: 20; opacity: 0.85;">
+          <div class="flex items-start justify-between border-b border-blue-500/30 pb-4">
+            <div>
+              <div class="text-[10px] sm:text-xs text-blue-400 tracking-[0.3em] font-bold">SEINEN SAMURAI EPIC &bull; 37 VOLUMES</div>
+              <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">VAGABOND</h3>
+            </div>
+            <span class="px-3 py-1 bg-blue-600 text-white font-extrabold text-xs rounded tracking-widest">
+              MAL 9.8
+            </span>
           </div>
+          <div class="grid grid-cols-3 gap-4 my-5 text-xs">
+            <div>
+              <div class="text-gray-400 text-[10px]">MANGAKA</div>
+              <div class="font-bold text-white mt-0.5">Takehiko Inoue</div>
+            </div>
+            <div>
+              <div class="text-gray-400 text-[10px]">PROTAGONIST</div>
+              <div class="font-bold text-white mt-0.5">Miyamoto Musashi</div>
+            </div>
+            <div>
+              <div class="text-gray-400 text-[10px]">ARTWORK</div>
+              <div class="font-bold text-white mt-0.5">Sumie Ink Masterwork</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-300 line-clamp-3">
+            Shinmen Takezo embarks on a sword-fighting pilgrimage across feudal Japan, discovering that becoming 'Invincible Under the Sun' is merely an illusion.
+          </p>
+        </div>
 
-          <!-- Stack of 3D Ticket Cards -->
-          <div class="relative w-full max-w-4xl h-[360px] sm:h-[420px] flex items-center justify-center">
+        <!-- Manga 2: MONSTER -->
+        <div class="manga-card absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#201b16] to-[#171310] border border-yellow-500/50 shadow-2xl" data-manga-idx="2" style="transform: translateY(80px) scale(0.85); z-index: 10; opacity: 0.65;">
+          <div class="flex items-start justify-between border-b border-yellow-500/30 pb-4">
+            <div>
+              <div class="text-[10px] sm:text-xs text-yellow-400 tracking-[0.3em] font-bold">PSYCHOLOGICAL THRILLER &bull; 18 VOLUMES</div>
+              <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">MONSTER</h3>
+            </div>
+            <span class="px-3 py-1 bg-yellow-500 text-black font-extrabold text-xs rounded tracking-widest">
+              MAL 9.8
+            </span>
+          </div>
+          <div class="grid grid-cols-3 gap-4 my-5 text-xs">
+            <div>
+              <div class="text-gray-400 text-[10px]">MANGAKA</div>
+              <div class="font-bold text-white mt-0.5">Naoki Urasawa</div>
+            </div>
+            <div>
+              <div class="text-gray-400 text-[10px]">ANTAGONIST</div>
+              <div class="font-bold text-white mt-0.5">Johan Liebert</div>
+            </div>
+            <div>
+              <div class="text-gray-400 text-[10px]">SETTING</div>
+              <div class="font-bold text-white mt-0.5">Post-Cold War Germany</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-300 line-clamp-3">
+            Brain surgeon Dr. Kenzo Tenma saves a dying boy, unaware he has resuscitated the most terrifying, manipulative sociopath in European history.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center gap-6 mt-6 z-20">
+        <button id="manga-prev-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
+          &larr; PREVIOUS
+        </button>
+        <span class="text-xs text-gray-400 tracking-widest" id="manga-counter">1 / 3</span>
+        <button id="manga-next-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
+          NEXT &rarr;
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ==================== SECTION 5: HEROES 3D SPOTLIGHT ==================== -->
+    <section id="section-5" class="py-20 px-6 bg-[#06080d] border-t border-white/10">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-xs text-red-500 tracking-[0.25em] mb-2">05 // HALL OF LEGENDS</div>
+        <h2 class="akira-font text-3xl sm:text-5xl lg:text-6xl text-white mb-10">ICONIC CHARACTERS</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- 3D Carousel Cards (Left 7 Cols) -->
+          <div class="lg:col-span-7 relative h-[380px] sm:h-[450px] flex items-center justify-center">
             
-            <!-- Pass 0: ALL DAYS VIP PASS -->
-            <div class="ticket-card card-0 absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#1c1815] to-[#2b221a] border-2 border-[#f4c542] shadow-[0_20px_60px_rgba(244,197,66,0.35)]" data-ticket-idx="0" style="transform: translateY(0px) scale(1.05); z-index: 30; opacity: 1;">
-              <div class="flex items-start justify-between border-b border-[#f4c542]/30 pb-4">
-                <div>
-                  <div class="text-[10px] sm:text-xs text-[#f4c542] tracking-[0.3em] font-bold">VIP ADMIT ONE &bull; ALL DAYS</div>
-                  <div class="akira-font text-2xl sm:text-4xl text-white mt-1">OTAKU GOLD PASS</div>
-                </div>
-                <div class="px-3 py-1 bg-[#f4c542] text-black font-extrabold text-xs rounded tracking-widest">
-                  ALL DAYS
-                </div>
-              </div>
-              <div class="grid grid-cols-3 gap-4 my-6 text-xs">
-                <div>
-                  <div class="text-white/50 text-[10px]">DATES</div>
-                  <div class="font-bold text-white mt-0.5">OCT 24-26</div>
-                </div>
-                <div>
-                  <div class="text-white/50 text-[10px]">SECTOR</div>
-                  <div class="font-bold text-white mt-0.5">ALL ACCESS</div>
-                </div>
-                <div>
-                  <div class="text-white/50 text-[10px]">PERKS</div>
-                  <div class="font-bold text-white mt-0.5">VIP LOUNGE</div>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 bg-white p-1 rounded">
-                    <img alt="Pass QR" class="w-full h-full object-contain" src="Images/image_13.png" onerror="this.style.background='#fff'"/>
-                  </div>
-                  <span class="text-[10px] text-white/50 tracking-widest">NO. 333-GOLD-2026</span>
-                </div>
-                <button class="login-trigger px-6 py-2.5 bg-[#f4c542] hover:bg-[#ffe082] text-black font-extrabold text-xs rounded-lg tracking-wider transition">
-                  CLAIM &bull; &yen; 9,800
-                </button>
+            <!-- Hero 0: Tanjiro -->
+            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border-2 border-red-500 shadow-2xl cursor-pointer" data-char-idx="0" style="transform: translateX(0px) scale(1.06); z-index: 30; opacity: 1;">
+              <img alt="Tanjiro Kamado" class="w-full h-full object-cover" src="Images/ds.jpg"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded">DEMON SLAYER</span>
+                <h3 class="akira-font text-lg text-white mt-1">TANJIRO</h3>
               </div>
             </div>
 
-            <!-- Pass 1: DAY 1 PASS -->
-            <div class="ticket-card card-1 absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#171c26] to-[#121822] border border-blue-500/50 shadow-2xl" data-ticket-idx="1" style="transform: translateY(40px) scale(0.95); z-index: 20; opacity: 0.85;">
-              <div class="flex items-start justify-between border-b border-blue-500/30 pb-4">
-                <div>
-                  <div class="text-[10px] sm:text-xs text-blue-400 tracking-[0.3em] font-bold">ADMIT ONE &bull; DAY 1</div>
-                  <div class="akira-font text-2xl sm:text-4xl text-white mt-1">SHONEN DAY PASS</div>
-                </div>
-                <div class="px-3 py-1 bg-blue-600 text-white font-extrabold text-xs rounded tracking-widest">
-                  DAY 1
-                </div>
-              </div>
-              <div class="grid grid-cols-3 gap-4 my-6 text-xs">
-                <div>
-                  <div class="text-white/50 text-[10px]">DATE</div>
-                  <div class="font-bold text-white mt-0.5">OCT 24 2026</div>
-                </div>
-                <div>
-                  <div class="text-white/50 text-[10px]">THEME</div>
-                  <div class="font-bold text-white mt-0.5">ONE PIECE & NARUTO</div>
-                </div>
-                <div>
-                  <div class="text-white/50 text-[10px]">ACCESS</div>
-                  <div class="font-bold text-white mt-0.5">MAIN HALL</div>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                <span class="text-[10px] text-white/50 tracking-widest">NO. 333-DAY1-2026</span>
-                <button class="login-trigger px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs rounded-lg tracking-wider transition">
-                  CLAIM &bull; &yen; 3,500
-                </button>
+            <!-- Hero 1: Goku -->
+            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-yellow-500 shadow-2xl cursor-pointer" data-char-idx="1" style="transform: translateX(180px) scale(0.85); z-index: 20; opacity: 0.8;">
+              <img alt="Son Goku" class="w-full h-full object-cover" src="Images/g.jpg"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2 py-0.5 bg-yellow-500 text-black text-[10px] font-bold rounded">DRAGON BALL Z</span>
+                <h3 class="akira-font text-lg text-white mt-1">SON GOKU</h3>
               </div>
             </div>
 
-            <!-- Pass 2: DAY 2 PASS -->
-            <div class="ticket-card card-2 absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#241316] to-[#1a0e10] border border-red-500/50 shadow-2xl" data-ticket-idx="2" style="transform: translateY(80px) scale(0.85); z-index: 10; opacity: 0.65;">
-              <div class="flex items-start justify-between border-b border-red-500/30 pb-4">
-                <div>
-                  <div class="text-[10px] sm:text-xs text-red-400 tracking-[0.3em] font-bold">ADMIT ONE &bull; DAY 2</div>
-                  <div class="akira-font text-2xl sm:text-4xl text-white mt-1">BATTLE CUP PASS</div>
-                </div>
-                <div class="px-3 py-1 bg-red-600 text-white font-extrabold text-xs rounded tracking-widest">
-                  DAY 2
-                </div>
+            <!-- Hero 2: Naruto -->
+            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-blue-500 shadow-2xl cursor-pointer" data-char-idx="2" style="transform: translateX(0px) scale(0.65); z-index: 10; opacity: 0;">
+              <img alt="Naruto Uzumaki" class="w-full h-full object-cover" src="Images/n.jpg"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold rounded">SHIPPUDEN</span>
+                <h3 class="akira-font text-lg text-white mt-1">NARUTO</h3>
               </div>
-              <div class="grid grid-cols-3 gap-4 my-6 text-xs">
-                <div>
-                  <div class="text-white/50 text-[10px]">DATE</div>
-                  <div class="font-bold text-white mt-0.5">OCT 25 2026</div>
-                </div>
-                <div>
-                  <div class="text-white/50 text-[10px]">THEME</div>
-                  <div class="font-bold text-white mt-0.5">DEMON SLAYER CUP</div>
-                </div>
-                <div>
-                  <div class="text-white/50 text-[10px]">ACCESS</div>
-                  <div class="font-bold text-white mt-0.5">ARENA SEATS</div>
-                </div>
+            </div>
+
+            <!-- Hero 3: Luffy -->
+            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-purple-500 shadow-2xl cursor-pointer" data-char-idx="3" style="transform: translateX(-180px) scale(0.85); z-index: 20; opacity: 0.8;">
+              <img alt="Monkey D. Luffy" class="w-full h-full object-cover" src="Images/op.jpg"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded">ONE PIECE</span>
+                <h3 class="akira-font text-lg text-white mt-1">LUFFY</h3>
               </div>
-              <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                <span class="text-[10px] text-white/50 tracking-widest">NO. 333-DAY2-2026</span>
-                <button class="login-trigger px-6 py-2.5 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs rounded-lg tracking-wider transition">
-                  CLAIM &bull; &yen; 4,200
-                </button>
+            </div>
+
+          </div>
+
+          <!-- Synchronized Lore Slide (Right 5 Cols) -->
+          <div class="lg:col-span-5 p-6 sm:p-8 bg-[#0c1018] border border-white/10 rounded-2xl">
+            <div class="relative h-16 overflow-hidden">
+              <div class="char-name-slide absolute inset-0 transition-all duration-500 opacity-100 translate-y-0">
+                <div class="akira-font text-2xl sm:text-3xl text-red-500">TANJIRO KAMADO</div>
+                <div class="text-xs text-gray-400">Sun Breathing &bull; Hinokami Kagura &bull; Demon Slayer Corps</div>
               </div>
+              <div class="char-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
+                <div class="akira-font text-2xl sm:text-3xl text-yellow-400">SON GOKU</div>
+                <div class="text-xs text-gray-400">Super Saiyan &bull; Ultra Instinct &bull; Mastered Kamehameha</div>
+              </div>
+              <div class="char-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
+                <div class="akira-font text-2xl sm:text-3xl text-blue-400">NARUTO UZUMAKI</div>
+                <div class="text-xs text-gray-400">Seventh Hokage &bull; Nine-Tails Jinchuriki &bull; Sage of Six Paths</div>
+              </div>
+              <div class="char-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
+                <div class="akira-font text-2xl sm:text-3xl text-purple-400">MONKEY D. LUFFY</div>
+                <div class="text-xs text-gray-400">Gear 5 Sun God Nika &bull; Emperor of the Sea &bull; Straw Hat Captain</div>
+              </div>
+            </div>
+
+            <div class="relative min-h-[140px] my-6">
+              <div class="char-bio-slide absolute inset-0 transition-all duration-500 opacity-100 translate-y-0 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                "No matter how many people you may lose, you have no choice but to go on living. No matter how devastating the blows may be." Tanjiro wields compassion alongside the ultimate blade to free humanity from Muzan Kibutsuji's curse.
+              </div>
+              <div class="char-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                "I am the hope of the universe. I am the answer to all living things that cry out for peace." A pure-hearted Saiyan raised on Earth whose battle instincts continually ascend beyond the realm of Gods of Destruction.
+              </div>
+              <div class="char-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                "If you don't like your destiny, don't accept it. Instead, have the courage to change it the way you want it to be!" From an ostracized orphan to the hero who united all hidden ninja villages.
+              </div>
+              <div class="char-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                "If you don't take risks, you can't create a future!" With the heartbeat of the Drums of Liberation, Gear 5 Luffy bends reality to his will, fighting for the ultimate freedom of every oppressed island.
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-white/10 text-xs text-gray-400 flex items-center justify-between">
+              <span>AUTO-ROTATING SPOTLIGHT</span>
+              <span class="text-red-400">CLICK ANY CARD TO FOCUS</span>
             </div>
           </div>
 
-          <!-- Pass Carousel Navigation Controls -->
-          <div class="flex items-center gap-8 mt-6 z-20">
-            <button id="pass-prev-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
-              &larr; PREVIOUS
-            </button>
-            <span class="text-xs text-white/50 tracking-widest" id="pass-counter">1 / 3</span>
-            <button id="pass-next-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
-              NEXT &rarr;
-            </button>
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 5: HEROES 3D SPOTLIGHT CAROUSEL ==================== -->
-        <section id="section-5" class="relative min-h-screen bg-[#070a0f] py-20 overflow-hidden border-t border-white/10">
-          <div class="max-w-7xl mx-auto px-6">
-            <div class="text-xs text-red-500 tracking-[0.25em] mb-2">05 // HALL OF HEROES</div>
-            <h2 class="akira-font text-3xl sm:text-5xl lg:text-6xl text-white mb-10">CHARACTER SPOTLIGHT</h2>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              
-              <!-- 3D Carousel Cards Left (8 Cols) -->
-              <div class="lg:col-span-7 relative h-[380px] sm:h-[450px] flex items-center justify-center">
-                <!-- Card 0: Tanjiro -->
-                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border-2 border-red-500 shadow-2xl cursor-pointer" data-artist-idx="0" style="transform: translateX(0px) scale(1.05); z-index: 30; opacity: 1;">
-                  <img alt="Tanjiro" class="w-full h-full object-cover" src="Images/ds.jpg"/>
-                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-                  <div class="absolute bottom-4 left-4 right-4">
-                    <span class="px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded">DEMON SLAYER</span>
-                    <h3 class="akira-font text-lg text-white mt-1">TANJIRO</h3>
-                  </div>
-                </div>
-
-                <!-- Card 1: Goku -->
-                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-yellow-500 shadow-2xl cursor-pointer" data-artist-idx="1" style="transform: translateX(180px) scale(0.85); z-index: 20; opacity: 0.8;">
-                  <img alt="Goku" class="w-full h-full object-cover" src="Images/g.jpg"/>
-                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-                  <div class="absolute bottom-4 left-4 right-4">
-                    <span class="px-2 py-0.5 bg-yellow-500 text-black text-[10px] font-bold rounded">DRAGON BALL Z</span>
-                    <h3 class="akira-font text-lg text-white mt-1">SON GOKU</h3>
-                  </div>
-                </div>
-
-                <!-- Card 2: Naruto -->
-                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-blue-500 shadow-2xl cursor-pointer" data-artist-idx="2" style="transform: translateX(0px) scale(0.65); z-index: 10; opacity: 0;">
-                  <img alt="Naruto" class="w-full h-full object-cover" src="Images/n.jpg"/>
-                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-                  <div class="absolute bottom-4 left-4 right-4">
-                    <span class="px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold rounded">SHIPPUDEN</span>
-                    <h3 class="akira-font text-lg text-white mt-1">NARUTO</h3>
-                  </div>
-                </div>
-
-                <!-- Card 3: Luffy -->
-                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-purple-500 shadow-2xl cursor-pointer" data-artist-idx="3" style="transform: translateX(-180px) scale(0.85); z-index: 20; opacity: 0.8;">
-                  <img alt="Luffy" class="w-full h-full object-cover" src="Images/op.jpg"/>
-                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-                  <div class="absolute bottom-4 left-4 right-4">
-                    <span class="px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded">ONE PIECE</span>
-                    <h3 class="akira-font text-lg text-white mt-1">LUFFY</h3>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Synchronized Title & Lore Slide Right (5 Cols) -->
-              <div class="lg:col-span-5 p-6 bg-[#0e131d] border border-white/10 rounded-2xl">
-                <div class="relative h-14 overflow-hidden">
-                  <!-- Name 0 -->
-                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-100 translate-y-0">
-                    <div class="akira-font text-2xl sm:text-3xl text-red-500">TANJIRO KAMADO</div>
-                    <div class="text-xs text-white/50">Water Breathing &bull; Hinokami Kagura</div>
-                  </div>
-                  <!-- Name 1 -->
-                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
-                    <div class="akira-font text-2xl sm:text-3xl text-yellow-400">SON GOKU</div>
-                    <div class="text-xs text-white/50">Super Saiyan &bull; Ultra Instinct</div>
-                  </div>
-                  <!-- Name 2 -->
-                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
-                    <div class="akira-font text-2xl sm:text-3xl text-blue-400">NARUTO UZUMAKI</div>
-                    <div class="text-xs text-white/50">Sage Mode &bull; Nine-Tails Chakra</div>
-                  </div>
-                  <!-- Name 3 -->
-                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
-                    <div class="akira-font text-2xl sm:text-3xl text-purple-400">MONKEY D. LUFFY</div>
-                    <div class="text-xs text-white/50">Gear 5 &bull; Sun God Nika</div>
-                  </div>
-                </div>
-
-                <div class="relative min-h-[140px] my-6">
-                  <!-- Bio 0 -->
-                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-100 translate-y-0 text-xs sm:text-sm text-white/70 leading-relaxed">
-                    A compassionate warrior turned Demon Slayer after tragedy. Wielder of the black Nichirin blade and the divine Sun Breathing style inherited from ancestral Kamado line.
-                  </div>
-                  <!-- Bio 1 -->
-                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-white/70 leading-relaxed">
-                    Earth's greatest martial protector, a pure-hearted Saiyan whose limits shatter every adversary. Master of the Kamehameha and transcendent Ultra Instinct state.
-                  </div>
-                  <!-- Bio 2 -->
-                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-white/70 leading-relaxed">
-                    From an ostracized orphan to the Seventh Hokage who united the shinobi nations. Champion of bonds, peace, and the legendary Rasengan.
-                  </div>
-                  <!-- Bio 3 -->
-                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-white/70 leading-relaxed">
-                    Captain of the Straw Hat Pirates, seeking the One Piece to become the freest man on the seas. Unleashes joy, freedom, and boundless cartoon physics in Gear 5.
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-4 pt-4 border-t border-white/10">
-                  <span class="text-[11px] text-white/50">AUTOPLAYING SPOTLIGHT &bull; CLICK CARD TO SWITCH</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 6: MECHA & SPEED SHOWCASE ==================== -->
-        <section id="section-6" class="relative py-20 bg-[#090d14] border-t border-white/10">
-          <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-10">
-              <div>
-                <div class="text-xs text-red-500 tracking-[0.25em] mb-1">06 // GARAGE & MECHA</div>
-                <h2 class="akira-font text-3xl sm:text-5xl text-white">ANIME VEHICLES</h2>
-              </div>
-              <span class="text-xs text-white/50">CYBER SPEED MACHINES</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div class="space-y-6">
-                <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl">
-                  <span class="text-red-400 text-xs font-semibold tracking-widest">SPECIFICATION 01</span>
-                  <h3 class="akira-font text-xl text-white mt-1">NEO-TOKYO CYBER BIKE</h3>
-                  <p class="text-xs text-white/60 mt-2">Custom-built replica of Kaneda's iconic red cyber motorcycle, complete with twin ceramic rotor reverse-drive motors and digital HUD.</p>
-                </div>
-                <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl">
-                  <span class="text-yellow-400 text-xs font-semibold tracking-widest">SPECIFICATION 02</span>
-                  <h3 class="akira-font text-xl text-white mt-1">MECHA SUIT RIG 333</h3>
-                  <p class="text-xs text-white/60 mt-2">Full-scale titanium exoskeleton rig inspired by Evangelion Unit-01 and Gundam RX-78-2 on interactive display.</p>
-                </div>
-              </div>
-              <div class="rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-[#0e131d] p-6 flex items-center justify-center">
-                <img alt="Anime Mecha Vehicle" class="w-full max-h-[360px] object-contain filter drop-shadow-xl" src="Images/car.png" onerror="this.src='Images/opt.png'"/>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 7: GAMING CONCLAVE ==================== -->
-        <section id="section-7" class="relative py-20 bg-[#070a0f] border-t border-white/10">
-          <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-10">
-              <div>
-                <div class="text-xs text-red-500 tracking-[0.25em] mb-1">07 // ESPORTS & CONCLAVE</div>
-                <h2 class="akira-font text-3xl sm:text-5xl text-white">GAMING CONCLAVE</h2>
-              </div>
-              <span class="text-xs text-red-400">TOURNAMENT LIVE</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl hover:border-red-500 transition-all">
-                <div class="text-3xl mb-3">&#127918;</div>
-                <h3 class="akira-font text-lg text-white mb-1">FIGHTERZ SHOWDOWN</h3>
-                <p class="text-xs text-white/60">Dragon Ball FighterZ and Guilty Gear -Strive- open championship. Direct live caster stream on main audi screen.</p>
-              </div>
-              <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl hover:border-yellow-500 transition-all">
-                <div class="text-3xl mb-3">&#9876;&#65039;</div>
-                <h3 class="akira-font text-lg text-white mb-1">HINOKAMI CHRONICLES</h3>
-                <p class="text-xs text-white/60">Demon Slayer fighting game tournament on PS5 arena pods. Custom Nichirin trophies awarded to podium finishers.</p>
-              </div>
-              <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl hover:border-purple-500 transition-all">
-                <div class="text-3xl mb-3">&#128302;</div>
-                <h3 class="akira-font text-lg text-white mb-1">GENSHIN & GACHA LOUNGE</h3>
-                <p class="text-xs text-white/60">Speedrunning abyss challenges, cosplay photo booths, and official Mihoyo merchandise giveaways.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ==================== SECTION 8: STUDIO 333 EXPO & COMMUNITY ==================== -->
-        <section id="section-8" class="relative py-24 bg-[#0a0d14] border-t border-white/10">
-          <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-              <div class="text-xs text-red-500 tracking-[0.25em] mb-2">08 // COMMUNITY & EXHIBITION</div>
-              <h2 class="akira-font text-4xl sm:text-6xl text-white">STUDIO 333 EXPO</h2>
-              <p class="text-xs sm:text-sm text-white/60 tracking-widest mt-3">Artist alley, official merchandise booths, and the heart of our community.</p>
-            </div>
-
-            <!-- Newsletter Signup Box -->
-            <div class="max-w-3xl mx-auto p-8 sm:p-12 bg-gradient-to-r from-[#121822] to-[#1a1216] border border-red-500/40 rounded-2xl text-center relative overflow-hidden shadow-2xl">
-              <h3 class="akira-font text-2xl sm:text-3xl text-white mb-3">JOIN THE ANIME CLUB</h3>
-              <p class="text-xs sm:text-sm text-white/70 mb-6">Receive exclusive festival drop alerts, secret screening invitations, and community discounts.</p>
-              <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Subscribed to Anime World updates!'); this.reset();">
-                <input type="email" placeholder="otaku@studio333.com" required class="flex-1 px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-xs text-white focus:outline-none focus:border-red-500 transition"/>
-                <button type="submit" class="px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-lg tracking-wider transition">
-                  SUBSCRIBE
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ==================== FOOTER ==================== -->
-        <footer class="bg-[#05070a] border-t border-white/10 py-12 px-6">
-          <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-white/50">
-            <div class="flex items-center gap-3">
-              <img alt="Studio 333 Logo" class="w-8 h-8 rounded object-contain" src="Images/skull.jpg"/>
-              <div>
-                <span class="text-white font-bold">ANIME WORLD '26</span>
-                <span class="block text-[10px] text-red-400">POWERED BY STUDIO 333</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-6">
-              <a href="#section-1" class="hover:text-white transition">HOME</a>
-              <a href="#section-2" class="hover:text-white transition">EXPLORE</a>
-              <a href="#section-3" class="hover:text-white transition">ARENA</a>
-              <a href="#section-4" class="hover:text-white transition">PASSES</a>
-              <a href="#section-5" class="hover:text-white transition">HEROES</a>
-            </div>
-            <div>
-              &copy; 2026 Studio 333 &bull; All Rights Reserved
-            </div>
-          </div>
-        </footer>
-
+        </div>
       </div>
-    </div>
+    </section>
+
+
+    <!-- ==================== SECTION 6: ANIME GENRES & UNIVERSES ==================== -->
+    <section id="section-6" class="py-20 px-6 bg-[#080b12] border-t border-white/10">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
+          <div>
+            <div class="text-xs text-red-500 tracking-[0.25em] mb-1">06 // EXPLORE CATEGORIES</div>
+            <h2 class="akira-font text-3xl sm:text-4xl text-white">GENRES & UNIVERSES</h2>
+          </div>
+          <span class="text-xs text-gray-400">CHOOSE YOUR NEXT OBSESSION</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div class="p-5 bg-[#0e131d] border border-white/10 rounded-xl hover:border-red-500 transition cursor-pointer text-center group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition">⚔️</div>
+            <h3 class="font-bold text-sm text-white">Shōnen</h3>
+            <p class="text-[11px] text-gray-400 mt-1">Action &bull; Ambition</p>
+          </div>
+          <div class="p-5 bg-[#0e131d] border border-white/10 rounded-xl hover:border-red-500 transition cursor-pointer text-center group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition">🌑</div>
+            <h3 class="font-bold text-sm text-white">Seinen</h3>
+            <p class="text-[11px] text-gray-400 mt-1">Dark &bull; Philosophical</p>
+          </div>
+          <div class="p-5 bg-[#0e131d] border border-white/10 rounded-xl hover:border-red-500 transition cursor-pointer text-center group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition">🔮</div>
+            <h3 class="font-bold text-sm text-white">Isekai</h3>
+            <p class="text-[11px] text-gray-400 mt-1">Rebirth &bull; Fantasy</p>
+          </div>
+          <div class="p-5 bg-[#0e131d] border border-white/10 rounded-xl hover:border-red-500 transition cursor-pointer text-center group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition">🧠</div>
+            <h3 class="font-bold text-sm text-white">Psychological</h3>
+            <p class="text-[11px] text-gray-400 mt-1">Mind Games &bull; Thriller</p>
+          </div>
+          <div class="p-5 bg-[#0e131d] border border-white/10 rounded-xl hover:border-red-500 transition cursor-pointer text-center group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition">🤖</div>
+            <h3 class="font-bold text-sm text-white">Cyberpunk</h3>
+            <p class="text-[11px] text-gray-400 mt-1">Sci-Fi &bull; Dystopia</p>
+          </div>
+          <div class="p-5 bg-[#0e131d] border border-white/10 rounded-xl hover:border-red-500 transition cursor-pointer text-center group">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition">🌸</div>
+            <h3 class="font-bold text-sm text-white">Slice of Life</h3>
+            <p class="text-[11px] text-gray-400 mt-1">Warmth &bull; Drama</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== SECTION 7: AIRING SCHEDULE & SIMULCASTS ==================== -->
+    <section id="section-7" class="py-20 px-6 bg-[#06080d] border-t border-white/10">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
+          <div>
+            <div class="text-xs text-red-500 tracking-[0.25em] mb-1">07 // SIMULCAST CALENDAR</div>
+            <h2 class="akira-font text-3xl sm:text-4xl text-white">WEEKLY AIRING SCHEDULE</h2>
+          </div>
+          <span class="text-xs text-gray-400">JAPAN BROADCAST TIME (JST)</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 bg-[#0e131d] border border-white/10 rounded-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+              <span class="font-bold text-white text-sm">MONDAY & TUESDAY</span>
+              <span class="text-[10px] px-2 py-0.5 bg-red-600/20 text-red-400 rounded font-mono">SIMULCAST</span>
+            </div>
+            <ul class="space-y-3 text-xs text-gray-300">
+              <li class="flex items-center justify-between">
+                <span>Bleach: TYBW Part 3</span>
+                <span class="text-gray-500">23:00 JST</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>Vinland Saga Chronicles</span>
+                <span class="text-gray-500">24:30 JST</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>Golden Kamuy Season 5</span>
+                <span class="text-gray-500">22:00 JST</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-[#0e131d] border border-white/10 rounded-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+              <span class="font-bold text-white text-sm">WEDNESDAY & THURSDAY</span>
+              <span class="text-[10px] px-2 py-0.5 bg-yellow-500/20 text-yellow-400 rounded font-mono">SIMULCAST</span>
+            </div>
+            <ul class="space-y-3 text-xs text-gray-300">
+              <li class="flex items-center justify-between">
+                <span>Re:Zero Season 3</span>
+                <span class="text-gray-500">21:00 JST</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>DanMachi Season V</span>
+                <span class="text-gray-500">22:00 JST</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>Dr. Stone Science Future</span>
+                <span class="text-gray-500">22:30 JST</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-[#0e131d] border border-white/10 rounded-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+              <span class="font-bold text-white text-sm">WEEKEND BLOCK (SAT & SUN)</span>
+              <span class="text-[10px] px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded font-mono">PEAK TIME</span>
+            </div>
+            <ul class="space-y-3 text-xs text-gray-300">
+              <li class="flex items-center justify-between font-semibold text-white">
+                <span>One Piece (Egghead Climax)</span>
+                <span class="text-yellow-400">09:30 JST</span>
+              </li>
+              <li class="flex items-center justify-between font-semibold text-white">
+                <span>Solo Leveling: Arise</span>
+                <span class="text-blue-400">24:00 JST</span>
+              </li>
+              <li class="flex items-center justify-between font-semibold text-white">
+                <span>Demon Slayer Movie Special</span>
+                <span class="text-red-400">19:00 JST</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== SECTION 8: OTAKU CLUB & NEWSLETTER ==================== -->
+    <section id="section-8" class="py-24 px-6 bg-[#080b12] border-t border-white/10">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="text-xs text-red-500 tracking-[0.25em] mb-2">08 // COMMUNITY PORTAL</div>
+        <h2 class="akira-font text-3xl sm:text-5xl text-white">JOIN THE OTAKU CLUB</h2>
+        <p class="text-xs sm:text-sm text-gray-400 mt-3 max-w-xl mx-auto">
+          Get weekly episode releases, manga chapter translation alerts, and community watchlist recommendations straight to your inbox.
+        </p>
+
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mt-8" onsubmit="event.preventDefault(); alert('Subscribed to Anime World weekly updates!'); this.reset();">
+          <input type="email" placeholder="enter your email address" required class="flex-1 px-4 py-3.5 bg-black/60 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 transition"/>
+          <button type="submit" class="px-7 py-3.5 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-xl tracking-wider transition shadow-[0_0_20px_rgba(230,57,70,0.5)]">
+            SUBSCRIBE
+          </button>
+        </form>
+
+        <div class="flex flex-wrap items-center justify-center gap-6 mt-10 text-xs text-gray-400">
+          <span>&bull; DISCORD: 85,000+ OTAKUS</span>
+          <span>&bull; ANILIST & MAL SYNCHRONIZED</span>
+          <span>&bull; 100% AD-FREE ARCHIVE</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-[#05070a] border-t border-white/10 py-12 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-gray-500">
+        <div class="flex items-center gap-3">
+          <img alt="Studio 333 Logo" class="w-8 h-8 rounded object-contain" src="Images/skull.jpg"/>
+          <div>
+            <span class="text-white font-bold">ANIME WORLD</span>
+            <span class="block text-[10px] text-red-400">STUDIO 333 OFFICIAL VAULT</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-6">
+          <a href="#section-1" class="hover:text-white transition">Home</a>
+          <a href="#section-2" class="hover:text-white transition">Trending</a>
+          <a href="#section-3" class="hover:text-white transition">Best Anime</a>
+          <a href="#section-4" class="hover:text-white transition">Best Manga</a>
+          <a href="#section-5" class="hover:text-white transition">Heroes</a>
+          <a href="#section-7" class="hover:text-white transition">Schedule</a>
+        </div>
+        <div>
+          &copy; 2026 Anime World &bull; Crafted with &hearts; for Anime Fans
+        </div>
+      </div>
+    </footer>
+
   </div>
 
 
-  <!-- ==================== INTERACTIVE MODALS ==================== -->
+  <!-- ==================== CATALOGUE MODAL ==================== -->
   <div class="custom-modal-backdrop" id="festival-modal">
     <div class="custom-modal-box relative">
-      <button id="close-modal-btn" class="absolute top-5 right-5 text-white/60 hover:text-white text-xl">&times;</button>
-      <div id="modal-dynamic-content"></div>
+      <button id="close-modal-btn" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl">&times;</button>
+      <div id="modal-dynamic-content">
+        <div class="space-y-6">
+          <div class="flex items-center gap-3 border-b border-white/10 pb-4">
+            <img src="Images/skull.jpg" alt="Logo" class="w-10 h-10 rounded object-contain"/>
+            <div>
+              <h2 class="akira-font text-xl text-red-500">ANIME WORLD VAULT</h2>
+              <p class="text-xs text-gray-400">Complete Directory of All Sections</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs tracking-wider">
+            <a href="#section-1" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>01 // HOME</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-2" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>02 // TRENDING ANIME</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-3" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>03 // BEST ANIME IN THE WORLD</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-4" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>04 // BEST MANGA IN THE WORLD</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-5" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>05 // HEROES SPOTLIGHT</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-6" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>06 // GENRES & UNIVERSES</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-7" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>07 // AIRING SCHEDULE</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-8" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3.5 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>08 // OTAKU COMMUNITY</span><span class="text-red-400">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1010,21 +1135,17 @@
   <!-- ==================== JAVASCRIPT LOGIC ==================== -->
   <script>
   (function() {
-    // 1. LOADER CONTROLLER
+    // 1. LOADER
     const loader = document.getElementById('page-loader');
-    const mainContent = document.getElementById('main-content');
     function hideLoader() {
       if (loader) {
         loader.style.opacity = '0';
         setTimeout(function() {
           if (loader.parentNode) loader.parentNode.removeChild(loader);
-        }, 700);
-      }
-      if (mainContent) {
-        mainContent.style.opacity = '1';
+        }, 600);
       }
     }
-    setTimeout(hideLoader, 1300);
+    setTimeout(hideLoader, 1100);
     if (loader) loader.addEventListener('click', hideLoader);
 
     // 2. MOBILE SCROLL PROGRESS
@@ -1037,8 +1158,8 @@
       }
     }, { passive: true });
 
-    // 3. SIDEBAR NAVIGATION & SCROLL SPY
-    const navItems = document.querySelectorAll('.sidebar-nav-item');
+    // 3. SIDEBAR NAVIGATION & SCROLLSPY
+    const navItems = document.querySelectorAll('.sidebar-nav-btn');
     const sections = document.querySelectorAll('section[id^="section-"]');
 
     navItems.forEach(function(item) {
@@ -1069,12 +1190,14 @@
       sections.forEach(function(sec) { observer.observe(sec); });
     }
 
-    // 4. AUDIO TOGGLE LOGIC
+    // 4. AUDIO TOGGLE
     const audio = document.getElementById('anime-bg-audio');
-    const audioBtn = document.getElementById('audio-toggle-btn');
+    const audioBtn = document.getElementById('desktop-audio-toggle');
+    const sidebarAudioBtn = document.getElementById('sidebar-audio-toggle');
     const mobileAudioBtn = document.getElementById('mobile-audio-toggle');
-    const statusText = document.getElementById('audio-status-text');
+    const statusLabel = document.getElementById('audio-status-label');
     const desktopEq = document.getElementById('desktop-eq');
+    const sidebarEq = document.getElementById('sidebar-eq');
     const mobileEq = document.getElementById('mobile-eq');
     let isPlaying = false;
 
@@ -1083,14 +1206,16 @@
       if (isPlaying) {
         audio.pause();
         isPlaying = false;
-        if (statusText) statusText.textContent = 'OST: PLAY';
+        if (statusLabel) statusLabel.textContent = 'OST: PLAY';
         if (desktopEq) desktopEq.classList.add('eq-paused');
+        if (sidebarEq) sidebarEq.classList.add('eq-paused');
         if (mobileEq) mobileEq.classList.add('eq-paused');
       } else {
         audio.play().then(function() {
           isPlaying = true;
-          if (statusText) statusText.textContent = 'OST: ON';
+          if (statusLabel) statusLabel.textContent = 'OST: ON';
           if (desktopEq) desktopEq.classList.remove('eq-paused');
+          if (sidebarEq) sidebarEq.classList.remove('eq-paused');
           if (mobileEq) mobileEq.classList.remove('eq-paused');
         }).catch(function(err) {
           console.log('Audio autoplay prevented:', err);
@@ -1098,18 +1223,19 @@
       }
     }
     if (audioBtn) audioBtn.addEventListener('click', toggleAudio);
+    if (sidebarAudioBtn) sidebarAudioBtn.addEventListener('click', toggleAudio);
     if (mobileAudioBtn) mobileAudioBtn.addEventListener('click', toggleAudio);
 
-    // 5. 3D PASSES CAROUSEL
-    const ticketCards = document.querySelectorAll('.ticket-card');
-    const passCounter = document.getElementById('pass-counter');
-    let currentPass = 0;
-    const totalPasses = 3;
+    // 5. 3D MANGA CAROUSEL
+    const mangaCards = document.querySelectorAll('.manga-card');
+    const mangaCounter = document.getElementById('manga-counter');
+    let currentManga = 0;
+    const totalManga = 3;
 
-    function updatePassCarousel(targetIdx) {
-      currentPass = (targetIdx + totalPasses) % totalPasses;
-      ticketCards.forEach(function(card, idx) {
-        const diff = (idx - currentPass + totalPasses) % totalPasses;
+    function updateMangaCarousel(targetIdx) {
+      currentManga = (targetIdx + totalManga) % totalManga;
+      mangaCards.forEach(function(card, idx) {
+        const diff = (idx - currentManga + totalManga) % totalManga;
         if (diff === 0) {
           card.style.transform = 'translateY(0px) scale(1.05)';
           card.style.zIndex = '30';
@@ -1124,31 +1250,29 @@
           card.style.opacity = '0.6';
         }
       });
-      if (passCounter) passCounter.textContent = (currentPass + 1) + ' / ' + totalPasses;
+      if (mangaCounter) mangaCounter.textContent = (currentManga + 1) + ' / ' + totalManga;
     }
 
-    ticketCards.forEach(function(card, idx) {
-      card.addEventListener('click', function() {
-        updatePassCarousel(idx);
-      });
+    mangaCards.forEach(function(card, idx) {
+      card.addEventListener('click', function() { updateMangaCarousel(idx); });
     });
-    const passPrev = document.getElementById('pass-prev-btn');
-    const passNext = document.getElementById('pass-next-btn');
-    if (passPrev) passPrev.addEventListener('click', function() { updatePassCarousel(currentPass - 1); });
-    if (passNext) passNext.addEventListener('click', function() { updatePassCarousel(currentPass + 1); });
+    const mangaPrev = document.getElementById('manga-prev-btn');
+    const mangaNext = document.getElementById('manga-next-btn');
+    if (mangaPrev) mangaPrev.addEventListener('click', function() { updateMangaCarousel(currentManga - 1); });
+    if (mangaNext) mangaNext.addEventListener('click', function() { updateMangaCarousel(currentManga + 1); });
 
     // 6. HEROES 3D CAROUSEL
-    const artistCards = document.querySelectorAll('.artist-card');
-    const nameSlides = document.querySelectorAll('.hero-name-slide');
-    const bioSlides = document.querySelectorAll('.hero-bio-slide');
-    let currentArtist = 0;
-    const totalArtists = 4;
-    let artistTimer = null;
+    const charCards = document.querySelectorAll('.character-card');
+    const nameSlides = document.querySelectorAll('.char-name-slide');
+    const bioSlides = document.querySelectorAll('.char-bio-slide');
+    let currentChar = 0;
+    const totalChars = 4;
+    let charTimer = null;
 
     function updateHeroCarousel(targetIdx) {
-      currentArtist = (targetIdx + totalArtists) % totalArtists;
-      artistCards.forEach(function(card, idx) {
-        const diff = (idx - currentArtist + totalArtists) % totalArtists;
+      currentChar = (targetIdx + totalChars) % totalChars;
+      charCards.forEach(function(card, idx) {
+        const diff = (idx - currentChar + totalChars) % totalChars;
         const isMobile = window.innerWidth < 768;
         const xOffset = isMobile ? 110 : 200;
 
@@ -1176,7 +1300,7 @@
       });
 
       nameSlides.forEach(function(slide, idx) {
-        if (idx === currentArtist) {
+        if (idx === currentChar) {
           slide.style.transform = 'translateY(0)';
           slide.style.opacity = '1';
         } else {
@@ -1186,7 +1310,7 @@
       });
 
       bioSlides.forEach(function(slide, idx) {
-        if (idx === currentArtist) {
+        if (idx === currentChar) {
           slide.style.transform = 'translateY(0)';
           slide.style.opacity = '1';
         } else {
@@ -1196,23 +1320,20 @@
       });
     }
 
-    artistCards.forEach(function(card, idx) {
+    charCards.forEach(function(card, idx) {
       card.addEventListener('click', function() {
         updateHeroCarousel(idx);
-        clearInterval(artistTimer);
-        artistTimer = setInterval(function() { updateHeroCarousel(currentArtist + 1); }, 4500);
+        clearInterval(charTimer);
+        charTimer = setInterval(function() { updateHeroCarousel(currentChar + 1); }, 4500);
       });
     });
-    artistTimer = setInterval(function() { updateHeroCarousel(currentArtist + 1); }, 4500);
+    charTimer = setInterval(function() { updateHeroCarousel(currentChar + 1); }, 4500);
 
     // 7. MODALS
     const modalBackdrop = document.getElementById('festival-modal');
-    const modalContent = document.getElementById('modal-dynamic-content');
     const closeModalBtn = document.getElementById('close-modal-btn');
-
-    function openModal(html) {
-      if (!modalBackdrop || !modalContent) return;
-      modalContent.innerHTML = html;
+    function openModal() {
+      if (!modalBackdrop) return;
       modalBackdrop.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -1231,140 +1352,10 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // Menu Modal
-    function openMenuModal() {
-      openModal(`
-        <div class="space-y-6">
-          <div class="flex items-center gap-3 border-b border-white/10 pb-4">
-            <img src="Images/skull.jpg" alt="Logo" class="w-10 h-10 rounded object-contain"/>
-            <div>
-              <h2 class="akira-font text-xl text-red-500">ANIME WORLD '26</h2>
-              <p class="text-xs text-white/60">Studio 333 Global Convention Directory</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs tracking-wider">
-            <a href="#section-1" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>01 // HOME</span><span class="text-red-400">&rarr;</span>
-            </a>
-            <a href="#section-2" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>02 // EXPLORE</span><span class="text-red-400">&rarr;</span>
-            </a>
-            <a href="#section-3" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>03 // COLOSSEUM ARENA</span><span class="text-red-400">&rarr;</span>
-            </a>
-            <a href="#section-4" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>04 // CONVENTION PASSES</span><span class="text-red-400">&rarr;</span>
-            </a>
-            <a href="#section-5" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>05 // HEROES SPOTLIGHT</span><span class="text-red-400">&rarr;</span>
-            </a>
-            <a href="#section-6" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>06 // MECHA & SPEED</span><span class="text-red-400">&rarr;</span>
-            </a>
-            <a href="#section-7" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>07 // GAMING CONCLAVE</span><span class="text-red-400">&rarr;</span>
-            </a>
-            <a href="#section-8" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
-              <span>08 // STUDIO 333 EXPO</span><span class="text-red-400">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      `);
-    }
-
-    // Map Modal
-    function openMapModal() {
-      openModal(`
-        <div class="space-y-4">
-          <div class="flex items-center gap-3 border-b border-white/10 pb-3">
-            <h2 class="akira-font text-xl text-red-500">ARENA VENUE MAP</h2>
-          </div>
-          <div class="bg-[#0b0f17] border border-red-500/30 rounded-lg p-5 space-y-3">
-            <div class="flex items-center justify-between text-xs font-semibold border-b border-white/10 pb-2">
-              <span class="text-red-400">Tokyo Convention Center // Hall 333</span>
-              <span class="text-white/60">Oct 24-26, 2026</span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-              <div class="p-3 bg-black/40 rounded border border-white/10">
-                <strong class="text-red-400 block mb-1">&#9670; Main Arena Stage</strong>
-                <p class="text-white/70">Grand battles, cosplays, symphonic orchestra & world premieres.</p>
-              </div>
-              <div class="p-3 bg-black/40 rounded border border-white/10">
-                <strong class="text-yellow-400 block mb-1">&#9670; Shonen Pavilion</strong>
-                <p class="text-white/70">One Piece Egghead replica, Nichirin forge & Demon Slayer training grounds.</p>
-              </div>
-              <div class="p-3 bg-black/40 rounded border border-white/10">
-                <strong class="text-blue-400 block mb-1">&#9670; Gaming Arena</strong>
-                <p class="text-white/70">Dragon Ball FighterZ tournaments & Genshin Impact speedrunning lounge.</p>
-              </div>
-              <div class="p-3 bg-black/40 rounded border border-white/10">
-                <strong class="text-purple-400 block mb-1">&#9670; Artist & Mecha Alley</strong>
-                <p class="text-white/70">Kaneda bike showcase, Gundam rig & official Studio 333 merch drops.</p>
-              </div>
-            </div>
-          </div>
-          <button onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg transition text-xs tracking-wider">
-            BACK TO FESTIVAL
-          </button>
-        </div>
-      `);
-    }
-
-    // Login / Pass Claim Modal
-    function openLoginModal() {
-      openModal(`
-        <div class="space-y-4">
-          <div class="flex items-center gap-3 border-b border-white/10 pb-3">
-            <img src="Images/skull.jpg" alt="Logo" class="w-8 h-8 rounded object-contain"/>
-            <div>
-              <h2 class="akira-font text-lg text-red-500">CLAIM YOUR OTAKU PASS</h2>
-              <p class="text-xs text-white/60">Instant digital badge & convention entry</p>
-            </div>
-          </div>
-          <form class="space-y-3" onsubmit="event.preventDefault(); alert('Pass registered successfully! See you at Anime World 2026.'); document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';">
-            <div>
-              <label class="block text-[11px] font-semibold text-white/70 mb-1">YOUR OTAKU HANDLE OR NAME</label>
-              <input type="text" placeholder="e.g. Zenitsu333" required class="w-full px-3 py-2 bg-[#090d14] border border-white/20 rounded-lg text-white text-xs focus:outline-none focus:border-red-500 transition"/>
-            </div>
-            <div>
-              <label class="block text-[11px] font-semibold text-white/70 mb-1">EMAIL ADDRESS</label>
-              <input type="email" placeholder="otaku@studio333.com" required class="w-full px-3 py-2 bg-[#090d14] border border-white/20 rounded-lg text-white text-xs focus:outline-none focus:border-red-500 transition"/>
-            </div>
-            <div>
-              <label class="block text-[11px] font-semibold text-white/70 mb-1">TIER SELECTION</label>
-              <select class="w-full px-3 py-2 bg-[#090d14] border border-white/20 rounded-lg text-white text-xs focus:outline-none focus:border-red-500 transition">
-                <option>ALL DAYS &bull; OTAKU GOLD PASS (&yen; 9,800)</option>
-                <option>DAY 1 &bull; SHONEN PREMIERE PASS (&yen; 3,500)</option>
-                <option>DAY 2 &bull; BATTLE CUP PASS (&yen; 4,200)</option>
-              </select>
-            </div>
-            <button type="submit" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg transition text-xs tracking-wider">
-              CONFIRM REGISTRATION
-            </button>
-          </form>
-        </div>
-      `);
-    }
-
-    // Modal Triggers
-    document.querySelectorAll('button[aria-label="Toggle menu"]').forEach(function(btn) {
+    document.querySelectorAll('.nav-directory-btn, button[aria-label="Toggle menu"]').forEach(function(btn) {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
-        openMenuModal();
-      });
-    });
-
-    document.querySelectorAll('.map-trigger').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        openMapModal();
-      });
-    });
-
-    document.querySelectorAll('.login-trigger').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        openLoginModal();
+        openModal();
       });
     });
 
