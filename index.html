@@ -1,332 +1,1374 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Anime World &#8212; Discover Your Next Obsession</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link data-precedence="next" href="css/71575726a3ef2165.css" rel="stylesheet"/>
+  <link data-precedence="next" href="css/34819e657e5eb9e5.css" rel="stylesheet"/>
+  <link data-precedence="next" href="css/439387ef31413be4.css" rel="stylesheet"/>
+  <title>Anime World '26 | Studio 333 Official Experience</title>
+  <meta content="Step into Anime World 2026 presented by Studio 333. Explore iconic anime universes, legendary characters, 3D convention passes, battle arenas, and immersive anime showcases." name="description"/>
+  <meta content="Anime World, Studio 333, Demon Slayer, One Piece, Dragon Ball, Naruto, Anime Fest, Convention, Otaku Pass" name="keywords"/>
+  <meta content="index, follow" name="robots"/>
+  <link href="Images/skull.jpg" rel="shortcut icon"/>
+  <link href="Images/skull.jpg" rel="icon" type="image/jpeg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@400;600;700;800&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #080a0f; --bg2: #0d1117; --surface: #121820; --surface2: #1a2232; --border: rgba(255,255,255,0.07); --accent: #e63946; --accent2: #ff6b6b; --gold: #f4c542; --text: #e8eaf0; --muted: #7a8399; --glow: rgba(230,57,70,0.35); }
-    html { scroll-behavior: smooth; }
-    body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
-    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-    .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: exclusion; }
-    .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: width .2s, height .2s; mix-blend-mode: exclusion; }
-    #loader { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; transition: opacity .6s ease; }
-    #loader.hidden { opacity: 0; pointer-events: none; }
-    .loader-logo { font-family: "Bebas Neue", sans-serif; font-size: 52px; letter-spacing: 6px; }
-    .loader-logo span { color: var(--accent); }
-    .loader-bar-wrap { width: 200px; height: 2px; background: var(--surface2); border-radius: 1px; overflow: hidden; }
-    .loader-bar { height: 100%; background: var(--accent); width: 0; animation: loaderFill 1.8s ease forwards; }
-    @keyframes loaderFill { to { width: 100%; } }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: linear-gradient(180deg, rgba(8,10,15,.96) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: background .3s; }
-    nav.scrolled { background: rgba(8,10,15,.98); border-bottom-color: rgba(230,57,70,.2); }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--accent), #ff4d4d); border-radius: 8px; display: grid; place-items: center; font-size: 18px; box-shadow: 0 0 20px var(--glow); }
-    .nav-logo-text { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--text); }
-    .nav-logo-text span { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; transition: color .2s; position: relative; }
-    .nav-links a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width .3s; }
-    .nav-links a:hover { color: var(--text); } .nav-links a:hover::after { width: 100%; }
-    .nav-cta { background: var(--accent) !important; color: #fff !important; padding: 8px 20px; border-radius: 6px; } .nav-cta::after { display: none !important; }
-    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 120px 48px; }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.22) saturate(.5); }
-    .hero-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(8,10,15,.98) 0%, rgba(8,10,15,.6) 55%, rgba(230,57,70,.1) 100%); }
-    .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
-    .hero-orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(230,57,70,.18) 0%, transparent 70%); top: -100px; right: 10%; animation: orbFloat 8s ease-in-out infinite; }
-    .hero-orb-2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(244,197,66,.1) 0%, transparent 70%); bottom: 10%; left: 5%; animation: orbFloat 11s ease-in-out infinite reverse; }
-    @keyframes orbFloat { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-30px); } }
-    .hero-content { position: relative; z-index: 1; max-width: 680px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(230,57,70,.12); border: 1px solid rgba(230,57,70,.35); color: var(--accent2); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; margin-bottom: 28px; animation: fadeUp .6s ease both; }
-    .hero-badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.4); } }
-    .hero-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(64px, 9vw, 130px); line-height: .9; letter-spacing: 2px; margin-bottom: 24px; animation: fadeUp .7s .1s ease both; }
-    .line1 { display: block; } .line2 { display: block; -webkit-text-stroke: 2px var(--accent); color: transparent; text-shadow: 0 0 60px rgba(230,57,70,.4); }
-    .hero-desc { font-size: 16px; line-height: 1.8; color: var(--muted); max-width: 460px; margin-bottom: 40px; animation: fadeUp .8s .2s ease both; }
-    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; animation: fadeUp .9s .3s ease both; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 14px; transition: box-shadow .3s, transform .2s; border: none; cursor: pointer; font-family: inherit; }
-    .btn-primary:hover { box-shadow: 0 0 40px var(--glow); transform: translateY(-2px); }
-    .btn-secondary { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 1px solid var(--border); background: rgba(255,255,255,.04); transition: border-color .3s, background .3s, transform .2s; cursor: pointer; font-family: inherit; }
-    .btn-secondary:hover { border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.08); transform: translateY(-2px); }
-    .hero-character { position: absolute; right: 0; bottom: 0; z-index: 1; height: 88%; pointer-events: none; animation: heroCharIn 1.2s .4s ease forwards; opacity: 0; filter: drop-shadow(-20px 0 60px rgba(230,57,70,.3)); }
-    @keyframes heroCharIn { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
-    .hero-stats { position: absolute; bottom: 48px; left: 48px; z-index: 1; display: flex; gap: 48px; animation: fadeUp 1s .5s ease both; opacity: 0; flex-wrap: wrap; }
-    .hero-stat-num { font-family: "Bebas Neue", sans-serif; font-size: 36px; line-height: 1; } .hero-stat-num span { color: var(--accent); }
-    .hero-stat-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
-    .marquee-section { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); padding: 16px 0; }
-    .marquee-track { display: flex; animation: marqueeScroll 28s linear infinite; white-space: nowrap; } .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .marquee-item { display: inline-flex; align-items: center; gap: 18px; padding: 0 36px; font-family: "Bebas Neue", sans-serif; font-size: 15px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
-    .marquee-sep { color: var(--accent); font-size: 20px; }
-    .section { padding: 100px 48px; position: relative; }
-    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; gap: 20px; flex-wrap: wrap; }
-    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-    .section-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: 1px; }
-    .section-link { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; white-space: nowrap; } .section-link:hover { color: var(--accent); }
-    .featured-banner { position: relative; border-radius: 20px; overflow: hidden; min-height: 480px; display: flex; align-items: flex-end; margin: 80px 48px 0; }
-    .featured-banner-bg { position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 60%), linear-gradient(0deg, var(--bg) 0%, transparent 50%); z-index: 1; }
-    .featured-banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.4) saturate(.7); }
-    .featured-banner-content { position: relative; z-index: 2; padding: 48px; }
-    .featured-tag { display: inline-flex; align-items: center; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; margin-bottom: 16px; }
-    .featured-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 5vw, 72px); line-height: .95; letter-spacing: 1px; margin-bottom: 16px; }
-    .featured-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 480px; margin-bottom: 28px; }
-    .featured-genres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-    .featured-genre { background: rgba(255,255,255,.08); border: 1px solid var(--border); color: var(--text); font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 999px; }
-    .anime-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
-    .card { position: relative; border-radius: 12px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); cursor: pointer; transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s, border-color .3s; }
-    .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 60px rgba(0,0,0,.6), 0 0 40px var(--glow); border-color: rgba(230,57,70,.4); }
-    .card-poster { position: relative; aspect-ratio: 2/3; overflow: hidden; }
-    .card-poster img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; } .card:hover .card-poster img { transform: scale(1.08); }
-    .card-badge { position: absolute; top: 10px; left: 10px; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
-    .card-rating { position: absolute; top: 10px; right: 10px; display: flex; align-items: center; gap: 4px; background: rgba(0,0,0,.75); backdrop-filter: blur(4px); color: var(--gold); font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px; }
-    .card-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,15,.95) 0%, transparent 50%); opacity: 0; transition: opacity .3s; display: flex; align-items: flex-end; padding: 16px; } .card:hover .card-overlay { opacity: 1; }
-    .card-play-btn { width: 44px; height: 44px; background: var(--accent); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 12px; box-shadow: 0 0 24px var(--glow); }
-    .card-body { padding: 14px; } .card-title { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
-    .card-meta { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; }
-    .card-genre { background: var(--surface2); color: var(--muted); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 500; }
-    .two-col { display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: start; }
-    .trending-list { display: flex; flex-direction: column; gap: 2px; }
-    .trending-item { display: flex; align-items: center; gap: 20px; padding: 18px 20px; border-radius: 10px; background: transparent; border: 1px solid transparent; transition: background .2s, border-color .2s; cursor: pointer; text-decoration: none; color: inherit; }
-    .trending-item:hover { background: var(--surface); border-color: var(--border); }
-    .trending-rank { font-family: "Bebas Neue", sans-serif; font-size: 28px; color: rgba(255,255,255,.1); min-width: 36px; line-height: 1; } .trending-item:hover .trending-rank { color: var(--accent); }
-    .trending-poster { width: 50px; height: 70px; border-radius: 6px; overflow: hidden; flex-shrink: 0; } .trending-poster img { width: 100%; height: 100%; object-fit: cover; }
-    .trending-info { flex: 1; min-width: 0; } .trending-title { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
-    .trending-meta { display: flex; gap: 12px; align-items: center; color: var(--muted); font-size: 12px; }
-    .trending-score { display: flex; align-items: center; gap: 4px; color: var(--gold); font-weight: 600; font-size: 13px; }
-    .trending-arrow { color: var(--muted); font-size: 18px; transition: transform .2s, color .2s; } .trending-item:hover .trending-arrow { transform: translateX(4px); color: var(--accent); }
-    .characters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
-    .char-card { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; transition: transform .3s ease, box-shadow .3s; } .char-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.7); }
-    .char-card img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .5s; } .char-card:hover img { transform: scale(1.07); }
-    .char-card-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,15,.95) 0%, transparent 55%); }
-    .char-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 12px; } .char-name { font-weight: 700; font-size: 13px; margin-bottom: 2px; } .char-anime { font-size: 10px; color: var(--accent); letter-spacing: .5px; }
-    .char-rank { position: absolute; top: 10px; right: 10px; font-family: "Bebas Neue", sans-serif; font-size: 22px; color: rgba(255,255,255,.15); line-height: 1; }
-    .genre-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
-    .genre-pill { position: relative; overflow: hidden; border-radius: 10px; padding: 20px 18px; background: var(--surface); border: 1px solid var(--border); cursor: pointer; transition: border-color .3s, transform .2s; text-decoration: none; display: block; } .genre-pill:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .genre-pill-emoji { font-size: 28px; margin-bottom: 8px; display: block; } .genre-pill-name { font-weight: 600; font-size: 13px; color: var(--text); margin-bottom: 2px; } .genre-pill-count { font-size: 11px; color: var(--muted); }
-    .newsletter-section { margin: 0 48px 100px; background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%); border: 1px solid var(--border); border-radius: 20px; padding: 64px; text-align: center; position: relative; overflow: hidden; }
-    .newsletter-section::before { content: ""; position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(230,57,70,.15) 0%, transparent 70%); border-radius: 50%; }
-    .newsletter-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(36px, 4vw, 56px); letter-spacing: 1px; margin-bottom: 12px; position: relative; z-index: 1; }
-    .newsletter-desc { color: var(--muted); font-size: 15px; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; position: relative; z-index: 1; }
-    .newsletter-form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
-    .newsletter-input { flex: 1; background: rgba(255,255,255,.06); border: 1px solid var(--border); color: var(--text); font-size: 14px; padding: 14px 18px; border-radius: 8px; outline: none; font-family: inherit; } .newsletter-input::placeholder { color: var(--muted); } .newsletter-input:focus { border-color: var(--accent); }
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 60px 48px 32px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-brand p { color: var(--muted); font-size: 13px; line-height: 1.8; max-width: 280px; margin-top: 16px; }
-    .footer-socials { display: flex; gap: 10px; margin-top: 24px; }
-    .footer-social { width: 36px; height: 36px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; display: grid; place-items: center; color: var(--muted); text-decoration: none; font-size: 12px; transition: border-color .2s, color .2s; font-weight: 700; } .footer-social:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col-title { font-weight: 700; font-size: 13px; letter-spacing: .5px; margin-bottom: 20px; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; } .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color .2s; } .footer-links a:hover { color: var(--text); }
-    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; flex-wrap: wrap; gap: 12px; }
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; } .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: .1s; } .reveal-delay-2 { transition-delay: .2s; } .reveal-delay-3 { transition-delay: .3s; } .reveal-delay-4 { transition-delay: .4s; }
-    @media(max-width:1024px) { .two-col { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } .hero-character { opacity: .3; } }
-    @media(max-width:768px) { nav { padding: 16px 20px; } .nav-links { display: none; } .hero { padding: 100px 20px 80px; } .hero-stats { left: 20px; right: 20px; gap: 24px; flex-wrap: wrap; bottom: 30px; } .hero-character { display: none; } .section { padding: 60px 20px; } .featured-banner { margin: 60px 20px 0; min-height: 320px; } .featured-banner-content { padding: 24px; } .newsletter-section { margin: 0 20px 60px; padding: 40px 24px; } .newsletter-form { flex-direction: column; } footer { padding: 40px 20px 24px; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .footer-bottom { flex-direction: column; text-align: center; } }
+    /* Custom & Embedded Font Definitions with Fallbacks */
+    @font-face {
+      font-family: 'Michroma';
+      src: url('fonts/Michroma.ttf') format('truetype'),
+           url('fonts/michroma-s.p.55651545.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Akira Expanded';
+      src: url('fonts/Akira_Expanded-s.p.aa9fb6c2.otf') format('opentype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SCHABO';
+      src: url('fonts/schabo-s.p.638afd1e.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Fontspring';
+      src: url('fonts/Fontspring_DEMO_integralcf_bold-s.p.8dc8d2e6.otf') format('opentype');
+      font-display: swap;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #080a0f;
+    }
+    body {
+      background-color: #080a0f;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Loader Auto-Fade Animation */
+    @keyframes loaderAutoFade {
+      0% { opacity: 1; visibility: visible; }
+      85% { opacity: 0; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; display: none !important; }
+    }
+
+    /* Infinite Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: inline-flex !important;
+      width: max-content !important;
+      animation: marquee 22s linear infinite !important;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Rotational Spinner Animations */
+    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spinMedium { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+    @keyframes spinFast { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(230, 57, 70, 0.45)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 28px rgba(230, 57, 70, 0.85)); }
+    }
+
+    .animate-spin-slow { animation: spinSlow 14s linear infinite !important; }
+    .animate-spin-medium { animation: spinMedium 9s linear infinite !important; }
+    .animate-spin-fast { animation: spinFast 4.5s linear infinite !important; }
+    #page-loader .logo { animation: pulseGlow 2.5s ease-in-out infinite !important; }
+
+    /* Vertical Sidebar Dock (Left) Navigation */
+    .sidebar-nav-item {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .sidebar-nav-item:hover, .sidebar-nav-item.is-active {
+      max-height: 140px !important;
+    }
+    .sidebar-nav-item:hover > div:first-child,
+    .sidebar-nav-item.is-active > div:first-child {
+      height: 100% !important;
+      opacity: 0.95 !important;
+      background: #e63946 !important;
+    }
+    .sidebar-nav-item:hover .sidebar-label,
+    .sidebar-nav-item.is-active .sidebar-label {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+    .sidebar-nav-item:hover .sidebar-label span,
+    .sidebar-nav-item.is-active .sidebar-label span,
+    .sidebar-nav-item:hover span[style*=rotate],
+    .sidebar-nav-item.is-active span[style*=rotate] {
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* Modal System */
+    .custom-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .custom-modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .custom-modal-box {
+      background: #0f131a;
+      border: 1px solid rgba(230, 57, 70, 0.4);
+      border-radius: 1.25rem;
+      max-width: 92vw;
+      width: 680px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 2.25rem;
+      color: white;
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.95), 0 0 35px rgba(230, 57, 70, 0.3);
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-modal-backdrop.active .custom-modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Equalizer Bar Animation for Audio */
+    .eq-bar {
+      display: inline-block;
+      width: 3px;
+      height: 14px;
+      background: #e63946;
+      margin: 0 1.5px;
+      border-radius: 1px;
+      animation: eqDance 0.8s ease-in-out infinite alternate;
+    }
+    .eq-bar:nth-child(2) { animation-delay: 0.2s; height: 18px; }
+    .eq-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
+    .eq-bar:nth-child(4) { animation-delay: 0.1s; height: 16px; }
+    .eq-paused .eq-bar {
+      animation-play-state: paused !important;
+      height: 4px !important;
+    }
+    @keyframes eqDance {
+      0% { height: 4px; }
+      100% { height: 18px; }
+    }
+
+    /* 3D Ticket / Pass Carousel Transitions */
+    .ticket-card {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .artist-card {
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .artist-card:hover {
+      filter: brightness(1.25) !important;
+    }
+
+    /* Glowing Accents & Scanline Textures */
+    .cyber-scanlines {
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.04) 2px, rgba(255, 255, 255, 0.04) 4px);
+    }
+    .akira-font {
+      font-family: 'Akira Expanded', sans-serif;
+    }
+    .michroma-font {
+      font-family: 'Michroma', sans-serif;
+    }
+    .integral-font {
+      font-family: 'Fontspring', sans-serif;
+    }
   </style>
 </head>
-<body>
-﻿  <div id="loader">
-    <div class="loader-logo">ANIME <span>WORLD</span></div>
-    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-  </div>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-  <nav id="navbar">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">&#9889;</div>
-      <span class="nav-logo-text">Anime<span>World</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#trending">Trending</a></li>
-      <li><a href="#popular">Popular</a></li>
-      <li><a href="#characters">Characters</a></li>
-      <li><a href="#genres">Genres</a></li>
-      <li><a href="#newsletter" class="nav-cta">Explore Now</a></li>
-    </ul>
-  </nav>
-  <section class="hero">
-    <div class="hero-bg">
-      <img src="Images/op.jpg" alt="Background" onerror="this.style.display='none'"/>
-      <div class="hero-gradient"></div>
-    </div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-content">
-      <div class="hero-badge"><span class="hero-badge-dot"></span> Now Streaming &mdash; Season 2026</div>
-      <h1 class="hero-title"><span class="line1">Discover</span><span class="line2">Anime World</span></h1>
-      <p class="hero-desc">Dive into thousands of anime universes. From action-packed sh&#333;nen to heartfelt slice-of-life &mdash; your next obsession awaits.</p>
-      <div class="hero-actions">
-        <a href="#trending" class="btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Start Watching</a>
-        <a href="#genres" class="btn-secondary">Browse Genres</a>
-      </div>
-    </div>
-    <img src="Images/tanjro.png" alt="Tanjiro" class="hero-character" onerror="this.style.display='none'"/>
-    <div class="hero-stats">
-      <div><div class="hero-stat-num">10<span>K+</span></div><div class="hero-stat-label">Anime Series</div></div>
-      <div><div class="hero-stat-num">50<span>M+</span></div><div class="hero-stat-label">Episodes</div></div>
-      <div><div class="hero-stat-num">2<span>M+</span></div><div class="hero-stat-label">Active Fans</div></div>
-      <div><div class="hero-stat-num">40<span>+</span></div><div class="hero-stat-label">Genres</div></div>
-    </div>
-  </section>
-﻿  <div class="marquee-section"><div class="marquee-track">
-    <span class="marquee-item">One Piece <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Demon Slayer <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Naruto <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Dragon Ball Z <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Attack on Titan <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Jujutsu Kaisen <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Hunter x Hunter <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Death Note <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">One Piece <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Demon Slayer <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Naruto <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Dragon Ball Z <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Attack on Titan <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Jujutsu Kaisen <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Hunter x Hunter <span class="marquee-sep">&#10022;</span></span>
-    <span class="marquee-item">Death Note <span class="marquee-sep">&#10022;</span></span>
-  </div></div>
-  <div class="reveal">
-    <div class="featured-banner">
-      <img src="Images/ds.jpg" alt="Demon Slayer" onerror="this.src='Images/op.jpg'"/>
-      <div class="featured-banner-bg"></div>
-      <div class="featured-banner-content">
-        <div class="featured-tag">Featured of the Season</div>
-        <h2 class="featured-title">Demon Slayer:<br/>Kimetsu no Yaiba</h2>
-        <p class="featured-desc">A young boy becomes a demon slayer after his family is slaughtered and his sister transformed into a demon. An epic journey of revenge, compassion, and breathtaking battles.</p>
-        <div class="featured-genres">
-          <span class="featured-genre">Action</span><span class="featured-genre">Supernatural</span>
-          <span class="featured-genre">Historical</span><span class="featured-genre">Adventure</span>
-        </div>
-        <div style="display:flex;gap:14px;flex-wrap:wrap">
-          <a href="#" class="btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Watch Now</a>
-          <a href="#" class="btn-secondary">+ Add to List</a>
+<body class="relative overflow-x-hidden bg-[#080a0f] text-white">
+
+  <!-- Audio Element (Studio 333 Theme) -->
+  <audio id="anime-bg-audio" loop preload="none">
+    <source src="breakupanimation/audio.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- CYBER-CHRONO LOADER SCREEN -->
+  <div class="fixed inset-0 z-[10000] flex items-center justify-center bg-[#07090e]" id="page-loader" style="animation: loaderAutoFade 0.7s ease 1.2s forwards; pointer-events: none;">
+    <div class="relative flex flex-col items-center gap-6">
+      <div class="relative w-56 h-56 flex items-center justify-center">
+        <div class="ring absolute inset-0 border border-red-500/25 rounded-full animate-spin-slow"></div>
+        <div class="ring absolute inset-[18%] border-t-2 border-r-2 border-red-500/40 rounded-full animate-spin-medium"></div>
+        <div class="ring absolute inset-[36%] border-b-2 border-l-2 border-yellow-500/50 rounded-full animate-spin-fast"></div>
+        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+          <circle class="stroke-red-950/30" cx="50" cy="50" fill="none" r="47" stroke-width="1"></circle>
+          <circle class="stroke-red-500" cx="50" cy="50" fill="none" r="47" stroke-linecap="round" stroke-width="1.5" style="filter: drop-shadow(0 0 8px #e63946); stroke-dasharray: 295; stroke-dashoffset: 75;" transform="rotate(-90 50 50)"></circle>
+        </svg>
+        <div class="logo relative flex flex-col items-center">
+          <img alt="Studio 333 Logo" class="w-16 h-16 rounded-lg object-contain filter drop-shadow-lg" src="Images/skull.jpg"/>
+          <span class="michroma-font text-[10px] tracking-[0.3em] text-red-400 mt-2">STUDIO 333</span>
         </div>
       </div>
+      <div class="michroma-font text-xs tracking-[0.4em] text-white/70">INITIALIZING ANIME WORLD...</div>
     </div>
   </div>
-﻿  <section class="section" id="trending">
-    <div class="two-col">
-      <div>
-        <div class="section-header reveal"><div><div class="section-label">Hot Right Now</div><h2 class="section-title">Trending Anime</h2></div><a href="#" class="section-link">View All &rarr;</a></div>
-        <div class="trending-list">
-          <a href="#" class="trending-item reveal reveal-delay-1"><div class="trending-rank">01</div><div class="trending-poster"><img src="Images/op.jpg" alt="One Piece" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">One Piece</div><div class="trending-meta"><span>1999 &bull; Ongoing</span><span>&bull;</span><span>Action, Adventure</span></div></div><div class="trending-score">&#11088; 9.4</div><div class="trending-arrow">&rarr;</div></a>
-          <a href="#" class="trending-item reveal reveal-delay-2"><div class="trending-rank">02</div><div class="trending-poster"><img src="Images/ds.jpg" alt="DS" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">Demon Slayer</div><div class="trending-meta"><span>2019 &bull; Complete</span><span>&bull;</span><span>Action, Supernatural</span></div></div><div class="trending-score">&#11088; 9.1</div><div class="trending-arrow">&rarr;</div></a>
-          <a href="#" class="trending-item reveal reveal-delay-3"><div class="trending-rank">03</div><div class="trending-poster"><img src="Images/n.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">Naruto Shippuden</div><div class="trending-meta"><span>2007 &bull; Complete</span><span>&bull;</span><span>Action, Fantasy</span></div></div><div class="trending-score">&#11088; 8.9</div><div class="trending-arrow">&rarr;</div></a>
-          <a href="#" class="trending-item reveal reveal-delay-4"><div class="trending-rank">04</div><div class="trending-poster"><img src="Images/g.jpg" alt="DBZ" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">Dragon Ball Z</div><div class="trending-meta"><span>1989 &bull; Classic</span><span>&bull;</span><span>Action, Sci-Fi</span></div></div><div class="trending-score">&#11088; 8.8</div><div class="trending-arrow">&rarr;</div></a>
-          <a href="#" class="trending-item reveal"><div class="trending-rank">05</div><div class="trending-poster"><img src="Images/lady.jpg" alt="Shadow" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">The Eminence in Shadow</div><div class="trending-meta"><span>2022 &bull; Season 2</span><span>&bull;</span><span>Isekai, Fantasy</span></div></div><div class="trending-score">&#11088; 8.7</div><div class="trending-arrow">&rarr;</div></a>
-        </div>
-      </div>
-      <div>
-        <div class="section-header reveal"><div><div class="section-label">Editors Picks</div><h2 class="section-title" style="font-size:36px">Must Watch</h2></div></div>
-        <div style="display:flex;flex-direction:column;gap:16px">
-          <div class="card reveal reveal-delay-1"><div class="card-poster" style="aspect-ratio:16/9"><img src="Images/naruto.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">Classic</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Naruto</div><div class="card-meta"><span class="card-genre">Shonen</span><span>720 eps</span><span style="color:#f4c542">&#11088; 8.9</span></div></div></div>
-          <div class="card reveal reveal-delay-2"><div class="card-poster" style="aspect-ratio:16/9"><img src="Images/g.jpg" alt="DBZ" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge" style="background:#f4c542;color:#000">Legendary</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Dragon Ball Z</div><div class="card-meta"><span class="card-genre">Action</span><span>291 eps</span><span style="color:#f4c542">&#11088; 8.8</span></div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-﻿  <section class="section" id="popular" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-    <div class="section-header reveal"><div><div class="section-label">All Time Classics</div><h2 class="section-title">Popular Series</h2></div><a href="#" class="section-link">Browse All &rarr;</a></div>
-    <div class="anime-grid">
-      <div class="card reveal reveal-delay-1"><div class="card-poster"><img src="Images/op.jpg" alt="One Piece" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">Ongoing</div><div class="card-rating">&#11088; 9.4</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">One Piece</div><div class="card-meta"><span class="card-genre">Adventure</span><span>1100+ eps</span></div></div></div>
-      <div class="card reveal reveal-delay-2"><div class="card-poster"><img src="Images/ds.jpg" alt="DS" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">Complete</div><div class="card-rating">&#11088; 9.1</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Demon Slayer</div><div class="card-meta"><span class="card-genre">Action</span><span>44 eps</span></div></div></div>
-      <div class="card reveal reveal-delay-3"><div class="card-poster"><img src="Images/n.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge" style="background:#6c63ff">Classic</div><div class="card-rating">&#11088; 8.9</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Naruto</div><div class="card-meta"><span class="card-genre">Shonen</span><span>220 eps</span></div></div></div>
-      <div class="card reveal reveal-delay-4"><div class="card-poster"><img src="Images/g.jpg" alt="DBZ" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge" style="background:#f4c542;color:#000">Legend</div><div class="card-rating">&#11088; 8.8</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Dragon Ball Z</div><div class="card-meta"><span class="card-genre">Action</span><span>291 eps</span></div></div></div>
-      <div class="card reveal reveal-delay-1"><div class="card-poster"><img src="Images/lady.jpg" alt="Shadow" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">New</div><div class="card-rating">&#11088; 8.7</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Eminence in Shadow</div><div class="card-meta"><span class="card-genre">Isekai</span><span>20 eps</span></div></div></div>
-      <div class="card reveal reveal-delay-2"><div class="card-poster" style="background:linear-gradient(135deg,#1a2232,#0d1117);display:flex;align-items:center;justify-content:center;min-height:200px"><div style="text-align:center;padding:20px"><div style="font-size:48px;margin-bottom:12px">&#127988;</div><div style="font-weight:700">Attack on Titan</div></div><div class="card-badge" style="background:#333">Fan Fav</div><div class="card-rating">&#11088; 9.0</div></div><div class="card-body"><div class="card-title">Attack on Titan</div><div class="card-meta"><span class="card-genre">Dark Fantasy</span><span>87 eps</span></div></div></div>
-    </div>
-  </section>
-﻿  <section class="section" id="characters">
-    <div class="section-header reveal"><div><div class="section-label">Fan Favorites</div><h2 class="section-title">Iconic Characters</h2></div><a href="#" class="section-link">All Characters &rarr;</a></div>
-    <div class="characters-grid">
-      <div class="char-card reveal reveal-delay-1"><img src="Images/tanjro.png" alt="Tanjiro" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">01</div><div class="char-card-body"><div class="char-name">Tanjiro Kamado</div><div class="char-anime">Demon Slayer</div></div></div>
-      <div class="char-card reveal reveal-delay-2"><img src="Images/goku.jpg" alt="Goku" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">02</div><div class="char-card-body"><div class="char-name">Son Goku</div><div class="char-anime">Dragon Ball Z</div></div></div>
-      <div class="char-card reveal reveal-delay-3"><img src="Images/naruto.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">03</div><div class="char-card-body"><div class="char-name">Naruto Uzumaki</div><div class="char-anime">Naruto</div></div></div>
-      <div class="char-card reveal reveal-delay-4"><img src="Images/opt.png" alt="Luffy" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">04</div><div class="char-card-body"><div class="char-name">Monkey D. Luffy</div><div class="char-anime">One Piece</div></div></div>
-      <div class="char-card reveal reveal-delay-1"><img src="Images/lady.jpg" alt="Shadow" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">05</div><div class="char-card-body"><div class="char-name">Shadow (Cid)</div><div class="char-anime">Eminence in Shadow</div></div></div>
-      <div class="char-card reveal reveal-delay-2" style="background:linear-gradient(135deg,#1a2232,#0d1117);display:flex;align-items:center;justify-content:center"><div style="font-size:64px;position:relative;z-index:1">&#9876;&#65039;</div><div class="char-card-overlay"></div><div class="char-rank">06</div><div class="char-card-body"><div class="char-name">Kirito</div><div class="char-anime">Sword Art Online</div></div></div>
-    </div>
-  </section>
-﻿  <section class="section" id="genres" style="background:var(--bg2);border-top:1px solid var(--border)">
-    <div class="section-header reveal"><div><div class="section-label">Explore</div><h2 class="section-title">Browse by Genre</h2></div></div>
-    <div class="genre-grid">
-      <a href="#" class="genre-pill reveal reveal-delay-1"><span class="genre-pill-emoji">&#9876;&#65039;</span><div class="genre-pill-name">Action</div><div class="genre-pill-count">2,400+ titles</div></a>
-      <a href="#" class="genre-pill reveal reveal-delay-2"><span class="genre-pill-emoji">&#127756;</span><div class="genre-pill-name">Isekai</div><div class="genre-pill-count">1,800+ titles</div></a>
-      <a href="#" class="genre-pill reveal reveal-delay-3"><span class="genre-pill-emoji">&#128152;</span><div class="genre-pill-name">Romance</div><div class="genre-pill-count">1,600+ titles</div></a>
-      <a href="#" class="genre-pill reveal reveal-delay-4"><span class="genre-pill-emoji">&#128302;</span><div class="genre-pill-name">Fantasy</div><div class="genre-pill-count">3,000+ titles</div></a>
-      <a href="#" class="genre-pill reveal reveal-delay-1"><span class="genre-pill-emoji">&#128123;</span><div class="genre-pill-name">Horror</div><div class="genre-pill-count">900+ titles</div></a>
-      <a href="#" class="genre-pill reveal reveal-delay-2"><span class="genre-pill-emoji">&#129315;</span><div class="genre-pill-name">Comedy</div><div class="genre-pill-count">2,100+ titles</div></a>
-      <a href="#" class="genre-pill reveal reveal-delay-3"><span class="genre-pill-emoji">&#128640;</span><div class="genre-pill-name">Sci-Fi</div><div class="genre-pill-count">1,200+ titles</div></a>
-      <a href="#" class="genre-pill reveal reveal-delay-4"><span class="genre-pill-emoji">&#127979;</span><div class="genre-pill-name">Slice of Life</div><div class="genre-pill-count">1,400+ titles</div></a>
-    </div>
-  </section>
-﻿  <section class="section">
-    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
-      <div>
-        <div class="section-label">Our Mission</div>
-        <h2 class="section-title" style="margin-bottom:24px">Built for True<br/>Anime Fans</h2>
-        <p style="color:var(--muted);font-size:15px;line-height:1.9;margin-bottom:20px">Anime World was born from pure passion. We celebrate Japanese animation from timeless classics like Dragon Ball Z to modern masterpieces like Demon Slayer.</p>
-        <p style="color:var(--muted);font-size:15px;line-height:1.9;margin-bottom:32px">Whether you are a seasoned otaku or just discovered anime, you belong here.</p>
-        <div style="display:flex;gap:40px;flex-wrap:wrap">
-          <div><div style="font-family:Bebas Neue,sans-serif;font-size:40px;color:var(--accent)">10K+</div><div style="font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Series Catalogued</div></div>
-          <div><div style="font-family:Bebas Neue,sans-serif;font-size:40px;color:#f4c542">2M+</div><div style="font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Community Members</div></div>
-          <div><div style="font-family:Bebas Neue,sans-serif;font-size:40px;color:#6c63ff">40+</div><div style="font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Genres Covered</div></div>
-        </div>
-      </div>
-      <div style="position:relative">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <div style="border-radius:16px;overflow:hidden;aspect-ratio:3/4"><img src="Images/ds.jpg" style="width:100%;height:100%;object-fit:cover" alt="DS" onerror="this.parentElement.style.background='#1a2232'"/></div>
-          <div style="display:flex;flex-direction:column;gap:16px;padding-top:32px">
-            <div style="border-radius:16px;overflow:hidden;aspect-ratio:1"><img src="Images/n.jpg" style="width:100%;height:100%;object-fit:cover" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/></div>
-            <div style="border-radius:16px;overflow:hidden;flex:1;min-height:120px"><img src="Images/goku.jpg" style="width:100%;height:100%;object-fit:cover" alt="Goku" onerror="this.parentElement.style.background='#1a2232'"/></div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="transition-opacity duration-500 opacity-100" id="main-content">
+    <div class="michroma-font">
+
+      <!-- DESKTOP VERTICAL SIDEBAR DOCK (FIXED LEFT) -->
+      <aside class="hidden md:block fixed top-0 left-0 h-screen w-12 z-[3000] bg-[#090c12]/95 border-r border-white/10 backdrop-blur-md">
+        <div class="relative h-full flex flex-col justify-between items-center py-4">
+          <div class="mt-2">
+            <button aria-label="Toggle menu" class="w-9 h-9 flex items-center justify-center rounded border border-white/10 hover:border-red-500 hover:bg-red-500/20 transition-all text-white">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"></path></svg>
+            </button>
+          </div>
+          
+          <div class="my-auto">
+            <div class="text-[13px] text-red-500 font-bold tracking-[0.45em] whitespace-nowrap" style="transform: rotate(90deg); transform-origin: center;">
+              ANIME WORLD
+            </div>
+          </div>
+
+          <!-- Section Navigation Buttons 01 to 08 -->
+          <div class="w-full flex flex-col items-center">
+            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300 is-active" data-target="section-1">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 100%; opacity: 0.95;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-bold text-white" style="transform: rotate(90deg)">01/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-100" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>HOME</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-2">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">02/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>EXPLORE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-3">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">03/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>ARENA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-4">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">04/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>PASSES</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-5">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">05/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>HEROES</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-6">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">06/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>MECHA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group relative w-full border-t border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-7">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">07/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>GAMING</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group relative w-full border-t border-b border-white/10 flex flex-col items-center justify-start overflow-hidden font-light cursor-pointer sidebar-nav-item transition-all duration-300" data-target="section-8">
+              <div class="absolute inset-0 bg-red-600 transition-all duration-200 ease-out" style="height: 0%; opacity: 0;"></div>
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <span class="text-[12px] inline-block mt-[8px] font-light text-white/60" style="transform: rotate(90deg)">08/</span>
+                <div class="w-full flex justify-center mt-2 mb-4">
+                  <div class="sidebar-label text-[11px] whitespace-nowrap font-medium opacity-0 -translate-y-2 transition-all" style="writing-mode: vertical-rl; text-orientation: mixed">
+                    <span>EXPO</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div style="position:absolute;bottom:-16px;left:-16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px">
-          <div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--accent)">98% Fans</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px">Fan Satisfaction</div>
+      </aside>
+
+      <!-- MOBILE TOP NAVBAR -->
+      <div class="md:hidden top-0 left-0 right-0 fixed z-[500] bg-[#0a0d14]/95 border-b border-white/10 backdrop-blur-md">
+        <div class="flex items-center justify-between px-4 py-3">
+          <div class="flex items-center gap-3">
+            <img alt="Studio 333 Logo" class="w-7 h-7 rounded object-contain" src="Images/skull.jpg"/>
+            <span class="text-xs font-bold tracking-wider text-red-500">ANIME WORLD</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <button id="mobile-audio-toggle" class="px-2 py-1 bg-white/5 border border-white/10 rounded flex items-center gap-1.5">
+              <span class="text-[10px]">SOUND</span>
+              <div class="flex items-end h-3 eq-paused" id="mobile-eq">
+                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+              </div>
+            </button>
+            <button aria-label="Toggle menu" class="w-7 h-7 flex items-center justify-center border border-white/10 rounded">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"></path></svg>
+            </button>
+          </div>
+        </div>
+        <!-- Scroll progress bar -->
+        <div class="w-full h-[2px] bg-white/5">
+          <div class="bg-red-500 h-full transition-all duration-150 ease-out" id="mobile-scroll-bar" style="width: 0%"></div>
         </div>
       </div>
-    </div>
-  </section>
-﻿  <div id="newsletter">
-    <div class="newsletter-section reveal">
-      <h2 class="newsletter-title">Stay in the Loop</h2>
-      <p class="newsletter-desc">Get weekly updates on new releases, rankings, and exclusive anime content straight to your inbox.</p>
-      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
-        <input type="email" class="newsletter-input" placeholder="Enter your email address" required/>
-        <button type="submit" class="btn-primary" style="white-space:nowrap">Subscribe &rarr;</button>
-      </form>
+
+      <!-- MAIN WRAPPER (Offset for Sidebar) -->
+      <div class="md:ml-12">
+
+        <!-- ==================== SECTION 1: HERO ==================== -->
+        <section class="h-full relative" id="section-1">
+          <!-- Top Desktop HUD Actions -->
+          <div class="hidden absolute top-6 right-8 z-40 md:flex items-center gap-4">
+            <!-- Audio Toggle Player -->
+            <button id="audio-toggle-btn" class="flex items-center gap-2.5 px-4 py-2 bg-black/60 hover:bg-red-600/30 border border-white/15 hover:border-red-500/60 rounded-full backdrop-blur-md transition-all text-xs tracking-wider">
+              <span id="audio-status-text" class="text-white/80">OST: PLAY</span>
+              <div class="flex items-end h-3.5 eq-paused" id="desktop-eq">
+                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+              </div>
+            </button>
+            <button class="map-trigger px-4 py-2 bg-black/60 hover:bg-white/10 border border-white/15 rounded-full backdrop-blur-md transition-all text-xs tracking-wider text-white">
+              MAP
+            </button>
+            <button aria-label="Toggle menu" class="px-4 py-2 bg-black/60 hover:bg-white/10 border border-white/15 rounded-full backdrop-blur-md transition-all text-xs tracking-wider text-white">
+              INDEX
+            </button>
+            <button class="login-trigger px-5 py-2 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full shadow-[0_0_20px_rgba(230,57,70,0.5)] transition-all text-xs tracking-widest">
+              GET PASS
+            </button>
+          </div>
+
+          <section class="relative min-h-screen flex items-center justify-center px-5 py-8 pt-20 overflow-hidden">
+            <!-- Cyber Background Grid Lines -->
+            <div class="absolute inset-0 z-0 opacity-25 pointer-events-none">
+              <img alt="Hero Cyber Grid" class="w-full h-full object-cover" src="Images/image_28.png" onerror="this.style.display='none'"/>
+            </div>
+
+            <!-- Wireframe Grid Layer -->
+            <div class="absolute inset-0 z-10 pointer-events-none">
+              <div class="flex flex-col h-full w-full">
+                <div class="flex flex-nowrap h-[20%]">
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                </div>
+                <div class="flex flex-nowrap h-[60%]">
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                </div>
+                <div class="flex flex-nowrap h-[20%]">
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                  <div class="flex-1 border-[0.5px] border-white/10"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Central Content & Big Title -->
+            <div class="relative z-20 flex flex-col items-center justify-center text-center max-w-6xl mx-auto mt-6">
+              <div class="flex items-center gap-3 px-4 py-1.5 bg-red-600/15 border border-red-500/40 rounded-full mb-6">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                <span class="text-[11px] md:text-xs font-semibold text-red-300 tracking-[0.25em]">/// STUDIO 333 PRESENTS &bull; GLOBAL CONVENTION</span>
+              </div>
+
+              <!-- Main Stencil Title -->
+              <h1 class="akira-font text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-widest text-white drop-shadow-[0_0_35px_rgba(230,57,70,0.6)] leading-tight">
+                ANIME<br/><span class="text-transparent" style="-webkit-text-stroke: 2px #e63946;">WORLD</span>
+              </h1>
+
+              <!-- Hero Coordinates & Dates -->
+              <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-6 text-xs sm:text-sm text-white/80 tracking-widest">
+                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded">OCTOBER 24 &bull; 25 &bull; 26</span>
+                <span class="text-red-500 font-bold">|</span>
+                <span>TOKYO &bull; ARENA 333</span>
+                <span class="text-red-500 font-bold">|</span>
+                <span class="text-yellow-400 font-semibold">SEASON 2026</span>
+              </div>
+
+              <!-- Character & Wheel Graphic Composition -->
+              <div class="relative w-full max-w-lg aspect-square mt-4 flex items-center justify-center">
+                <!-- Rotating HUD Ring -->
+                <img alt="HUD Wheel" class="absolute w-[80%] h-[80%] object-contain animate-spin-slow opacity-40 pointer-events-none" src="Images/image_11.png" onerror="this.style.display='none'"/>
+                <!-- Hero Character (Tanjiro) -->
+                <img alt="Hero Tanjiro" class="relative z-10 w-[70%] max-h-[380px] object-contain filter drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)]" src="Images/tanjro.png"/>
+              </div>
+
+              <!-- Hero CTA Buttons -->
+              <div class="flex flex-wrap gap-4 mt-6 z-30">
+                <a href="#section-4" class="px-8 py-3.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg shadow-[0_0_30px_rgba(230,57,70,0.6)] transition-all text-xs tracking-widest flex items-center gap-2">
+                  <span>BOOK OTAKU PASS</span>
+                  <span>&rarr;</span>
+                </a>
+                <a href="#section-2" class="px-8 py-3.5 bg-white/5 hover:bg-white/15 border border-white/20 text-white rounded-lg transition-all text-xs tracking-widest">
+                  EXPLORE SESSIONS
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Infinite Marquee Ticker -->
+          <div class="w-full overflow-hidden border-y border-white/10 bg-[#0d121c] py-2.5">
+            <div class="whitespace-nowrap animate-marquee flex text-xs tracking-[0.3em] font-semibold text-white/80">
+              <span class="mx-8 text-red-500">/// DEMON SLAYER: INFINITY CASTLE</span>
+              <span class="mx-8">/// ONE PIECE: EGGHEAD ARC</span>
+              <span class="mx-8 text-yellow-400">/// DRAGON BALL DAIMA</span>
+              <span class="mx-8">/// JUJUTSU KAISEN: CULLING GAME</span>
+              <span class="mx-8 text-red-500">/// ATTACK ON TAIWAN SCREENING</span>
+              <span class="mx-8">/// STUDIO 333 EXCLUSIVE</span>
+              <span class="mx-8 text-red-500">/// DEMON SLAYER: INFINITY CASTLE</span>
+              <span class="mx-8">/// ONE PIECE: EGGHEAD ARC</span>
+              <span class="mx-8 text-yellow-400">/// DRAGON BALL DAIMA</span>
+              <span class="mx-8">/// JUJUTSU KAISEN: CULLING GAME</span>
+              <span class="mx-8 text-red-500">/// ATTACK ON TAIWAN SCREENING</span>
+              <span class="mx-8">/// STUDIO 333 EXCLUSIVE</span>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== SECTION 2: EXPLORE HIGH-IMPACT SLABS ==================== -->
+        <section id="section-2" class="w-full bg-[#0a0d14] flex flex-col items-center justify-center gap-4 px-4 py-16">
+          <div class="w-full max-w-7xl mx-auto flex items-end justify-between mb-4 border-b border-white/10 pb-4">
+            <div>
+              <div class="text-xs text-red-500 tracking-[0.25em] mb-1">02 // CATEGORIES</div>
+              <h2 class="akira-font text-2xl sm:text-4xl text-white">CONVENTION TRACKS</h2>
+            </div>
+            <span class="text-xs text-white/50 tracking-wider">SELECT A TRACK TO EXPAND</span>
+          </div>
+
+          <!-- Slab 1: Shonen Screenings -->
+          <a class="relative w-full max-w-7xl h-[28vh] sm:h-[32vh] overflow-hidden cursor-pointer bg-[#121620] group border border-white/10 rounded-xl transition-all hover:border-red-500/60" href="#section-4">
+            <div class="absolute inset-0 bg-cover bg-center brightness-50 transition-transform duration-700 group-hover:scale-105" style="background-image:url('Images/op.jpg');"></div>
+            <div class="relative z-10 w-full h-full p-6 sm:p-8 flex items-center justify-between">
+              <div class="max-w-xl">
+                <div class="text-[10px] sm:text-xs tracking-[0.2em] text-red-400 font-semibold mb-1">EXCLUSIVE PREMIERES</div>
+                <div class="akira-font text-2xl sm:text-4xl lg:text-5xl font-black italic tracking-tight text-white drop-shadow-md">
+                  SHONEN CINEMA
+                </div>
+                <p class="text-xs sm:text-sm text-white/70 mt-2 line-clamp-2">
+                  Uncut 4K IMAX screenings of One Piece Film Red, Demon Slayer Swordsmith Village, and exclusive Jujutsu Kaisen world premieres.
+                </p>
+              </div>
+              <div class="flex flex-col items-end gap-3">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-red-600 group-hover:border-red-600 transition-all">
+                  <svg class="w-5 h-5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+                <!-- Hazard Stripes from brokenwebsite -->
+                <div class="hidden sm:flex gap-1">
+                  <div class="w-[5px] h-6 -skew-x-12 bg-red-500"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-red-500"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-red-500"></div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none cyber-scanlines opacity-20"></div>
+          </a>
+
+          <!-- Slab 2: Combat Arena -->
+          <a class="relative w-full max-w-7xl h-[28vh] sm:h-[32vh] overflow-hidden cursor-pointer bg-[#121620] group border border-white/10 rounded-xl transition-all hover:border-yellow-500/60" href="#section-3">
+            <div class="absolute inset-0 bg-cover bg-center brightness-50 transition-transform duration-700 group-hover:scale-105" style="background-image:url('Images/ds.jpg');"></div>
+            <div class="relative z-10 w-full h-full p-6 sm:p-8 flex items-center justify-between">
+              <div class="max-w-xl">
+                <div class="text-[10px] sm:text-xs tracking-[0.2em] text-yellow-400 font-semibold mb-1">CHAMPIONSHIP ARENA</div>
+                <div class="akira-font text-2xl sm:text-4xl lg:text-5xl font-black italic tracking-tight text-white drop-shadow-md">
+                  COSPLAY & COMBAT
+                </div>
+                <p class="text-xs sm:text-sm text-white/70 mt-2 line-clamp-2">
+                  World Cosplay Summit qualifiers and martial combat choreo tournament with international celebrity judges.
+                </p>
+              </div>
+              <div class="flex flex-col items-end gap-3">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-yellow-500 group-hover:border-yellow-500 transition-all">
+                  <svg class="w-5 h-5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+                <div class="hidden sm:flex gap-1">
+                  <div class="w-[5px] h-6 -skew-x-12 bg-yellow-400"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-yellow-400"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-yellow-400"></div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none cyber-scanlines opacity-20"></div>
+          </a>
+
+          <!-- Slab 3: Creator Conclave -->
+          <a class="relative w-full max-w-7xl h-[28vh] sm:h-[32vh] overflow-hidden cursor-pointer bg-[#121620] group border border-white/10 rounded-xl transition-all hover:border-purple-500/60" href="#section-8">
+            <div class="absolute inset-0 bg-cover bg-center brightness-50 transition-transform duration-700 group-hover:scale-105" style="background-image:url('Images/g.jpg');"></div>
+            <div class="relative z-10 w-full h-full p-6 sm:p-8 flex items-center justify-between">
+              <div class="max-w-xl">
+                <div class="text-[10px] sm:text-xs tracking-[0.2em] text-purple-400 font-semibold mb-1">MANGA MASTERCLASS</div>
+                <div class="akira-font text-2xl sm:text-4xl lg:text-5xl font-black italic tracking-tight text-white drop-shadow-md">
+                  CREATOR PANELS
+                </div>
+                <p class="text-xs sm:text-sm text-white/70 mt-2 line-clamp-2">
+                  Direct masterclasses with seasoned mangaka, anime voice actors (seiyuu), and animation directors from Tokyo studios.
+                </p>
+              </div>
+              <div class="flex flex-col items-end gap-3">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-purple-600 group-hover:border-purple-600 transition-all">
+                  <svg class="w-5 h-5 text-white transform -rotate-45 group-hover:rotate-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+                <div class="hidden sm:flex gap-1">
+                  <div class="w-[5px] h-6 -skew-x-12 bg-purple-500"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-purple-500"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-transparent"></div>
+                  <div class="w-[5px] h-6 -skew-x-12 bg-purple-500"></div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none cyber-scanlines opacity-20"></div>
+          </a>
+        </section>
+
+
+        <!-- ==================== SECTION 3: ARENA SHOWCASE (CIRCUIT LINES) ==================== -->
+        <section id="section-3" class="relative min-h-screen bg-[#070a0f] py-20 overflow-hidden border-t border-white/10">
+          <!-- Animated Circuit Paths from brokenwebsite -->
+          <div class="absolute inset-0 pointer-events-none z-0 opacity-40">
+            <svg class="w-full h-full">
+              <defs>
+                <linearGradient id="animeCircuit" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#e63946" stop-opacity="0"></stop>
+                  <stop offset="50%" stop-color="#e63946" stop-opacity="0.9"></stop>
+                  <stop offset="100%" stop-color="#f4c542" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+              <path d="M0,80 Q250,160 500,80 T1000,80" fill="none" stroke="url(#animeCircuit)" stroke-width="2"></path>
+              <path d="M0,220 Q350,300 700,220 T1400,220" fill="none" stroke="url(#animeCircuit)" stroke-width="1.5"></path>
+              <path d="M150,400 Q600,480 950,400 T1600,400" fill="none" stroke="url(#animeCircuit)" stroke-width="1"></path>
+            </svg>
+          </div>
+
+          <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-10">
+              <div>
+                <div class="text-xs text-red-500 tracking-[0.25em] mb-1">03 // BATTLEFIELD</div>
+                <h2 class="akira-font text-3xl sm:text-5xl text-white">COLOSSEUM ARENA</h2>
+              </div>
+              <!-- Loading Indicator Items from brokenwebsite -->
+              <div class="hidden sm:flex items-center gap-1">
+                <div class="w-2.5 h-6 bg-red-500 animate-pulse"></div>
+                <div class="w-2.5 h-6 bg-red-500/80 animate-pulse" style="animation-delay: 0.1s"></div>
+                <div class="w-2.5 h-6 bg-red-500/60 animate-pulse" style="animation-delay: 0.2s"></div>
+                <div class="w-2.5 h-6 bg-red-500/40 animate-pulse" style="animation-delay: 0.3s"></div>
+              </div>
+            </div>
+
+            <!-- Banner / Event Hero Image -->
+            <div class="w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl relative">
+              <img alt="Val Event Banner" class="w-full h-auto object-cover max-h-[460px]" src="Images/val-eventBanner.png"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070a0f] via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Arena Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+              <div class="p-6 bg-[#0e131d] border border-white/10 rounded-xl">
+                <div class="text-xs text-red-400 font-semibold tracking-widest mb-1">TATAMI COMBAT ZONE</div>
+                <div class="akira-font text-2xl text-white mb-2">24 x 24 METERS</div>
+                <p class="text-xs text-white/60">Reinforced hydraulic combat tatami engineered for sword choreography, stunt battles, and wirework demonstrations.</p>
+              </div>
+              <div class="p-6 bg-[#0e131d] border border-white/10 rounded-xl">
+                <div class="text-xs text-yellow-400 font-semibold tracking-widest mb-1">GRAND PRIZE POOL</div>
+                <div class="akira-font text-2xl text-white mb-2">&yen; 1,500,000</div>
+                <p class="text-xs text-white/60">Trophies, official studio contracts, trip to Tokyo Anime Fair, and custom hand-forged Nichirin swords for top champions.</p>
+              </div>
+              <div class="p-6 bg-[#0e131d] border border-white/10 rounded-xl flex items-center justify-between">
+                <div>
+                  <div class="text-xs text-purple-400 font-semibold tracking-widest mb-1">EVENT COORDINATES</div>
+                  <div class="text-sm font-bold text-white">35.6762° N &bull; 139.6503° E</div>
+                  <div class="text-xs text-white/50 mt-1">HALL 333 // MAIN STAGE</div>
+                </div>
+                <button class="map-trigger px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded text-xs tracking-wider">
+                  VIEW MAP
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== SECTION 4: 3D PASSES & TICKETS CAROUSEL ==================== -->
+        <section id="section-4" class="relative w-full py-24 bg-[#0a0d14] flex flex-col items-center justify-center overflow-hidden border-t border-white/10">
+          <div class="text-center mb-12">
+            <div class="text-xs text-red-500 tracking-[0.25em] mb-2">04 // ACCESS TIERS</div>
+            <h2 class="akira-font text-4xl sm:text-6xl lg:text-7xl text-white">CONVENTION PASSES</h2>
+            <p class="text-xs sm:text-sm text-white/60 tracking-widest mt-3">One pass. Every universe of Anime World '26.</p>
+          </div>
+
+          <!-- Stack of 3D Ticket Cards -->
+          <div class="relative w-full max-w-4xl h-[360px] sm:h-[420px] flex items-center justify-center">
+            
+            <!-- Pass 0: ALL DAYS VIP PASS -->
+            <div class="ticket-card card-0 absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#1c1815] to-[#2b221a] border-2 border-[#f4c542] shadow-[0_20px_60px_rgba(244,197,66,0.35)]" data-ticket-idx="0" style="transform: translateY(0px) scale(1.05); z-index: 30; opacity: 1;">
+              <div class="flex items-start justify-between border-b border-[#f4c542]/30 pb-4">
+                <div>
+                  <div class="text-[10px] sm:text-xs text-[#f4c542] tracking-[0.3em] font-bold">VIP ADMIT ONE &bull; ALL DAYS</div>
+                  <div class="akira-font text-2xl sm:text-4xl text-white mt-1">OTAKU GOLD PASS</div>
+                </div>
+                <div class="px-3 py-1 bg-[#f4c542] text-black font-extrabold text-xs rounded tracking-widest">
+                  ALL DAYS
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 my-6 text-xs">
+                <div>
+                  <div class="text-white/50 text-[10px]">DATES</div>
+                  <div class="font-bold text-white mt-0.5">OCT 24-26</div>
+                </div>
+                <div>
+                  <div class="text-white/50 text-[10px]">SECTOR</div>
+                  <div class="font-bold text-white mt-0.5">ALL ACCESS</div>
+                </div>
+                <div>
+                  <div class="text-white/50 text-[10px]">PERKS</div>
+                  <div class="font-bold text-white mt-0.5">VIP LOUNGE</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-white p-1 rounded">
+                    <img alt="Pass QR" class="w-full h-full object-contain" src="Images/image_13.png" onerror="this.style.background='#fff'"/>
+                  </div>
+                  <span class="text-[10px] text-white/50 tracking-widest">NO. 333-GOLD-2026</span>
+                </div>
+                <button class="login-trigger px-6 py-2.5 bg-[#f4c542] hover:bg-[#ffe082] text-black font-extrabold text-xs rounded-lg tracking-wider transition">
+                  CLAIM &bull; &yen; 9,800
+                </button>
+              </div>
+            </div>
+
+            <!-- Pass 1: DAY 1 PASS -->
+            <div class="ticket-card card-1 absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#171c26] to-[#121822] border border-blue-500/50 shadow-2xl" data-ticket-idx="1" style="transform: translateY(40px) scale(0.95); z-index: 20; opacity: 0.85;">
+              <div class="flex items-start justify-between border-b border-blue-500/30 pb-4">
+                <div>
+                  <div class="text-[10px] sm:text-xs text-blue-400 tracking-[0.3em] font-bold">ADMIT ONE &bull; DAY 1</div>
+                  <div class="akira-font text-2xl sm:text-4xl text-white mt-1">SHONEN DAY PASS</div>
+                </div>
+                <div class="px-3 py-1 bg-blue-600 text-white font-extrabold text-xs rounded tracking-widest">
+                  DAY 1
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 my-6 text-xs">
+                <div>
+                  <div class="text-white/50 text-[10px]">DATE</div>
+                  <div class="font-bold text-white mt-0.5">OCT 24 2026</div>
+                </div>
+                <div>
+                  <div class="text-white/50 text-[10px]">THEME</div>
+                  <div class="font-bold text-white mt-0.5">ONE PIECE & NARUTO</div>
+                </div>
+                <div>
+                  <div class="text-white/50 text-[10px]">ACCESS</div>
+                  <div class="font-bold text-white mt-0.5">MAIN HALL</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                <span class="text-[10px] text-white/50 tracking-widest">NO. 333-DAY1-2026</span>
+                <button class="login-trigger px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs rounded-lg tracking-wider transition">
+                  CLAIM &bull; &yen; 3,500
+                </button>
+              </div>
+            </div>
+
+            <!-- Pass 2: DAY 2 PASS -->
+            <div class="ticket-card card-2 absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#241316] to-[#1a0e10] border border-red-500/50 shadow-2xl" data-ticket-idx="2" style="transform: translateY(80px) scale(0.85); z-index: 10; opacity: 0.65;">
+              <div class="flex items-start justify-between border-b border-red-500/30 pb-4">
+                <div>
+                  <div class="text-[10px] sm:text-xs text-red-400 tracking-[0.3em] font-bold">ADMIT ONE &bull; DAY 2</div>
+                  <div class="akira-font text-2xl sm:text-4xl text-white mt-1">BATTLE CUP PASS</div>
+                </div>
+                <div class="px-3 py-1 bg-red-600 text-white font-extrabold text-xs rounded tracking-widest">
+                  DAY 2
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 my-6 text-xs">
+                <div>
+                  <div class="text-white/50 text-[10px]">DATE</div>
+                  <div class="font-bold text-white mt-0.5">OCT 25 2026</div>
+                </div>
+                <div>
+                  <div class="text-white/50 text-[10px]">THEME</div>
+                  <div class="font-bold text-white mt-0.5">DEMON SLAYER CUP</div>
+                </div>
+                <div>
+                  <div class="text-white/50 text-[10px]">ACCESS</div>
+                  <div class="font-bold text-white mt-0.5">ARENA SEATS</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                <span class="text-[10px] text-white/50 tracking-widest">NO. 333-DAY2-2026</span>
+                <button class="login-trigger px-6 py-2.5 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs rounded-lg tracking-wider transition">
+                  CLAIM &bull; &yen; 4,200
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pass Carousel Navigation Controls -->
+          <div class="flex items-center gap-8 mt-6 z-20">
+            <button id="pass-prev-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
+              &larr; PREVIOUS
+            </button>
+            <span class="text-xs text-white/50 tracking-widest" id="pass-counter">1 / 3</span>
+            <button id="pass-next-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
+              NEXT &rarr;
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ==================== SECTION 5: HEROES 3D SPOTLIGHT CAROUSEL ==================== -->
+        <section id="section-5" class="relative min-h-screen bg-[#070a0f] py-20 overflow-hidden border-t border-white/10">
+          <div class="max-w-7xl mx-auto px-6">
+            <div class="text-xs text-red-500 tracking-[0.25em] mb-2">05 // HALL OF HEROES</div>
+            <h2 class="akira-font text-3xl sm:text-5xl lg:text-6xl text-white mb-10">CHARACTER SPOTLIGHT</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              <!-- 3D Carousel Cards Left (8 Cols) -->
+              <div class="lg:col-span-7 relative h-[380px] sm:h-[450px] flex items-center justify-center">
+                <!-- Card 0: Tanjiro -->
+                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border-2 border-red-500 shadow-2xl cursor-pointer" data-artist-idx="0" style="transform: translateX(0px) scale(1.05); z-index: 30; opacity: 1;">
+                  <img alt="Tanjiro" class="w-full h-full object-cover" src="Images/ds.jpg"/>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <span class="px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded">DEMON SLAYER</span>
+                    <h3 class="akira-font text-lg text-white mt-1">TANJIRO</h3>
+                  </div>
+                </div>
+
+                <!-- Card 1: Goku -->
+                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-yellow-500 shadow-2xl cursor-pointer" data-artist-idx="1" style="transform: translateX(180px) scale(0.85); z-index: 20; opacity: 0.8;">
+                  <img alt="Goku" class="w-full h-full object-cover" src="Images/g.jpg"/>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <span class="px-2 py-0.5 bg-yellow-500 text-black text-[10px] font-bold rounded">DRAGON BALL Z</span>
+                    <h3 class="akira-font text-lg text-white mt-1">SON GOKU</h3>
+                  </div>
+                </div>
+
+                <!-- Card 2: Naruto -->
+                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-blue-500 shadow-2xl cursor-pointer" data-artist-idx="2" style="transform: translateX(0px) scale(0.65); z-index: 10; opacity: 0;">
+                  <img alt="Naruto" class="w-full h-full object-cover" src="Images/n.jpg"/>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <span class="px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold rounded">SHIPPUDEN</span>
+                    <h3 class="akira-font text-lg text-white mt-1">NARUTO</h3>
+                  </div>
+                </div>
+
+                <!-- Card 3: Luffy -->
+                <div class="artist-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-purple-500 shadow-2xl cursor-pointer" data-artist-idx="3" style="transform: translateX(-180px) scale(0.85); z-index: 20; opacity: 0.8;">
+                  <img alt="Luffy" class="w-full h-full object-cover" src="Images/op.jpg"/>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <span class="px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded">ONE PIECE</span>
+                    <h3 class="akira-font text-lg text-white mt-1">LUFFY</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Synchronized Title & Lore Slide Right (5 Cols) -->
+              <div class="lg:col-span-5 p-6 bg-[#0e131d] border border-white/10 rounded-2xl">
+                <div class="relative h-14 overflow-hidden">
+                  <!-- Name 0 -->
+                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-100 translate-y-0">
+                    <div class="akira-font text-2xl sm:text-3xl text-red-500">TANJIRO KAMADO</div>
+                    <div class="text-xs text-white/50">Water Breathing &bull; Hinokami Kagura</div>
+                  </div>
+                  <!-- Name 1 -->
+                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
+                    <div class="akira-font text-2xl sm:text-3xl text-yellow-400">SON GOKU</div>
+                    <div class="text-xs text-white/50">Super Saiyan &bull; Ultra Instinct</div>
+                  </div>
+                  <!-- Name 2 -->
+                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
+                    <div class="akira-font text-2xl sm:text-3xl text-blue-400">NARUTO UZUMAKI</div>
+                    <div class="text-xs text-white/50">Sage Mode &bull; Nine-Tails Chakra</div>
+                  </div>
+                  <!-- Name 3 -->
+                  <div class="hero-name-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8">
+                    <div class="akira-font text-2xl sm:text-3xl text-purple-400">MONKEY D. LUFFY</div>
+                    <div class="text-xs text-white/50">Gear 5 &bull; Sun God Nika</div>
+                  </div>
+                </div>
+
+                <div class="relative min-h-[140px] my-6">
+                  <!-- Bio 0 -->
+                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-100 translate-y-0 text-xs sm:text-sm text-white/70 leading-relaxed">
+                    A compassionate warrior turned Demon Slayer after tragedy. Wielder of the black Nichirin blade and the divine Sun Breathing style inherited from ancestral Kamado line.
+                  </div>
+                  <!-- Bio 1 -->
+                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-white/70 leading-relaxed">
+                    Earth's greatest martial protector, a pure-hearted Saiyan whose limits shatter every adversary. Master of the Kamehameha and transcendent Ultra Instinct state.
+                  </div>
+                  <!-- Bio 2 -->
+                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-white/70 leading-relaxed">
+                    From an ostracized orphan to the Seventh Hokage who united the shinobi nations. Champion of bonds, peace, and the legendary Rasengan.
+                  </div>
+                  <!-- Bio 3 -->
+                  <div class="hero-bio-slide absolute inset-0 transition-all duration-500 opacity-0 translate-y-8 text-xs sm:text-sm text-white/70 leading-relaxed">
+                    Captain of the Straw Hat Pirates, seeking the One Piece to become the freest man on the seas. Unleashes joy, freedom, and boundless cartoon physics in Gear 5.
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                  <span class="text-[11px] text-white/50">AUTOPLAYING SPOTLIGHT &bull; CLICK CARD TO SWITCH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== SECTION 6: MECHA & SPEED SHOWCASE ==================== -->
+        <section id="section-6" class="relative py-20 bg-[#090d14] border-t border-white/10">
+          <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-10">
+              <div>
+                <div class="text-xs text-red-500 tracking-[0.25em] mb-1">06 // GARAGE & MECHA</div>
+                <h2 class="akira-font text-3xl sm:text-5xl text-white">ANIME VEHICLES</h2>
+              </div>
+              <span class="text-xs text-white/50">CYBER SPEED MACHINES</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div class="space-y-6">
+                <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl">
+                  <span class="text-red-400 text-xs font-semibold tracking-widest">SPECIFICATION 01</span>
+                  <h3 class="akira-font text-xl text-white mt-1">NEO-TOKYO CYBER BIKE</h3>
+                  <p class="text-xs text-white/60 mt-2">Custom-built replica of Kaneda's iconic red cyber motorcycle, complete with twin ceramic rotor reverse-drive motors and digital HUD.</p>
+                </div>
+                <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl">
+                  <span class="text-yellow-400 text-xs font-semibold tracking-widest">SPECIFICATION 02</span>
+                  <h3 class="akira-font text-xl text-white mt-1">MECHA SUIT RIG 333</h3>
+                  <p class="text-xs text-white/60 mt-2">Full-scale titanium exoskeleton rig inspired by Evangelion Unit-01 and Gundam RX-78-2 on interactive display.</p>
+                </div>
+              </div>
+              <div class="rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-[#0e131d] p-6 flex items-center justify-center">
+                <img alt="Anime Mecha Vehicle" class="w-full max-h-[360px] object-contain filter drop-shadow-xl" src="Images/car.png" onerror="this.src='Images/opt.png'"/>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== SECTION 7: GAMING CONCLAVE ==================== -->
+        <section id="section-7" class="relative py-20 bg-[#070a0f] border-t border-white/10">
+          <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-10">
+              <div>
+                <div class="text-xs text-red-500 tracking-[0.25em] mb-1">07 // ESPORTS & CONCLAVE</div>
+                <h2 class="akira-font text-3xl sm:text-5xl text-white">GAMING CONCLAVE</h2>
+              </div>
+              <span class="text-xs text-red-400">TOURNAMENT LIVE</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl hover:border-red-500 transition-all">
+                <div class="text-3xl mb-3">&#127918;</div>
+                <h3 class="akira-font text-lg text-white mb-1">FIGHTERZ SHOWDOWN</h3>
+                <p class="text-xs text-white/60">Dragon Ball FighterZ and Guilty Gear -Strive- open championship. Direct live caster stream on main audi screen.</p>
+              </div>
+              <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl hover:border-yellow-500 transition-all">
+                <div class="text-3xl mb-3">&#9876;&#65039;</div>
+                <h3 class="akira-font text-lg text-white mb-1">HINOKAMI CHRONICLES</h3>
+                <p class="text-xs text-white/60">Demon Slayer fighting game tournament on PS5 arena pods. Custom Nichirin trophies awarded to podium finishers.</p>
+              </div>
+              <div class="p-6 bg-[#0f1420] border border-white/10 rounded-xl hover:border-purple-500 transition-all">
+                <div class="text-3xl mb-3">&#128302;</div>
+                <h3 class="akira-font text-lg text-white mb-1">GENSHIN & GACHA LOUNGE</h3>
+                <p class="text-xs text-white/60">Speedrunning abyss challenges, cosplay photo booths, and official Mihoyo merchandise giveaways.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== SECTION 8: STUDIO 333 EXPO & COMMUNITY ==================== -->
+        <section id="section-8" class="relative py-24 bg-[#0a0d14] border-t border-white/10">
+          <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+              <div class="text-xs text-red-500 tracking-[0.25em] mb-2">08 // COMMUNITY & EXHIBITION</div>
+              <h2 class="akira-font text-4xl sm:text-6xl text-white">STUDIO 333 EXPO</h2>
+              <p class="text-xs sm:text-sm text-white/60 tracking-widest mt-3">Artist alley, official merchandise booths, and the heart of our community.</p>
+            </div>
+
+            <!-- Newsletter Signup Box -->
+            <div class="max-w-3xl mx-auto p-8 sm:p-12 bg-gradient-to-r from-[#121822] to-[#1a1216] border border-red-500/40 rounded-2xl text-center relative overflow-hidden shadow-2xl">
+              <h3 class="akira-font text-2xl sm:text-3xl text-white mb-3">JOIN THE ANIME CLUB</h3>
+              <p class="text-xs sm:text-sm text-white/70 mb-6">Receive exclusive festival drop alerts, secret screening invitations, and community discounts.</p>
+              <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Subscribed to Anime World updates!'); this.reset();">
+                <input type="email" placeholder="otaku@studio333.com" required class="flex-1 px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-xs text-white focus:outline-none focus:border-red-500 transition"/>
+                <button type="submit" class="px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-lg tracking-wider transition">
+                  SUBSCRIBE
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="bg-[#05070a] border-t border-white/10 py-12 px-6">
+          <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-white/50">
+            <div class="flex items-center gap-3">
+              <img alt="Studio 333 Logo" class="w-8 h-8 rounded object-contain" src="Images/skull.jpg"/>
+              <div>
+                <span class="text-white font-bold">ANIME WORLD '26</span>
+                <span class="block text-[10px] text-red-400">POWERED BY STUDIO 333</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-6">
+              <a href="#section-1" class="hover:text-white transition">HOME</a>
+              <a href="#section-2" class="hover:text-white transition">EXPLORE</a>
+              <a href="#section-3" class="hover:text-white transition">ARENA</a>
+              <a href="#section-4" class="hover:text-white transition">PASSES</a>
+              <a href="#section-5" class="hover:text-white transition">HEROES</a>
+            </div>
+            <div>
+              &copy; 2026 Studio 333 &bull; All Rights Reserved
+            </div>
+          </div>
+        </footer>
+
+      </div>
     </div>
   </div>
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo" style="display:inline-flex"><div class="nav-logo-icon">&#9889;</div><span class="nav-logo-text">Anime<span>World</span></span></a>
-        <p>Your ultimate destination for all things anime. Discover, explore, and celebrate Japanese animation.</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social">TW</a><a href="#" class="footer-social">IG</a><a href="#" class="footer-social">DC</a><a href="#" class="footer-social">YT</a>
-        </div>
-      </div>
-      <div><div class="footer-col-title">Explore</div><ul class="footer-links"><li><a href="#">Trending</a></li><li><a href="#">New Releases</a></li><li><a href="#">Top Rated</a></li><li><a href="#">Seasonal</a></li><li><a href="#">Movies</a></li></ul></div>
-      <div><div class="footer-col-title">Genres</div><ul class="footer-links"><li><a href="#">Action</a></li><li><a href="#">Fantasy</a></li><li><a href="#">Romance</a></li><li><a href="#">Isekai</a></li><li><a href="#">Slice of Life</a></li></ul></div>
-      <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul></div>
+
+
+  <!-- ==================== INTERACTIVE MODALS ==================== -->
+  <div class="custom-modal-backdrop" id="festival-modal">
+    <div class="custom-modal-box relative">
+      <button id="close-modal-btn" class="absolute top-5 right-5 text-white/60 hover:text-white text-xl">&times;</button>
+      <div id="modal-dynamic-content"></div>
     </div>
-    <div class="footer-bottom"><span>&copy; 2026 Anime World. Crafted with passion for anime fans everywhere.</span><span>Studio 333</span></div>
-  </footer>
+  </div>
+
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
   <script>
-    window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('hidden')},2000)});
-    var cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cursor.style.transform='translate('+(mx-5)+'px,'+(my-5)+'px)'});
-    (function a(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.transform='translate('+(rx-18)+'px,'+(ry-18)+'px)';requestAnimationFrame(a)})();
-    window.addEventListener('scroll',function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60)});
-    var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
-    document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
-    function handleSubscribe(e){e.preventDefault();var btn=e.target.querySelector('button');btn.textContent='Subscribed!';btn.style.background='#16a34a';e.target.querySelector('input').value='';setTimeout(function(){btn.textContent='Subscribe';btn.style.background=''},3000)}
+  (function() {
+    // 1. LOADER CONTROLLER
+    const loader = document.getElementById('page-loader');
+    const mainContent = document.getElementById('main-content');
+    function hideLoader() {
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(function() {
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, 700);
+      }
+      if (mainContent) {
+        mainContent.style.opacity = '1';
+      }
+    }
+    setTimeout(hideLoader, 1300);
+    if (loader) loader.addEventListener('click', hideLoader);
+
+    // 2. MOBILE SCROLL PROGRESS
+    const progressBar = document.getElementById('mobile-scroll-bar');
+    window.addEventListener('scroll', function() {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollTotal > 0 && progressBar) {
+        const progress = (window.scrollY / scrollTotal) * 100;
+        progressBar.style.width = progress + '%';
+      }
+    }, { passive: true });
+
+    // 3. SIDEBAR NAVIGATION & SCROLL SPY
+    const navItems = document.querySelectorAll('.sidebar-nav-item');
+    const sections = document.querySelectorAll('section[id^="section-"]');
+
+    navItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        const targetId = item.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navItems.forEach(function(item) {
+              if (item.getAttribute('data-target') === id) {
+                item.classList.add('is-active');
+              } else {
+                item.classList.remove('is-active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -40% 0px', threshold: 0.1 });
+      sections.forEach(function(sec) { observer.observe(sec); });
+    }
+
+    // 4. AUDIO TOGGLE LOGIC
+    const audio = document.getElementById('anime-bg-audio');
+    const audioBtn = document.getElementById('audio-toggle-btn');
+    const mobileAudioBtn = document.getElementById('mobile-audio-toggle');
+    const statusText = document.getElementById('audio-status-text');
+    const desktopEq = document.getElementById('desktop-eq');
+    const mobileEq = document.getElementById('mobile-eq');
+    let isPlaying = false;
+
+    function toggleAudio() {
+      if (!audio) return;
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        if (statusText) statusText.textContent = 'OST: PLAY';
+        if (desktopEq) desktopEq.classList.add('eq-paused');
+        if (mobileEq) mobileEq.classList.add('eq-paused');
+      } else {
+        audio.play().then(function() {
+          isPlaying = true;
+          if (statusText) statusText.textContent = 'OST: ON';
+          if (desktopEq) desktopEq.classList.remove('eq-paused');
+          if (mobileEq) mobileEq.classList.remove('eq-paused');
+        }).catch(function(err) {
+          console.log('Audio autoplay prevented:', err);
+        });
+      }
+    }
+    if (audioBtn) audioBtn.addEventListener('click', toggleAudio);
+    if (mobileAudioBtn) mobileAudioBtn.addEventListener('click', toggleAudio);
+
+    // 5. 3D PASSES CAROUSEL
+    const ticketCards = document.querySelectorAll('.ticket-card');
+    const passCounter = document.getElementById('pass-counter');
+    let currentPass = 0;
+    const totalPasses = 3;
+
+    function updatePassCarousel(targetIdx) {
+      currentPass = (targetIdx + totalPasses) % totalPasses;
+      ticketCards.forEach(function(card, idx) {
+        const diff = (idx - currentPass + totalPasses) % totalPasses;
+        if (diff === 0) {
+          card.style.transform = 'translateY(0px) scale(1.05)';
+          card.style.zIndex = '30';
+          card.style.opacity = '1';
+        } else if (diff === 1) {
+          card.style.transform = 'translateY(40px) scale(0.95)';
+          card.style.zIndex = '20';
+          card.style.opacity = '0.8';
+        } else {
+          card.style.transform = 'translateY(80px) scale(0.85)';
+          card.style.zIndex = '10';
+          card.style.opacity = '0.6';
+        }
+      });
+      if (passCounter) passCounter.textContent = (currentPass + 1) + ' / ' + totalPasses;
+    }
+
+    ticketCards.forEach(function(card, idx) {
+      card.addEventListener('click', function() {
+        updatePassCarousel(idx);
+      });
+    });
+    const passPrev = document.getElementById('pass-prev-btn');
+    const passNext = document.getElementById('pass-next-btn');
+    if (passPrev) passPrev.addEventListener('click', function() { updatePassCarousel(currentPass - 1); });
+    if (passNext) passNext.addEventListener('click', function() { updatePassCarousel(currentPass + 1); });
+
+    // 6. HEROES 3D CAROUSEL
+    const artistCards = document.querySelectorAll('.artist-card');
+    const nameSlides = document.querySelectorAll('.hero-name-slide');
+    const bioSlides = document.querySelectorAll('.hero-bio-slide');
+    let currentArtist = 0;
+    const totalArtists = 4;
+    let artistTimer = null;
+
+    function updateHeroCarousel(targetIdx) {
+      currentArtist = (targetIdx + totalArtists) % totalArtists;
+      artistCards.forEach(function(card, idx) {
+        const diff = (idx - currentArtist + totalArtists) % totalArtists;
+        const isMobile = window.innerWidth < 768;
+        const xOffset = isMobile ? 110 : 200;
+
+        if (diff === 0) {
+          card.style.transform = 'translateX(0px) scale(1.08)';
+          card.style.opacity = '1';
+          card.style.zIndex = '30';
+          card.style.filter = 'brightness(1.1)';
+        } else if (diff === 1) {
+          card.style.transform = 'translateX(' + xOffset + 'px) scale(0.82)';
+          card.style.opacity = '0.75';
+          card.style.zIndex = '20';
+          card.style.filter = 'brightness(0.6)';
+        } else if (diff === 2) {
+          card.style.transform = 'translateX(0px) scale(0.5)';
+          card.style.opacity = '0';
+          card.style.zIndex = '0';
+          card.style.filter = 'brightness(0.3)';
+        } else if (diff === 3) {
+          card.style.transform = 'translateX(-' + xOffset + 'px) scale(0.82)';
+          card.style.opacity = '0.75';
+          card.style.zIndex = '10';
+          card.style.filter = 'brightness(0.6)';
+        }
+      });
+
+      nameSlides.forEach(function(slide, idx) {
+        if (idx === currentArtist) {
+          slide.style.transform = 'translateY(0)';
+          slide.style.opacity = '1';
+        } else {
+          slide.style.transform = 'translateY(20px)';
+          slide.style.opacity = '0';
+        }
+      });
+
+      bioSlides.forEach(function(slide, idx) {
+        if (idx === currentArtist) {
+          slide.style.transform = 'translateY(0)';
+          slide.style.opacity = '1';
+        } else {
+          slide.style.transform = 'translateY(20px)';
+          slide.style.opacity = '0';
+        }
+      });
+    }
+
+    artistCards.forEach(function(card, idx) {
+      card.addEventListener('click', function() {
+        updateHeroCarousel(idx);
+        clearInterval(artistTimer);
+        artistTimer = setInterval(function() { updateHeroCarousel(currentArtist + 1); }, 4500);
+      });
+    });
+    artistTimer = setInterval(function() { updateHeroCarousel(currentArtist + 1); }, 4500);
+
+    // 7. MODALS
+    const modalBackdrop = document.getElementById('festival-modal');
+    const modalContent = document.getElementById('modal-dynamic-content');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    function openModal(html) {
+      if (!modalBackdrop || !modalContent) return;
+      modalContent.innerHTML = html;
+      modalBackdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      if (!modalBackdrop) return;
+      modalBackdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (modalBackdrop) {
+      modalBackdrop.addEventListener('click', function(e) {
+        if (e.target === modalBackdrop) closeModal();
+      });
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Menu Modal
+    function openMenuModal() {
+      openModal(`
+        <div class="space-y-6">
+          <div class="flex items-center gap-3 border-b border-white/10 pb-4">
+            <img src="Images/skull.jpg" alt="Logo" class="w-10 h-10 rounded object-contain"/>
+            <div>
+              <h2 class="akira-font text-xl text-red-500">ANIME WORLD '26</h2>
+              <p class="text-xs text-white/60">Studio 333 Global Convention Directory</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs tracking-wider">
+            <a href="#section-1" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>01 // HOME</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-2" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>02 // EXPLORE</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-3" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>03 // COLOSSEUM ARENA</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-4" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>04 // CONVENTION PASSES</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-5" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>05 // HEROES SPOTLIGHT</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-6" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>06 // MECHA & SPEED</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-7" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>07 // GAMING CONCLAVE</span><span class="text-red-400">&rarr;</span>
+            </a>
+            <a href="#section-8" onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="p-3 bg-white/5 hover:bg-red-600/20 border border-white/10 hover:border-red-500/50 rounded-lg flex items-center justify-between transition">
+              <span>08 // STUDIO 333 EXPO</span><span class="text-red-400">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      `);
+    }
+
+    // Map Modal
+    function openMapModal() {
+      openModal(`
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 border-b border-white/10 pb-3">
+            <h2 class="akira-font text-xl text-red-500">ARENA VENUE MAP</h2>
+          </div>
+          <div class="bg-[#0b0f17] border border-red-500/30 rounded-lg p-5 space-y-3">
+            <div class="flex items-center justify-between text-xs font-semibold border-b border-white/10 pb-2">
+              <span class="text-red-400">Tokyo Convention Center // Hall 333</span>
+              <span class="text-white/60">Oct 24-26, 2026</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 bg-black/40 rounded border border-white/10">
+                <strong class="text-red-400 block mb-1">&#9670; Main Arena Stage</strong>
+                <p class="text-white/70">Grand battles, cosplays, symphonic orchestra & world premieres.</p>
+              </div>
+              <div class="p-3 bg-black/40 rounded border border-white/10">
+                <strong class="text-yellow-400 block mb-1">&#9670; Shonen Pavilion</strong>
+                <p class="text-white/70">One Piece Egghead replica, Nichirin forge & Demon Slayer training grounds.</p>
+              </div>
+              <div class="p-3 bg-black/40 rounded border border-white/10">
+                <strong class="text-blue-400 block mb-1">&#9670; Gaming Arena</strong>
+                <p class="text-white/70">Dragon Ball FighterZ tournaments & Genshin Impact speedrunning lounge.</p>
+              </div>
+              <div class="p-3 bg-black/40 rounded border border-white/10">
+                <strong class="text-purple-400 block mb-1">&#9670; Artist & Mecha Alley</strong>
+                <p class="text-white/70">Kaneda bike showcase, Gundam rig & official Studio 333 merch drops.</p>
+              </div>
+            </div>
+          </div>
+          <button onclick="document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg transition text-xs tracking-wider">
+            BACK TO FESTIVAL
+          </button>
+        </div>
+      `);
+    }
+
+    // Login / Pass Claim Modal
+    function openLoginModal() {
+      openModal(`
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 border-b border-white/10 pb-3">
+            <img src="Images/skull.jpg" alt="Logo" class="w-8 h-8 rounded object-contain"/>
+            <div>
+              <h2 class="akira-font text-lg text-red-500">CLAIM YOUR OTAKU PASS</h2>
+              <p class="text-xs text-white/60">Instant digital badge & convention entry</p>
+            </div>
+          </div>
+          <form class="space-y-3" onsubmit="event.preventDefault(); alert('Pass registered successfully! See you at Anime World 2026.'); document.getElementById('festival-modal').classList.remove('active'); document.body.style.overflow='';">
+            <div>
+              <label class="block text-[11px] font-semibold text-white/70 mb-1">YOUR OTAKU HANDLE OR NAME</label>
+              <input type="text" placeholder="e.g. Zenitsu333" required class="w-full px-3 py-2 bg-[#090d14] border border-white/20 rounded-lg text-white text-xs focus:outline-none focus:border-red-500 transition"/>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-white/70 mb-1">EMAIL ADDRESS</label>
+              <input type="email" placeholder="otaku@studio333.com" required class="w-full px-3 py-2 bg-[#090d14] border border-white/20 rounded-lg text-white text-xs focus:outline-none focus:border-red-500 transition"/>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-white/70 mb-1">TIER SELECTION</label>
+              <select class="w-full px-3 py-2 bg-[#090d14] border border-white/20 rounded-lg text-white text-xs focus:outline-none focus:border-red-500 transition">
+                <option>ALL DAYS &bull; OTAKU GOLD PASS (&yen; 9,800)</option>
+                <option>DAY 1 &bull; SHONEN PREMIERE PASS (&yen; 3,500)</option>
+                <option>DAY 2 &bull; BATTLE CUP PASS (&yen; 4,200)</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg transition text-xs tracking-wider">
+              CONFIRM REGISTRATION
+            </button>
+          </form>
+        </div>
+      `);
+    }
+
+    // Modal Triggers
+    document.querySelectorAll('button[aria-label="Toggle menu"]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openMenuModal();
+      });
+    });
+
+    document.querySelectorAll('.map-trigger').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openMapModal();
+      });
+    });
+
+    document.querySelectorAll('.login-trigger').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openLoginModal();
+      });
+    });
+
+  })();
   </script>
 </body>
 </html>
