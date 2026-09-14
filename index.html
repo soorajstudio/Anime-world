@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anime World &#8212; Discover Your Next Obsession</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #080a0f; --bg2: #0d1117; --surface: #121820; --surface2: #1a2232; --border: rgba(255,255,255,0.07); --accent: #e63946; --accent2: #ff6b6b; --gold: #f4c542; --text: #e8eaf0; --muted: #7a8399; --glow: rgba(230,57,70,0.35); }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+    .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: exclusion; }
+    .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: width .2s, height .2s; mix-blend-mode: exclusion; }
+    #loader { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; transition: opacity .6s ease; }
+    #loader.hidden { opacity: 0; pointer-events: none; }
+    .loader-logo { font-family: "Bebas Neue", sans-serif; font-size: 52px; letter-spacing: 6px; }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar-wrap { width: 200px; height: 2px; background: var(--surface2); border-radius: 1px; overflow: hidden; }
+    .loader-bar { height: 100%; background: var(--accent); width: 0; animation: loaderFill 1.8s ease forwards; }
+    @keyframes loaderFill { to { width: 100%; } }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: linear-gradient(180deg, rgba(8,10,15,.96) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: background .3s; }
+    nav.scrolled { background: rgba(8,10,15,.98); border-bottom-color: rgba(230,57,70,.2); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--accent), #ff4d4d); border-radius: 8px; display: grid; place-items: center; font-size: 18px; box-shadow: 0 0 20px var(--glow); }
+    .nav-logo-text { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--text); }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; transition: color .2s; position: relative; }
+    .nav-links a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width .3s; }
+    .nav-links a:hover { color: var(--text); } .nav-links a:hover::after { width: 100%; }
+    .nav-cta { background: var(--accent) !important; color: #fff !important; padding: 8px 20px; border-radius: 6px; } .nav-cta::after { display: none !important; }
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 120px 48px; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.22) saturate(.5); }
+    .hero-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(8,10,15,.98) 0%, rgba(8,10,15,.6) 55%, rgba(230,57,70,.1) 100%); }
+    .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+    .hero-orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(230,57,70,.18) 0%, transparent 70%); top: -100px; right: 10%; animation: orbFloat 8s ease-in-out infinite; }
+    .hero-orb-2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(244,197,66,.1) 0%, transparent 70%); bottom: 10%; left: 5%; animation: orbFloat 11s ease-in-out infinite reverse; }
+    @keyframes orbFloat { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-30px); } }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(230,57,70,.12); border: 1px solid rgba(230,57,70,.35); color: var(--accent2); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; margin-bottom: 28px; animation: fadeUp .6s ease both; }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.4); } }
+    .hero-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(64px, 9vw, 130px); line-height: .9; letter-spacing: 2px; margin-bottom: 24px; animation: fadeUp .7s .1s ease both; }
+    .line1 { display: block; } .line2 { display: block; -webkit-text-stroke: 2px var(--accent); color: transparent; text-shadow: 0 0 60px rgba(230,57,70,.4); }
+    .hero-desc { font-size: 16px; line-height: 1.8; color: var(--muted); max-width: 460px; margin-bottom: 40px; animation: fadeUp .8s .2s ease both; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; animation: fadeUp .9s .3s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 14px; transition: box-shadow .3s, transform .2s; border: none; cursor: pointer; font-family: inherit; }
+    .btn-primary:hover { box-shadow: 0 0 40px var(--glow); transform: translateY(-2px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 1px solid var(--border); background: rgba(255,255,255,.04); transition: border-color .3s, background .3s, transform .2s; cursor: pointer; font-family: inherit; }
+    .btn-secondary:hover { border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.08); transform: translateY(-2px); }
+    .hero-character { position: absolute; right: 0; bottom: 0; z-index: 1; height: 88%; pointer-events: none; animation: heroCharIn 1.2s .4s ease forwards; opacity: 0; filter: drop-shadow(-20px 0 60px rgba(230,57,70,.3)); }
+    @keyframes heroCharIn { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+    .hero-stats { position: absolute; bottom: 48px; left: 48px; z-index: 1; display: flex; gap: 48px; animation: fadeUp 1s .5s ease both; opacity: 0; flex-wrap: wrap; }
+    .hero-stat-num { font-family: "Bebas Neue", sans-serif; font-size: 36px; line-height: 1; } .hero-stat-num span { color: var(--accent); }
+    .hero-stat-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+    .marquee-section { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); padding: 16px 0; }
+    .marquee-track { display: flex; animation: marqueeScroll 28s linear infinite; white-space: nowrap; } .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .marquee-item { display: inline-flex; align-items: center; gap: 18px; padding: 0 36px; font-family: "Bebas Neue", sans-serif; font-size: 15px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+    .marquee-sep { color: var(--accent); font-size: 20px; }
+    .section { padding: 100px 48px; position: relative; }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; gap: 20px; flex-wrap: wrap; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .section-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: 1px; }
+    .section-link { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; white-space: nowrap; } .section-link:hover { color: var(--accent); }
+    .featured-banner { position: relative; border-radius: 20px; overflow: hidden; min-height: 480px; display: flex; align-items: flex-end; margin: 80px 48px 0; }
+    .featured-banner-bg { position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 60%), linear-gradient(0deg, var(--bg) 0%, transparent 50%); z-index: 1; }
+    .featured-banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.4) saturate(.7); }
+    .featured-banner-content { position: relative; z-index: 2; padding: 48px; }
+    .featured-tag { display: inline-flex; align-items: center; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; margin-bottom: 16px; }
+    .featured-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 5vw, 72px); line-height: .95; letter-spacing: 1px; margin-bottom: 16px; }
+    .featured-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 480px; margin-bottom: 28px; }
+    .featured-genres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .featured-genre { background: rgba(255,255,255,.08); border: 1px solid var(--border); color: var(--text); font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 999px; }
+    .anime-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
+    .card { position: relative; border-radius: 12px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); cursor: pointer; transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s, border-color .3s; }
+    .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 60px rgba(0,0,0,.6), 0 0 40px var(--glow); border-color: rgba(230,57,70,.4); }
+    .card-poster { position: relative; aspect-ratio: 2/3; overflow: hidden; }
+    .card-poster img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; } .card:hover .card-poster img { transform: scale(1.08); }
+    .card-badge { position: absolute; top: 10px; left: 10px; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+    .card-rating { position: absolute; top: 10px; right: 10px; display: flex; align-items: center; gap: 4px; background: rgba(0,0,0,.75); backdrop-filter: blur(4px); color: var(--gold); font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px; }
+    .card-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,15,.95) 0%, transparent 50%); opacity: 0; transition: opacity .3s; display: flex; align-items: flex-end; padding: 16px; } .card:hover .card-overlay { opacity: 1; }
+    .card-play-btn { width: 44px; height: 44px; background: var(--accent); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 12px; box-shadow: 0 0 24px var(--glow); }
+    .card-body { padding: 14px; } .card-title { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+    .card-meta { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; }
+    .card-genre { background: var(--surface2); color: var(--muted); padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 500; }
+    .two-col { display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: start; }
+    .trending-list { display: flex; flex-direction: column; gap: 2px; }
+    .trending-item { display: flex; align-items: center; gap: 20px; padding: 18px 20px; border-radius: 10px; background: transparent; border: 1px solid transparent; transition: background .2s, border-color .2s; cursor: pointer; text-decoration: none; color: inherit; }
+    .trending-item:hover { background: var(--surface); border-color: var(--border); }
+    .trending-rank { font-family: "Bebas Neue", sans-serif; font-size: 28px; color: rgba(255,255,255,.1); min-width: 36px; line-height: 1; } .trending-item:hover .trending-rank { color: var(--accent); }
+    .trending-poster { width: 50px; height: 70px; border-radius: 6px; overflow: hidden; flex-shrink: 0; } .trending-poster img { width: 100%; height: 100%; object-fit: cover; }
+    .trending-info { flex: 1; min-width: 0; } .trending-title { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+    .trending-meta { display: flex; gap: 12px; align-items: center; color: var(--muted); font-size: 12px; }
+    .trending-score { display: flex; align-items: center; gap: 4px; color: var(--gold); font-weight: 600; font-size: 13px; }
+    .trending-arrow { color: var(--muted); font-size: 18px; transition: transform .2s, color .2s; } .trending-item:hover .trending-arrow { transform: translateX(4px); color: var(--accent); }
+    .characters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+    .char-card { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; transition: transform .3s ease, box-shadow .3s; } .char-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.7); }
+    .char-card img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .5s; } .char-card:hover img { transform: scale(1.07); }
+    .char-card-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,15,.95) 0%, transparent 55%); }
+    .char-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 12px; } .char-name { font-weight: 700; font-size: 13px; margin-bottom: 2px; } .char-anime { font-size: 10px; color: var(--accent); letter-spacing: .5px; }
+    .char-rank { position: absolute; top: 10px; right: 10px; font-family: "Bebas Neue", sans-serif; font-size: 22px; color: rgba(255,255,255,.15); line-height: 1; }
+    .genre-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+    .genre-pill { position: relative; overflow: hidden; border-radius: 10px; padding: 20px 18px; background: var(--surface); border: 1px solid var(--border); cursor: pointer; transition: border-color .3s, transform .2s; text-decoration: none; display: block; } .genre-pill:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .genre-pill-emoji { font-size: 28px; margin-bottom: 8px; display: block; } .genre-pill-name { font-weight: 600; font-size: 13px; color: var(--text); margin-bottom: 2px; } .genre-pill-count { font-size: 11px; color: var(--muted); }
+    .newsletter-section { margin: 0 48px 100px; background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%); border: 1px solid var(--border); border-radius: 20px; padding: 64px; text-align: center; position: relative; overflow: hidden; }
+    .newsletter-section::before { content: ""; position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(230,57,70,.15) 0%, transparent 70%); border-radius: 50%; }
+    .newsletter-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(36px, 4vw, 56px); letter-spacing: 1px; margin-bottom: 12px; position: relative; z-index: 1; }
+    .newsletter-desc { color: var(--muted); font-size: 15px; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; position: relative; z-index: 1; }
+    .newsletter-form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
+    .newsletter-input { flex: 1; background: rgba(255,255,255,.06); border: 1px solid var(--border); color: var(--text); font-size: 14px; padding: 14px 18px; border-radius: 8px; outline: none; font-family: inherit; } .newsletter-input::placeholder { color: var(--muted); } .newsletter-input:focus { border-color: var(--accent); }
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 60px 48px 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { color: var(--muted); font-size: 13px; line-height: 1.8; max-width: 280px; margin-top: 16px; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 24px; }
+    .footer-social { width: 36px; height: 36px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; display: grid; place-items: center; color: var(--muted); text-decoration: none; font-size: 12px; transition: border-color .2s, color .2s; font-weight: 700; } .footer-social:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-col-title { font-weight: 700; font-size: 13px; letter-spacing: .5px; margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; } .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color .2s; } .footer-links a:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; flex-wrap: wrap; gap: 12px; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; } .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; } .reveal-delay-2 { transition-delay: .2s; } .reveal-delay-3 { transition-delay: .3s; } .reveal-delay-4 { transition-delay: .4s; }
+    @media(max-width:1024px) { .two-col { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } .hero-character { opacity: .3; } }
+    @media(max-width:768px) { nav { padding: 16px 20px; } .nav-links { display: none; } .hero { padding: 100px 20px 80px; } .hero-stats { left: 20px; right: 20px; gap: 24px; flex-wrap: wrap; bottom: 30px; } .hero-character { display: none; } .section { padding: 60px 20px; } .featured-banner { margin: 60px 20px 0; min-height: 320px; } .featured-banner-content { padding: 24px; } .newsletter-section { margin: 0 20px 60px; padding: 40px 24px; } .newsletter-form { flex-direction: column; } footer { padding: 40px 20px 24px; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .footer-bottom { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+﻿  <div id="loader">
+    <div class="loader-logo">ANIME <span>WORLD</span></div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">&#9889;</div>
+      <span class="nav-logo-text">Anime<span>World</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#trending">Trending</a></li>
+      <li><a href="#popular">Popular</a></li>
+      <li><a href="#characters">Characters</a></li>
+      <li><a href="#genres">Genres</a></li>
+      <li><a href="#newsletter" class="nav-cta">Explore Now</a></li>
+    </ul>
+  </nav>
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="Images/op.jpg" alt="Background" onerror="this.style.display='none'"/>
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> Now Streaming &mdash; Season 2026</div>
+      <h1 class="hero-title"><span class="line1">Discover</span><span class="line2">Anime World</span></h1>
+      <p class="hero-desc">Dive into thousands of anime universes. From action-packed sh&#333;nen to heartfelt slice-of-life &mdash; your next obsession awaits.</p>
+      <div class="hero-actions">
+        <a href="#trending" class="btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Start Watching</a>
+        <a href="#genres" class="btn-secondary">Browse Genres</a>
+      </div>
+    </div>
+    <img src="Images/tanjro.png" alt="Tanjiro" class="hero-character" onerror="this.style.display='none'"/>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">10<span>K+</span></div><div class="hero-stat-label">Anime Series</div></div>
+      <div><div class="hero-stat-num">50<span>M+</span></div><div class="hero-stat-label">Episodes</div></div>
+      <div><div class="hero-stat-num">2<span>M+</span></div><div class="hero-stat-label">Active Fans</div></div>
+      <div><div class="hero-stat-num">40<span>+</span></div><div class="hero-stat-label">Genres</div></div>
+    </div>
+  </section>
+﻿  <div class="marquee-section"><div class="marquee-track">
+    <span class="marquee-item">One Piece <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Demon Slayer <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Naruto <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Dragon Ball Z <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Attack on Titan <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Jujutsu Kaisen <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Hunter x Hunter <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Death Note <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">One Piece <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Demon Slayer <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Naruto <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Dragon Ball Z <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Attack on Titan <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Jujutsu Kaisen <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Hunter x Hunter <span class="marquee-sep">&#10022;</span></span>
+    <span class="marquee-item">Death Note <span class="marquee-sep">&#10022;</span></span>
+  </div></div>
+  <div class="reveal">
+    <div class="featured-banner">
+      <img src="Images/ds.jpg" alt="Demon Slayer" onerror="this.src='Images/op.jpg'"/>
+      <div class="featured-banner-bg"></div>
+      <div class="featured-banner-content">
+        <div class="featured-tag">Featured of the Season</div>
+        <h2 class="featured-title">Demon Slayer:<br/>Kimetsu no Yaiba</h2>
+        <p class="featured-desc">A young boy becomes a demon slayer after his family is slaughtered and his sister transformed into a demon. An epic journey of revenge, compassion, and breathtaking battles.</p>
+        <div class="featured-genres">
+          <span class="featured-genre">Action</span><span class="featured-genre">Supernatural</span>
+          <span class="featured-genre">Historical</span><span class="featured-genre">Adventure</span>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="#" class="btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Watch Now</a>
+          <a href="#" class="btn-secondary">+ Add to List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+﻿  <section class="section" id="trending">
+    <div class="two-col">
+      <div>
+        <div class="section-header reveal"><div><div class="section-label">Hot Right Now</div><h2 class="section-title">Trending Anime</h2></div><a href="#" class="section-link">View All &rarr;</a></div>
+        <div class="trending-list">
+          <a href="#" class="trending-item reveal reveal-delay-1"><div class="trending-rank">01</div><div class="trending-poster"><img src="Images/op.jpg" alt="One Piece" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">One Piece</div><div class="trending-meta"><span>1999 &bull; Ongoing</span><span>&bull;</span><span>Action, Adventure</span></div></div><div class="trending-score">&#11088; 9.4</div><div class="trending-arrow">&rarr;</div></a>
+          <a href="#" class="trending-item reveal reveal-delay-2"><div class="trending-rank">02</div><div class="trending-poster"><img src="Images/ds.jpg" alt="DS" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">Demon Slayer</div><div class="trending-meta"><span>2019 &bull; Complete</span><span>&bull;</span><span>Action, Supernatural</span></div></div><div class="trending-score">&#11088; 9.1</div><div class="trending-arrow">&rarr;</div></a>
+          <a href="#" class="trending-item reveal reveal-delay-3"><div class="trending-rank">03</div><div class="trending-poster"><img src="Images/n.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">Naruto Shippuden</div><div class="trending-meta"><span>2007 &bull; Complete</span><span>&bull;</span><span>Action, Fantasy</span></div></div><div class="trending-score">&#11088; 8.9</div><div class="trending-arrow">&rarr;</div></a>
+          <a href="#" class="trending-item reveal reveal-delay-4"><div class="trending-rank">04</div><div class="trending-poster"><img src="Images/g.jpg" alt="DBZ" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">Dragon Ball Z</div><div class="trending-meta"><span>1989 &bull; Classic</span><span>&bull;</span><span>Action, Sci-Fi</span></div></div><div class="trending-score">&#11088; 8.8</div><div class="trending-arrow">&rarr;</div></a>
+          <a href="#" class="trending-item reveal"><div class="trending-rank">05</div><div class="trending-poster"><img src="Images/lady.jpg" alt="Shadow" onerror="this.parentElement.style.background='#1a2232'"/></div><div class="trending-info"><div class="trending-title">The Eminence in Shadow</div><div class="trending-meta"><span>2022 &bull; Season 2</span><span>&bull;</span><span>Isekai, Fantasy</span></div></div><div class="trending-score">&#11088; 8.7</div><div class="trending-arrow">&rarr;</div></a>
+        </div>
+      </div>
+      <div>
+        <div class="section-header reveal"><div><div class="section-label">Editors Picks</div><h2 class="section-title" style="font-size:36px">Must Watch</h2></div></div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="card reveal reveal-delay-1"><div class="card-poster" style="aspect-ratio:16/9"><img src="Images/naruto.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">Classic</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Naruto</div><div class="card-meta"><span class="card-genre">Shonen</span><span>720 eps</span><span style="color:#f4c542">&#11088; 8.9</span></div></div></div>
+          <div class="card reveal reveal-delay-2"><div class="card-poster" style="aspect-ratio:16/9"><img src="Images/g.jpg" alt="DBZ" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge" style="background:#f4c542;color:#000">Legendary</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Dragon Ball Z</div><div class="card-meta"><span class="card-genre">Action</span><span>291 eps</span><span style="color:#f4c542">&#11088; 8.8</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+﻿  <section class="section" id="popular" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="section-header reveal"><div><div class="section-label">All Time Classics</div><h2 class="section-title">Popular Series</h2></div><a href="#" class="section-link">Browse All &rarr;</a></div>
+    <div class="anime-grid">
+      <div class="card reveal reveal-delay-1"><div class="card-poster"><img src="Images/op.jpg" alt="One Piece" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">Ongoing</div><div class="card-rating">&#11088; 9.4</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">One Piece</div><div class="card-meta"><span class="card-genre">Adventure</span><span>1100+ eps</span></div></div></div>
+      <div class="card reveal reveal-delay-2"><div class="card-poster"><img src="Images/ds.jpg" alt="DS" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">Complete</div><div class="card-rating">&#11088; 9.1</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Demon Slayer</div><div class="card-meta"><span class="card-genre">Action</span><span>44 eps</span></div></div></div>
+      <div class="card reveal reveal-delay-3"><div class="card-poster"><img src="Images/n.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge" style="background:#6c63ff">Classic</div><div class="card-rating">&#11088; 8.9</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Naruto</div><div class="card-meta"><span class="card-genre">Shonen</span><span>220 eps</span></div></div></div>
+      <div class="card reveal reveal-delay-4"><div class="card-poster"><img src="Images/g.jpg" alt="DBZ" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge" style="background:#f4c542;color:#000">Legend</div><div class="card-rating">&#11088; 8.8</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Dragon Ball Z</div><div class="card-meta"><span class="card-genre">Action</span><span>291 eps</span></div></div></div>
+      <div class="card reveal reveal-delay-1"><div class="card-poster"><img src="Images/lady.jpg" alt="Shadow" onerror="this.parentElement.style.background='#1a2232'"/><div class="card-badge">New</div><div class="card-rating">&#11088; 8.7</div><div class="card-overlay"><div style="text-align:center;width:100%"><div class="card-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div></div><div class="card-body"><div class="card-title">Eminence in Shadow</div><div class="card-meta"><span class="card-genre">Isekai</span><span>20 eps</span></div></div></div>
+      <div class="card reveal reveal-delay-2"><div class="card-poster" style="background:linear-gradient(135deg,#1a2232,#0d1117);display:flex;align-items:center;justify-content:center;min-height:200px"><div style="text-align:center;padding:20px"><div style="font-size:48px;margin-bottom:12px">&#127988;</div><div style="font-weight:700">Attack on Titan</div></div><div class="card-badge" style="background:#333">Fan Fav</div><div class="card-rating">&#11088; 9.0</div></div><div class="card-body"><div class="card-title">Attack on Titan</div><div class="card-meta"><span class="card-genre">Dark Fantasy</span><span>87 eps</span></div></div></div>
+    </div>
+  </section>
+﻿  <section class="section" id="characters">
+    <div class="section-header reveal"><div><div class="section-label">Fan Favorites</div><h2 class="section-title">Iconic Characters</h2></div><a href="#" class="section-link">All Characters &rarr;</a></div>
+    <div class="characters-grid">
+      <div class="char-card reveal reveal-delay-1"><img src="Images/tanjro.png" alt="Tanjiro" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">01</div><div class="char-card-body"><div class="char-name">Tanjiro Kamado</div><div class="char-anime">Demon Slayer</div></div></div>
+      <div class="char-card reveal reveal-delay-2"><img src="Images/goku.jpg" alt="Goku" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">02</div><div class="char-card-body"><div class="char-name">Son Goku</div><div class="char-anime">Dragon Ball Z</div></div></div>
+      <div class="char-card reveal reveal-delay-3"><img src="Images/naruto.jpg" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">03</div><div class="char-card-body"><div class="char-name">Naruto Uzumaki</div><div class="char-anime">Naruto</div></div></div>
+      <div class="char-card reveal reveal-delay-4"><img src="Images/opt.png" alt="Luffy" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">04</div><div class="char-card-body"><div class="char-name">Monkey D. Luffy</div><div class="char-anime">One Piece</div></div></div>
+      <div class="char-card reveal reveal-delay-1"><img src="Images/lady.jpg" alt="Shadow" onerror="this.parentElement.style.background='#1a2232'"/><div class="char-card-overlay"></div><div class="char-rank">05</div><div class="char-card-body"><div class="char-name">Shadow (Cid)</div><div class="char-anime">Eminence in Shadow</div></div></div>
+      <div class="char-card reveal reveal-delay-2" style="background:linear-gradient(135deg,#1a2232,#0d1117);display:flex;align-items:center;justify-content:center"><div style="font-size:64px;position:relative;z-index:1">&#9876;&#65039;</div><div class="char-card-overlay"></div><div class="char-rank">06</div><div class="char-card-body"><div class="char-name">Kirito</div><div class="char-anime">Sword Art Online</div></div></div>
+    </div>
+  </section>
+﻿  <section class="section" id="genres" style="background:var(--bg2);border-top:1px solid var(--border)">
+    <div class="section-header reveal"><div><div class="section-label">Explore</div><h2 class="section-title">Browse by Genre</h2></div></div>
+    <div class="genre-grid">
+      <a href="#" class="genre-pill reveal reveal-delay-1"><span class="genre-pill-emoji">&#9876;&#65039;</span><div class="genre-pill-name">Action</div><div class="genre-pill-count">2,400+ titles</div></a>
+      <a href="#" class="genre-pill reveal reveal-delay-2"><span class="genre-pill-emoji">&#127756;</span><div class="genre-pill-name">Isekai</div><div class="genre-pill-count">1,800+ titles</div></a>
+      <a href="#" class="genre-pill reveal reveal-delay-3"><span class="genre-pill-emoji">&#128152;</span><div class="genre-pill-name">Romance</div><div class="genre-pill-count">1,600+ titles</div></a>
+      <a href="#" class="genre-pill reveal reveal-delay-4"><span class="genre-pill-emoji">&#128302;</span><div class="genre-pill-name">Fantasy</div><div class="genre-pill-count">3,000+ titles</div></a>
+      <a href="#" class="genre-pill reveal reveal-delay-1"><span class="genre-pill-emoji">&#128123;</span><div class="genre-pill-name">Horror</div><div class="genre-pill-count">900+ titles</div></a>
+      <a href="#" class="genre-pill reveal reveal-delay-2"><span class="genre-pill-emoji">&#129315;</span><div class="genre-pill-name">Comedy</div><div class="genre-pill-count">2,100+ titles</div></a>
+      <a href="#" class="genre-pill reveal reveal-delay-3"><span class="genre-pill-emoji">&#128640;</span><div class="genre-pill-name">Sci-Fi</div><div class="genre-pill-count">1,200+ titles</div></a>
+      <a href="#" class="genre-pill reveal reveal-delay-4"><span class="genre-pill-emoji">&#127979;</span><div class="genre-pill-name">Slice of Life</div><div class="genre-pill-count">1,400+ titles</div></a>
+    </div>
+  </section>
+﻿  <section class="section">
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+      <div>
+        <div class="section-label">Our Mission</div>
+        <h2 class="section-title" style="margin-bottom:24px">Built for True<br/>Anime Fans</h2>
+        <p style="color:var(--muted);font-size:15px;line-height:1.9;margin-bottom:20px">Anime World was born from pure passion. We celebrate Japanese animation from timeless classics like Dragon Ball Z to modern masterpieces like Demon Slayer.</p>
+        <p style="color:var(--muted);font-size:15px;line-height:1.9;margin-bottom:32px">Whether you are a seasoned otaku or just discovered anime, you belong here.</p>
+        <div style="display:flex;gap:40px;flex-wrap:wrap">
+          <div><div style="font-family:Bebas Neue,sans-serif;font-size:40px;color:var(--accent)">10K+</div><div style="font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Series Catalogued</div></div>
+          <div><div style="font-family:Bebas Neue,sans-serif;font-size:40px;color:#f4c542">2M+</div><div style="font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Community Members</div></div>
+          <div><div style="font-family:Bebas Neue,sans-serif;font-size:40px;color:#6c63ff">40+</div><div style="font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Genres Covered</div></div>
+        </div>
+      </div>
+      <div style="position:relative">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="border-radius:16px;overflow:hidden;aspect-ratio:3/4"><img src="Images/ds.jpg" style="width:100%;height:100%;object-fit:cover" alt="DS" onerror="this.parentElement.style.background='#1a2232'"/></div>
+          <div style="display:flex;flex-direction:column;gap:16px;padding-top:32px">
+            <div style="border-radius:16px;overflow:hidden;aspect-ratio:1"><img src="Images/n.jpg" style="width:100%;height:100%;object-fit:cover" alt="Naruto" onerror="this.parentElement.style.background='#1a2232'"/></div>
+            <div style="border-radius:16px;overflow:hidden;flex:1;min-height:120px"><img src="Images/goku.jpg" style="width:100%;height:100%;object-fit:cover" alt="Goku" onerror="this.parentElement.style.background='#1a2232'"/></div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:-16px;left:-16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px">
+          <div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--accent)">98% Fans</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Fan Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+﻿  <div id="newsletter">
+    <div class="newsletter-section reveal">
+      <h2 class="newsletter-title">Stay in the Loop</h2>
+      <p class="newsletter-desc">Get weekly updates on new releases, rankings, and exclusive anime content straight to your inbox.</p>
+      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+        <input type="email" class="newsletter-input" placeholder="Enter your email address" required/>
+        <button type="submit" class="btn-primary" style="white-space:nowrap">Subscribe &rarr;</button>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="display:inline-flex"><div class="nav-logo-icon">&#9889;</div><span class="nav-logo-text">Anime<span>World</span></span></a>
+        <p>Your ultimate destination for all things anime. Discover, explore, and celebrate Japanese animation.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social">TW</a><a href="#" class="footer-social">IG</a><a href="#" class="footer-social">DC</a><a href="#" class="footer-social">YT</a>
+        </div>
+      </div>
+      <div><div class="footer-col-title">Explore</div><ul class="footer-links"><li><a href="#">Trending</a></li><li><a href="#">New Releases</a></li><li><a href="#">Top Rated</a></li><li><a href="#">Seasonal</a></li><li><a href="#">Movies</a></li></ul></div>
+      <div><div class="footer-col-title">Genres</div><ul class="footer-links"><li><a href="#">Action</a></li><li><a href="#">Fantasy</a></li><li><a href="#">Romance</a></li><li><a href="#">Isekai</a></li><li><a href="#">Slice of Life</a></li></ul></div>
+      <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 Anime World. Crafted with passion for anime fans everywhere.</span><span>Studio 333</span></div>
+  </footer>
+  <script>
+    window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('hidden')},2000)});
+    var cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cursor.style.transform='translate('+(mx-5)+'px,'+(my-5)+'px)'});
+    (function a(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.transform='translate('+(rx-18)+'px,'+(ry-18)+'px)';requestAnimationFrame(a)})();
+    window.addEventListener('scroll',function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60)});
+    var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+    function handleSubscribe(e){e.preventDefault();var btn=e.target.querySelector('button');btn.textContent='Subscribed!';btn.style.background='#16a34a';e.target.querySelector('input').value='';setTimeout(function(){btn.textContent='Subscribe';btn.style.background=''},3000)}
+  </script>
+</body>
+</html>
