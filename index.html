@@ -3,15 +3,21 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <link data-precedence="next" href="css/71575726a3ef2165.css" rel="stylesheet"/>
-  <link data-precedence="next" href="css/34819e657e5eb9e5.css" rel="stylesheet"/>
-  <link data-precedence="next" href="css/439387ef31413be4.css" rel="stylesheet"/>
   <title>Anime World | The Ultimate Anime & Manga Database</title>
   <meta content="Discover the best anime in the world, top trending series, legendary manga masterpieces, iconic characters, and simulcast schedules." name="description"/>
   <meta content="Anime World, Trending Anime, Best Anime, Best Manga, Jujutsu Kaisen, Demon Slayer, Attack on Titan, One Piece, Berserk, Solo Leveling" name="keywords"/>
   <link href="Images/skull.jpg" rel="icon" type="image/jpeg"/>
-  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@400;600;700;800&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN for complete, reliable utility styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Michroma&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet"/>
+
   <style>
+    /* Local Custom Font Declarations */
     @font-face {
       font-family: 'Michroma';
       src: url('fonts/Michroma.ttf') format('truetype'),
@@ -28,10 +34,9 @@
       src: url('fonts/schabo-s.p.638afd1e.woff2') format('woff2');
       font-display: swap;
     }
-    @font-face {
-      font-family: 'Fontspring';
-      src: url('fonts/Fontspring_DEMO_integralcf_bold-s.p.8dc8d2e6.otf') format('opentype');
-      font-display: swap;
+
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
     html {
@@ -43,12 +48,19 @@
       color: #e5e7eb;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #080b12; }
     ::-webkit-scrollbar-thumb { background: #e63946; border-radius: 3px; }
+
+    /* Font Utilities */
+    .akira-font { font-family: 'Akira Expanded', 'Michroma', sans-serif; }
+    .michroma-font { font-family: 'Michroma', sans-serif; }
+    .bebas-font { font-family: 'Bebas Neue', sans-serif; }
 
     /* Loader */
     @keyframes loaderAutoFade {
@@ -63,7 +75,7 @@
     .animate-spin-medium { animation: spinMedium 9s linear infinite !important; }
     .animate-spin-fast { animation: spinFast 4.5s linear infinite !important; }
 
-    /* Marquee */
+    /* Infinite Marquee */
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -75,53 +87,51 @@
     }
     .animate-marquee:hover { animation-play-state: paused; }
 
-    /* Sidebar Navigation Dock (Fixed Left, 64px, perfectly spaced, zero overlaps) */
+    /* SIDEBAR DOCK (Fixed Left 64px - zero overlap guarantee) */
     .sidebar-dock {
       width: 64px;
       position: fixed;
       top: 0;
       left: 0;
-      height: 100vh;
+      bottom: 0;
       z-index: 3000;
-      background: rgba(8, 11, 18, 0.96);
+      background: rgba(8, 11, 18, 0.98);
       border-right: 1px solid rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 0;
+      padding: 14px 0;
     }
     .sidebar-nav-btn {
       width: 100%;
-      height: 52px;
+      height: 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
       border-left: 3px solid transparent;
       color: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
     }
     .sidebar-nav-btn:hover, .sidebar-nav-btn.is-active {
       border-left-color: #e63946;
-      background: rgba(230, 57, 70, 0.12);
+      background: rgba(230, 57, 70, 0.15);
       color: #ffffff;
     }
     .sidebar-nav-btn .nav-num {
       font-family: 'Michroma', sans-serif;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.5px;
     }
     .sidebar-nav-btn .nav-tag {
       font-size: 8px;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-top: 2px;
-      opacity: 0.8;
+      margin-top: 1px;
     }
     .sidebar-nav-btn.is-active .nav-num {
       color: #e63946;
@@ -133,7 +143,7 @@
       width: 3px;
       height: 12px;
       background: #e63946;
-      margin: 0 1.5px;
+      margin: 0 1px;
       border-radius: 1px;
       animation: eqDance 0.7s ease-in-out infinite alternate;
     }
@@ -145,6 +155,94 @@
       height: 3px !important;
     }
     @keyframes eqDance { 0% { height: 3px; } 100% { height: 16px; } }
+
+    /* SECTION ISOLATION (Prevents bleeding across sections) */
+    section.anime-section {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 90px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* 3D MANGA CAROUSEL CONTAINER (Strict Height) */
+    .manga-carousel-stage {
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      height: 420px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .manga-card {
+      position: absolute;
+      width: 92%;
+      max-width: 620px;
+      height: 320px;
+      border-radius: 18px;
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* 3D CHARACTER CAROUSEL CONTAINER (Strict Height & Image Constraint) */
+    .character-carousel-stage {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      height: 460px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .character-card {
+      position: absolute;
+      width: 280px;
+      height: 380px;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+      background: #111520;
+    }
+    .character-card img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+    .character-card:hover {
+      filter: brightness(1.2) !important;
+    }
+
+    /* Trending Anime Cards */
+    .trending-poster {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+    .anime-card-box {
+      background: #0e131d;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+    }
+    .anime-card-box:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(230, 57, 70, 0.4);
+      border-color: rgba(230, 57, 70, 0.6);
+    }
 
     /* Modals */
     .custom-modal-backdrop {
@@ -175,43 +273,10 @@
       transform: scale(0.92) translateY(20px);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .custom-modal-backdrop.active .custom-modal-box {
-      transform: scale(1) translateY(0);
-    }
-
-    /* Fonts Utility */
-    .akira-font { font-family: 'Akira Expanded', sans-serif; }
-    .michroma-font { font-family: 'Michroma', sans-serif; }
-    .bebas-font { font-family: 'Bebas Neue', sans-serif; }
-
-    /* Card Hover Animations */
-    .anime-card {
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.35s;
-    }
-    .anime-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(230, 57, 70, 0.35);
-      border-color: rgba(230, 57, 70, 0.6);
-    }
-
-    /* 3D Manga Carousel Transitions */
-    .manga-card {
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .character-card {
-      transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .character-card:hover {
-      filter: brightness(1.2) !important;
-    }
-
-    /* Cyber Scanlines Effect */
-    .cyber-scanlines {
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px);
-    }
+    .custom-modal-backdrop.active .custom-modal-box { transform: scale(1) translateY(0); }
   </style>
 </head>
-<body class="relative bg-[#06080d] text-gray-200 antialiased">
+<body class="relative bg-[#06080d] text-gray-200">
 
   <!-- Ambient Audio Element -->
   <audio id="anime-bg-audio" loop preload="none">
@@ -247,37 +312,37 @@
       <span class="text-[9px] text-red-500 font-extrabold tracking-wider font-mono">AW</span>
     </div>
 
-    <!-- 8 Distinct, Non-Overlapping Nav Items -->
+    <!-- 8 Non-Overlapping Clean Navigation Tabs -->
     <nav class="w-full flex flex-col my-auto">
-      <div class="sidebar-nav-btn is-active" data-target="section-1" title="Home">
+      <div class="sidebar-nav-btn is-active" data-target="section-1" title="01 // Home">
         <span class="nav-num">01</span>
         <span class="nav-tag">HOME</span>
       </div>
-      <div class="sidebar-nav-btn" data-target="section-2" title="Trending">
+      <div class="sidebar-nav-btn" data-target="section-2" title="02 // Trending">
         <span class="nav-num">02</span>
         <span class="nav-tag">TREND</span>
       </div>
-      <div class="sidebar-nav-btn" data-target="section-3" title="Top Anime">
+      <div class="sidebar-nav-btn" data-target="section-3" title="03 // Top Anime">
         <span class="nav-num">03</span>
         <span class="nav-tag">TOP</span>
       </div>
-      <div class="sidebar-nav-btn" data-target="section-4" title="Manga Vault">
+      <div class="sidebar-nav-btn" data-target="section-4" title="04 // Best Manga">
         <span class="nav-num">04</span>
         <span class="nav-tag">MANGA</span>
       </div>
-      <div class="sidebar-nav-btn" data-target="section-5" title="Characters">
+      <div class="sidebar-nav-btn" data-target="section-5" title="05 // Characters">
         <span class="nav-num">05</span>
         <span class="nav-tag">HEROES</span>
       </div>
-      <div class="sidebar-nav-btn" data-target="section-6" title="Genres">
+      <div class="sidebar-nav-btn" data-target="section-6" title="06 // Genres">
         <span class="nav-num">06</span>
         <span class="nav-tag">GENRES</span>
       </div>
-      <div class="sidebar-nav-btn" data-target="section-7" title="Schedule">
+      <div class="sidebar-nav-btn" data-target="section-7" title="07 // Airing Schedule">
         <span class="nav-num">07</span>
         <span class="nav-tag">AIRING</span>
       </div>
-      <div class="sidebar-nav-btn" data-target="section-8" title="Community">
+      <div class="sidebar-nav-btn" data-target="section-8" title="08 // Otaku Club">
         <span class="nav-num">08</span>
         <span class="nav-tag">CLUB</span>
       </div>
@@ -317,11 +382,11 @@
     </div>
   </div>
 
-  <!-- MAIN VIEWPORT CONTENT (Padded 64px on desktop) -->
+  <!-- MAIN WRAPPER (Left offset 64px on desktop) -->
   <div class="md:ml-16">
 
     <!-- TOP DESKTOP HUD NAVBAR -->
-    <header class="hidden md:flex fixed top-0 right-0 left-16 z-40 items-center justify-between px-8 py-4 bg-gradient-to-b from-[#06080d]/90 to-transparent backdrop-blur-sm pointer-events-none">
+    <header class="hidden md:flex fixed top-0 right-0 left-16 z-40 items-center justify-between px-8 py-4 bg-gradient-to-b from-[#06080d]/95 to-transparent backdrop-blur-sm pointer-events-none">
       <div class="pointer-events-auto flex items-center gap-3">
         <span class="px-3 py-1 bg-red-600/15 border border-red-500/40 rounded-full text-[11px] font-semibold text-red-400 tracking-wider">
           /// DEFINITIVE ANIME & MANGA DATABASE
@@ -344,61 +409,59 @@
     </header>
 
 
-    <!-- ==================== SECTION 1: HERO PORTAL ==================== -->
-    <section id="section-1" class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-16 px-6 overflow-hidden">
-      <!-- Background Cyber Atmosphere -->
+    <!-- ==================== SECTION 1: HERO ==================== -->
+    <section id="section-1" class="anime-section min-h-screen flex flex-col items-center justify-center pt-28 pb-16 px-6">
+      <!-- Cyber Grid Background -->
       <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
         <img alt="Hero Atmosphere" class="w-full h-full object-cover" src="Images/image_28.png" onerror="this.style.display='none'"/>
       </div>
-      <!-- Glowing Red Center Radial -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
-        <!-- Tag Pill -->
+        <!-- Tagline Pill -->
         <div class="inline-flex items-center gap-2.5 px-4 py-1.5 bg-red-600/20 border border-red-500/50 rounded-full mb-6 shadow-[0_0_15px_rgba(230,57,70,0.3)]">
           <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
           <span class="text-xs font-bold tracking-[0.25em] text-red-300">DISCOVER &bull; STREAM &bull; TRACK &bull; DISCUSS</span>
         </div>
 
-        <!-- Fully Visible & Prominent Akira Title -->
-        <h1 class="akira-font text-5xl sm:text-7xl md:text-8xl tracking-widest text-white drop-shadow-[0_0_40px_rgba(230,57,70,0.7)] leading-none my-2">
+        <!-- Prominent, Fully Visible Title -->
+        <h1 class="akira-font text-5xl sm:text-7xl md:text-8xl tracking-widest text-white drop-shadow-[0_0_40px_rgba(230,57,70,0.7)] leading-tight my-2">
           ANIME<br/>
           <span class="text-transparent" style="-webkit-text-stroke: 2px #e63946;">WORLD</span>
         </h1>
 
-        <!-- Subtitle -->
         <p class="text-sm sm:text-base text-gray-300 max-w-2xl mt-5 leading-relaxed font-normal">
           The ultimate sanctuary for Japanese animation and legendary manga. Dive into trending seasonal broadcasts, all-time greatest masterpieces, and detailed character lore.
         </p>
 
         <!-- Stats Bar -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 my-8 text-center w-full max-w-3xl">
-          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-8 text-center w-full max-w-3xl">
+          <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
             <div class="akira-font text-lg sm:text-xl text-red-500">12,500+</div>
             <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Anime Catalogued</div>
           </div>
-          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+          <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
             <div class="akira-font text-lg sm:text-xl text-yellow-400">9.8 / 10</div>
             <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Top MAL Score</div>
           </div>
-          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+          <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
             <div class="akira-font text-lg sm:text-xl text-blue-400">8,900+</div>
             <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Manga Vault</div>
           </div>
-          <div class="p-3.5 bg-white/5 border border-white/10 rounded-xl">
+          <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
             <div class="akira-font text-lg sm:text-xl text-purple-400">4.5M+</div>
             <div class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">Otaku Fans</div>
           </div>
         </div>
 
-        <!-- Hero Graphic Composition -->
-        <div class="relative w-full max-w-md aspect-square flex items-center justify-center my-2">
+        <!-- Hero Graphic (Controlled Max Height) -->
+        <div class="relative w-full max-w-sm aspect-square flex items-center justify-center my-2" style="max-height: 320px;">
           <img alt="Cyber HUD Wheel" class="absolute w-full h-full object-contain animate-spin-slow opacity-30 pointer-events-none" src="Images/image_11.png" onerror="this.style.display='none'"/>
-          <img alt="Tanjiro Hinokami Kagura" class="relative z-10 w-[78%] max-h-[340px] object-contain filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.9)]" src="Images/tanjro.png"/>
+          <img alt="Tanjiro Hinokami Kagura" class="relative z-10 w-[78%] h-auto max-h-[300px] object-contain filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.9)]" src="Images/tanjro.png"/>
         </div>
 
         <!-- Action CTAs -->
-        <div class="flex flex-wrap gap-4 mt-6 z-20">
+        <div class="flex flex-wrap justify-center gap-4 mt-6 z-20">
           <a href="#section-2" class="px-8 py-3.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl shadow-[0_0_30px_rgba(230,57,70,0.6)] transition text-xs tracking-widest flex items-center gap-2">
             <span>EXPLORE TRENDING</span>
             <span>&rarr;</span>
@@ -412,7 +475,7 @@
         </div>
       </div>
 
-      <!-- Infinite Marquee Tape -->
+      <!-- Marquee Ticker -->
       <div class="w-full overflow-hidden border-y border-white/10 bg-[#090d14] py-3 mt-14">
         <div class="whitespace-nowrap animate-marquee flex text-xs tracking-[0.3em] font-semibold text-white/80">
           <span class="mx-8 text-red-500">/// JUJUTSU KAISEN &bull; CULLING GAME</span>
@@ -430,8 +493,8 @@
     </section>
 
 
-    <!-- ==================== SECTION 2: TRENDING ANIME (HOT RIGHT NOW) ==================== -->
-    <section id="section-2" class="py-20 px-6 bg-[#080b12] border-t border-white/10">
+    <!-- ==================== SECTION 2: TRENDING ANIME ==================== -->
+    <section id="section-2" class="anime-section bg-[#080b12]">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
           <div>
@@ -441,13 +504,12 @@
           <span class="text-xs text-gray-400 tracking-wider">UPDATED LIVE FROM COMMUNITY RATINGS</span>
         </div>
 
-        <!-- Trending Grid of 4 Elite Series -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
           <!-- Card 1: Jujutsu Kaisen -->
-          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
-            <div class="relative aspect-[3/4] overflow-hidden">
-              <img alt="Jujutsu Kaisen" class="w-full h-full object-cover" src="Images/jujutsu_kaisen.jpg"/>
+          <div class="anime-card-box flex flex-col">
+            <div class="relative overflow-hidden" style="height: 340px;">
+              <img alt="Jujutsu Kaisen" class="trending-poster" src="Images/jujutsu_kaisen.jpg"/>
               <div class="absolute top-3 left-3 px-2.5 py-1 bg-red-600 text-white font-black text-[10px] rounded tracking-widest">
                 🔥 TRENDING #1
               </div>
@@ -474,9 +536,9 @@
           </div>
 
           <!-- Card 2: Demon Slayer -->
-          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
-            <div class="relative aspect-[3/4] overflow-hidden">
-              <img alt="Demon Slayer" class="w-full h-full object-cover" src="Images/ds.jpg"/>
+          <div class="anime-card-box flex flex-col">
+            <div class="relative overflow-hidden" style="height: 340px;">
+              <img alt="Demon Slayer" class="trending-poster" src="Images/ds.jpg"/>
               <div class="absolute top-3 left-3 px-2.5 py-1 bg-red-600 text-white font-black text-[10px] rounded tracking-widest">
                 🔥 TRENDING #2
               </div>
@@ -503,9 +565,9 @@
           </div>
 
           <!-- Card 3: Chainsaw Man -->
-          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
-            <div class="relative aspect-[3/4] overflow-hidden">
-              <img alt="Chainsaw Man" class="w-full h-full object-cover" src="Images/chainsaw_man.jpg"/>
+          <div class="anime-card-box flex flex-col">
+            <div class="relative overflow-hidden" style="height: 340px;">
+              <img alt="Chainsaw Man" class="trending-poster" src="Images/chainsaw_man.jpg"/>
               <div class="absolute top-3 left-3 px-2.5 py-1 bg-yellow-500 text-black font-black text-[10px] rounded tracking-widest">
                 🔥 TRENDING #3
               </div>
@@ -532,9 +594,9 @@
           </div>
 
           <!-- Card 4: Bleach TYBW -->
-          <div class="anime-card bg-[#0e131d] border border-white/10 rounded-2xl overflow-hidden flex flex-col">
-            <div class="relative aspect-[3/4] overflow-hidden">
-              <img alt="Bleach TYBW" class="w-full h-full object-cover" src="Images/bleach.jpg"/>
+          <div class="anime-card-box flex flex-col">
+            <div class="relative overflow-hidden" style="height: 340px;">
+              <img alt="Bleach TYBW" class="trending-poster" src="Images/bleach.jpg"/>
               <div class="absolute top-3 left-3 px-2.5 py-1 bg-blue-600 text-white font-black text-[10px] rounded tracking-widest">
                 🔥 TRENDING #4
               </div>
@@ -559,13 +621,14 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
 
-    <!-- ==================== SECTION 3: ALL-TIME GREATEST ANIME (TOP RATED IN THE WORLD) ==================== -->
-    <section id="section-3" class="py-20 px-6 bg-[#06080d] border-t border-white/10 relative">
+    <!-- ==================== SECTION 3: BEST ANIME IN THE WORLD ==================== -->
+    <section id="section-3" class="anime-section bg-[#06080d]">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
           <div>
@@ -575,14 +638,13 @@
           <span class="text-xs text-gray-400 tracking-wider">ALL-TIME CRITICALLY ACCLAIMED MASTERPIECES</span>
         </div>
 
-        <!-- Leaderboard Style Cards -->
         <div class="space-y-4">
           
           <!-- Rank 1: FMAB -->
-          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
-            <div class="flex items-center gap-4">
-              <span class="akira-font text-3xl sm:text-4xl text-yellow-400">01</span>
-              <img alt="FMAB" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/fmab.jpg"/>
+          <div class="anime-card-box p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4 flex-shrink-0">
+              <span class="akira-font text-3xl sm:text-4xl text-yellow-400 w-12 text-center">01</span>
+              <img alt="FMAB" class="w-20 h-28 object-cover rounded-xl border border-white/15 flex-shrink-0" src="Images/fmab.jpg"/>
             </div>
             <div class="flex-1 text-center sm:text-left">
               <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
@@ -594,17 +656,17 @@
                 Edward and Alphonse Elric commit the ultimate taboo of human transmutation and embark on an epic quest for the Philosopher's Stone to regain their bodies.
               </p>
             </div>
-            <div class="text-center sm:text-right">
+            <div class="text-center sm:text-right flex-shrink-0">
               <div class="akira-font text-2xl text-yellow-400">⭐ 9.8</div>
               <div class="text-[10px] text-gray-400 tracking-wider">3.2M VOTES</div>
             </div>
           </div>
 
           <!-- Rank 2: Attack on Titan -->
-          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
-            <div class="flex items-center gap-4">
-              <span class="akira-font text-3xl sm:text-4xl text-gray-300">02</span>
-              <img alt="Attack on Titan" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/aot.jpg"/>
+          <div class="anime-card-box p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4 flex-shrink-0">
+              <span class="akira-font text-3xl sm:text-4xl text-gray-300 w-12 text-center">02</span>
+              <img alt="Attack on Titan" class="w-20 h-28 object-cover rounded-xl border border-white/15 flex-shrink-0" src="Images/aot.jpg"/>
             </div>
             <div class="flex-1 text-center sm:text-left">
               <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
@@ -616,17 +678,17 @@
                 Humanity fights giant man-eating Titans within giant walled cities. Eren Yeager uncovers dark ancestral truths, escalating into a catastrophic war for global freedom.
               </p>
             </div>
-            <div class="text-center sm:text-right">
+            <div class="text-center sm:text-right flex-shrink-0">
               <div class="akira-font text-2xl text-red-400">⭐ 9.7</div>
               <div class="text-[10px] text-gray-400 tracking-wider">3.8M VOTES</div>
             </div>
           </div>
 
           <!-- Rank 3: Steins;Gate -->
-          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
-            <div class="flex items-center gap-4">
-              <span class="akira-font text-3xl sm:text-4xl text-amber-600">03</span>
-              <img alt="Steins Gate" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/steinsgate.jpg"/>
+          <div class="anime-card-box p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4 flex-shrink-0">
+              <span class="akira-font text-3xl sm:text-4xl text-amber-600 w-12 text-center">03</span>
+              <img alt="Steins Gate" class="w-20 h-28 object-cover rounded-xl border border-white/15 flex-shrink-0" src="Images/steinsgate.jpg"/>
             </div>
             <div class="flex-1 text-center sm:text-left">
               <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
@@ -638,17 +700,17 @@
                 Self-proclaimed mad scientist Rintaro Okabe accidentally discovers time travel using a modified microwave, triggering timeline divergences with tragic consequences.
               </p>
             </div>
-            <div class="text-center sm:text-right">
+            <div class="text-center sm:text-right flex-shrink-0">
               <div class="akira-font text-2xl text-blue-400">⭐ 9.7</div>
               <div class="text-[10px] text-gray-400 tracking-wider">2.4M VOTES</div>
             </div>
           </div>
 
           <!-- Rank 4: One Piece -->
-          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
-            <div class="flex items-center gap-4">
-              <span class="akira-font text-3xl sm:text-4xl text-gray-500">04</span>
-              <img alt="One Piece" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/op.jpg"/>
+          <div class="anime-card-box p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4 flex-shrink-0">
+              <span class="akira-font text-3xl sm:text-4xl text-gray-500 w-12 text-center">04</span>
+              <img alt="One Piece" class="w-20 h-28 object-cover rounded-xl border border-white/15 flex-shrink-0" src="Images/op.jpg"/>
             </div>
             <div class="flex-1 text-center sm:text-left">
               <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
@@ -660,17 +722,17 @@
                 Monkey D. Luffy sails the Grand Line with his crew in search of Gol D. Roger's legendary treasure to become the King of the Pirates.
               </p>
             </div>
-            <div class="text-center sm:text-right">
+            <div class="text-center sm:text-right flex-shrink-0">
               <div class="akira-font text-2xl text-purple-400">⭐ 9.6</div>
               <div class="text-[10px] text-gray-400 tracking-wider">2.9M VOTES</div>
             </div>
           </div>
 
           <!-- Rank 5: Vinland Saga -->
-          <div class="anime-card p-5 sm:p-6 bg-[#0c1018] border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
-            <div class="flex items-center gap-4">
-              <span class="akira-font text-3xl sm:text-4xl text-gray-500">05</span>
-              <img alt="Vinland Saga" class="w-20 h-28 object-cover rounded-xl border border-white/15" src="Images/vinland.jpg"/>
+          <div class="anime-card-box p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4 flex-shrink-0">
+              <span class="akira-font text-3xl sm:text-4xl text-gray-500 w-12 text-center">05</span>
+              <img alt="Vinland Saga" class="w-20 h-28 object-cover rounded-xl border border-white/15 flex-shrink-0" src="Images/vinland.jpg"/>
             </div>
             <div class="flex-1 text-center sm:text-left">
               <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
@@ -682,7 +744,7 @@
                 Thorfinn raises blades in 11th-century Viking Europe seeking vengeance against his father's killer, eventually learning true strength lies in peace.
               </p>
             </div>
-            <div class="text-center sm:text-right">
+            <div class="text-center sm:text-right flex-shrink-0">
               <div class="akira-font text-2xl text-green-400">⭐ 9.5</div>
               <div class="text-[10px] text-gray-400 tracking-wider">1.6M VOTES</div>
             </div>
@@ -693,173 +755,177 @@
     </section>
 
 
-    <!-- ==================== SECTION 4: 3D MANGA VAULT CAROUSEL ==================== -->
-    <section id="section-4" class="py-24 px-6 bg-[#080b12] border-t border-white/10 flex flex-col items-center justify-center overflow-hidden">
-      <div class="text-center mb-12">
-        <div class="text-xs text-red-500 tracking-[0.25em] mb-2">04 // LITERARY MASTERWORKS</div>
-        <h2 class="akira-font text-3xl sm:text-5xl lg:text-6xl text-white">BEST MANGA IN THE WORLD</h2>
-        <p class="text-xs sm:text-sm text-gray-400 tracking-widest mt-2">Legendary hand-drawn works that redefined sequential art history.</p>
-      </div>
-
-      <!-- 3D Stacked Manga Volumes -->
-      <div class="relative w-full max-w-4xl h-[400px] sm:h-[440px] flex items-center justify-center">
-        
-        <!-- Manga 0: BERSERK -->
-        <div class="manga-card absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#1c1114] to-[#2a1418] border-2 border-red-500 shadow-[0_20px_60px_rgba(230,57,70,0.35)]" data-manga-idx="0" style="transform: translateY(0px) scale(1.05); z-index: 30; opacity: 1;">
-          <div class="flex items-start justify-between border-b border-red-500/30 pb-4">
-            <div>
-              <div class="text-[10px] sm:text-xs text-red-400 tracking-[0.3em] font-bold">DARK FANTASY GOAT &bull; 41 VOLUMES</div>
-              <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">BERSERK</h3>
-            </div>
-            <span class="px-3 py-1 bg-red-600 text-white font-extrabold text-xs rounded tracking-widest">
-              MAL 9.9
-            </span>
-          </div>
-          <div class="grid grid-cols-3 gap-4 my-5 text-xs">
-            <div>
-              <div class="text-gray-400 text-[10px]">MANGAKA</div>
-              <div class="font-bold text-white mt-0.5">Kentaro Miura</div>
-            </div>
-            <div>
-              <div class="text-gray-400 text-[10px]">PROTAGONIST</div>
-              <div class="font-bold text-white mt-0.5">Guts (Black Swordsman)</div>
-            </div>
-            <div>
-              <div class="text-gray-400 text-[10px]">STATUS</div>
-              <div class="font-bold text-white mt-0.5">Legendary Canon</div>
-            </div>
-          </div>
-          <p class="text-xs text-gray-300 line-clamp-3">
-            Born from a corpse beneath a hanging tree, Guts defies cosmic destiny and the God Hand with the Dragon Slayer sword. The undisputed pinnacle of dark fantasy manga.
-          </p>
+    <!-- ==================== SECTION 4: BEST MANGA IN THE WORLD ==================== -->
+    <section id="section-4" class="anime-section bg-[#080b12]">
+      <div class="max-w-7xl mx-auto flex flex-col items-center">
+        <div class="text-center mb-12">
+          <div class="text-xs text-red-500 tracking-[0.25em] mb-2">04 // LITERARY MASTERWORKS</div>
+          <h2 class="akira-font text-3xl sm:text-5xl lg:text-6xl text-white">BEST MANGA IN THE WORLD</h2>
+          <p class="text-xs sm:text-sm text-gray-400 tracking-widest mt-2">Legendary hand-drawn works that redefined sequential art history.</p>
         </div>
 
-        <!-- Manga 1: VAGABOND -->
-        <div class="manga-card absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#171c26] to-[#121822] border border-blue-500/50 shadow-2xl" data-manga-idx="1" style="transform: translateY(40px) scale(0.95); z-index: 20; opacity: 0.85;">
-          <div class="flex items-start justify-between border-b border-blue-500/30 pb-4">
-            <div>
-              <div class="text-[10px] sm:text-xs text-blue-400 tracking-[0.3em] font-bold">SEINEN SAMURAI EPIC &bull; 37 VOLUMES</div>
-              <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">VAGABOND</h3>
+        <!-- Controlled 3D Manga Stage -->
+        <div class="manga-carousel-stage">
+          
+          <!-- Manga 0: BERSERK -->
+          <div class="manga-card bg-gradient-to-r from-[#1c1114] to-[#2a1418] border-2 border-red-500 shadow-[0_20px_60px_rgba(230,57,70,0.35)]" data-manga-idx="0" style="transform: translateY(0px) scale(1.04); z-index: 30; opacity: 1;">
+            <div class="flex items-start justify-between border-b border-red-500/30 pb-3">
+              <div>
+                <div class="text-[10px] sm:text-xs text-red-400 tracking-[0.3em] font-bold">DARK FANTASY GOAT &bull; 41 VOLUMES</div>
+                <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">BERSERK</h3>
+              </div>
+              <span class="px-3 py-1 bg-red-600 text-white font-extrabold text-xs rounded tracking-widest">
+                MAL 9.9
+              </span>
             </div>
-            <span class="px-3 py-1 bg-blue-600 text-white font-extrabold text-xs rounded tracking-widest">
-              MAL 9.8
-            </span>
+            <div class="grid grid-cols-3 gap-4 my-4 text-xs">
+              <div>
+                <div class="text-gray-400 text-[10px]">MANGAKA</div>
+                <div class="font-bold text-white mt-0.5">Kentaro Miura</div>
+              </div>
+              <div>
+                <div class="text-gray-400 text-[10px]">PROTAGONIST</div>
+                <div class="font-bold text-white mt-0.5">Guts (Black Swordsman)</div>
+              </div>
+              <div>
+                <div class="text-gray-400 text-[10px]">STATUS</div>
+                <div class="font-bold text-white mt-0.5">Legendary Canon</div>
+              </div>
+            </div>
+            <p class="text-xs text-gray-300 line-clamp-3 leading-relaxed">
+              Born from a corpse beneath a hanging tree, Guts defies cosmic destiny and the God Hand with the Dragon Slayer sword. The undisputed pinnacle of dark fantasy manga.
+            </p>
           </div>
-          <div class="grid grid-cols-3 gap-4 my-5 text-xs">
-            <div>
-              <div class="text-gray-400 text-[10px]">MANGAKA</div>
-              <div class="font-bold text-white mt-0.5">Takehiko Inoue</div>
+
+          <!-- Manga 1: VAGABOND -->
+          <div class="manga-card bg-gradient-to-r from-[#171c26] to-[#121822] border border-blue-500/50 shadow-2xl" data-manga-idx="1" style="transform: translateY(40px) scale(0.95); z-index: 20; opacity: 0.85;">
+            <div class="flex items-start justify-between border-b border-blue-500/30 pb-3">
+              <div>
+                <div class="text-[10px] sm:text-xs text-blue-400 tracking-[0.3em] font-bold">SEINEN SAMURAI EPIC &bull; 37 VOLUMES</div>
+                <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">VAGABOND</h3>
+              </div>
+              <span class="px-3 py-1 bg-blue-600 text-white font-extrabold text-xs rounded tracking-widest">
+                MAL 9.8
+              </span>
             </div>
-            <div>
-              <div class="text-gray-400 text-[10px]">PROTAGONIST</div>
-              <div class="font-bold text-white mt-0.5">Miyamoto Musashi</div>
+            <div class="grid grid-cols-3 gap-4 my-4 text-xs">
+              <div>
+                <div class="text-gray-400 text-[10px]">MANGAKA</div>
+                <div class="font-bold text-white mt-0.5">Takehiko Inoue</div>
+              </div>
+              <div>
+                <div class="text-gray-400 text-[10px]">PROTAGONIST</div>
+                <div class="font-bold text-white mt-0.5">Miyamoto Musashi</div>
+              </div>
+              <div>
+                <div class="text-gray-400 text-[10px]">ARTWORK</div>
+                <div class="font-bold text-white mt-0.5">Sumie Ink Masterwork</div>
+              </div>
             </div>
-            <div>
-              <div class="text-gray-400 text-[10px]">ARTWORK</div>
-              <div class="font-bold text-white mt-0.5">Sumie Ink Masterwork</div>
-            </div>
+            <p class="text-xs text-gray-300 line-clamp-3 leading-relaxed">
+              Shinmen Takezo embarks on a sword-fighting pilgrimage across feudal Japan, discovering that becoming 'Invincible Under the Sun' is merely an illusion.
+            </p>
           </div>
-          <p class="text-xs text-gray-300 line-clamp-3">
-            Shinmen Takezo embarks on a sword-fighting pilgrimage across feudal Japan, discovering that becoming 'Invincible Under the Sun' is merely an illusion.
-          </p>
+
+          <!-- Manga 2: MONSTER -->
+          <div class="manga-card bg-gradient-to-r from-[#201b16] to-[#171310] border border-yellow-500/50 shadow-2xl" data-manga-idx="2" style="transform: translateY(80px) scale(0.85); z-index: 10; opacity: 0.65;">
+            <div class="flex items-start justify-between border-b border-yellow-500/30 pb-3">
+              <div>
+                <div class="text-[10px] sm:text-xs text-yellow-400 tracking-[0.3em] font-bold">PSYCHOLOGICAL THRILLER &bull; 18 VOLUMES</div>
+                <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">MONSTER</h3>
+              </div>
+              <span class="px-3 py-1 bg-yellow-500 text-black font-extrabold text-xs rounded tracking-widest">
+                MAL 9.8
+              </span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 my-4 text-xs">
+              <div>
+                <div class="text-gray-400 text-[10px]">MANGAKA</div>
+                <div class="font-bold text-white mt-0.5">Naoki Urasawa</div>
+              </div>
+              <div>
+                <div class="text-gray-400 text-[10px]">ANTAGONIST</div>
+                <div class="font-bold text-white mt-0.5">Johan Liebert</div>
+              </div>
+              <div>
+                <div class="text-gray-400 text-[10px]">SETTING</div>
+                <div class="font-bold text-white mt-0.5">Post-Cold War Germany</div>
+              </div>
+            </div>
+            <p class="text-xs text-gray-300 line-clamp-3 leading-relaxed">
+              Brain surgeon Dr. Kenzo Tenma saves a dying boy, unaware he has resuscitated the most terrifying, manipulative sociopath in European history.
+            </p>
+          </div>
+
         </div>
 
-        <!-- Manga 2: MONSTER -->
-        <div class="manga-card absolute cursor-pointer w-[90%] max-w-[620px] rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#201b16] to-[#171310] border border-yellow-500/50 shadow-2xl" data-manga-idx="2" style="transform: translateY(80px) scale(0.85); z-index: 10; opacity: 0.65;">
-          <div class="flex items-start justify-between border-b border-yellow-500/30 pb-4">
-            <div>
-              <div class="text-[10px] sm:text-xs text-yellow-400 tracking-[0.3em] font-bold">PSYCHOLOGICAL THRILLER &bull; 18 VOLUMES</div>
-              <h3 class="akira-font text-2xl sm:text-4xl text-white mt-1">MONSTER</h3>
-            </div>
-            <span class="px-3 py-1 bg-yellow-500 text-black font-extrabold text-xs rounded tracking-widest">
-              MAL 9.8
-            </span>
-          </div>
-          <div class="grid grid-cols-3 gap-4 my-5 text-xs">
-            <div>
-              <div class="text-gray-400 text-[10px]">MANGAKA</div>
-              <div class="font-bold text-white mt-0.5">Naoki Urasawa</div>
-            </div>
-            <div>
-              <div class="text-gray-400 text-[10px]">ANTAGONIST</div>
-              <div class="font-bold text-white mt-0.5">Johan Liebert</div>
-            </div>
-            <div>
-              <div class="text-gray-400 text-[10px]">SETTING</div>
-              <div class="font-bold text-white mt-0.5">Post-Cold War Germany</div>
-            </div>
-          </div>
-          <p class="text-xs text-gray-300 line-clamp-3">
-            Brain surgeon Dr. Kenzo Tenma saves a dying boy, unaware he has resuscitated the most terrifying, manipulative sociopath in European history.
-          </p>
+        <!-- Carousel Navigation Controls -->
+        <div class="flex items-center gap-6 mt-8 z-20">
+          <button id="manga-prev-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
+            &larr; PREVIOUS
+          </button>
+          <span class="text-xs text-gray-400 tracking-widest" id="manga-counter">1 / 3</span>
+          <button id="manga-next-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
+            NEXT &rarr;
+          </button>
         </div>
-
-      </div>
-
-      <!-- Controls -->
-      <div class="flex items-center gap-6 mt-6 z-20">
-        <button id="manga-prev-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
-          &larr; PREVIOUS
-        </button>
-        <span class="text-xs text-gray-400 tracking-widest" id="manga-counter">1 / 3</span>
-        <button id="manga-next-btn" class="px-6 py-2 bg-white/5 hover:bg-white/15 border border-white/20 rounded-full text-xs tracking-wider transition">
-          NEXT &rarr;
-        </button>
       </div>
     </section>
 
 
     <!-- ==================== SECTION 5: HEROES 3D SPOTLIGHT ==================== -->
-    <section id="section-5" class="py-20 px-6 bg-[#06080d] border-t border-white/10">
+    <section id="section-5" class="anime-section bg-[#06080d]">
       <div class="max-w-7xl mx-auto">
         <div class="text-xs text-red-500 tracking-[0.25em] mb-2">05 // HALL OF LEGENDS</div>
         <h2 class="akira-font text-3xl sm:text-5xl lg:text-6xl text-white mb-10">ICONIC CHARACTERS</h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
-          <!-- 3D Carousel Cards (Left 7 Cols) -->
-          <div class="lg:col-span-7 relative h-[380px] sm:h-[450px] flex items-center justify-center">
-            
-            <!-- Hero 0: Tanjiro -->
-            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border-2 border-red-500 shadow-2xl cursor-pointer" data-char-idx="0" style="transform: translateX(0px) scale(1.06); z-index: 30; opacity: 1;">
-              <img alt="Tanjiro Kamado" class="w-full h-full object-cover" src="Images/ds.jpg"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <span class="px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded">DEMON SLAYER</span>
-                <h3 class="akira-font text-lg text-white mt-1">TANJIRO</h3>
+          <!-- 3D Carousel Stage (Strict Height & Image Bounds) -->
+          <div class="lg:col-span-7 flex items-center justify-center">
+            <div class="character-carousel-stage">
+              
+              <!-- Hero 0: Tanjiro -->
+              <div class="character-card border-2 border-red-500 shadow-2xl" data-char-idx="0" style="transform: translateX(0px) scale(1.05); z-index: 30; opacity: 1;">
+                <img alt="Tanjiro Kamado" src="Images/ds.jpg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <span class="px-2 py-0.5 bg-red-600 text-white text-[10px] font-bold rounded">DEMON SLAYER</span>
+                  <h3 class="akira-font text-lg text-white mt-1">TANJIRO</h3>
+                </div>
               </div>
-            </div>
 
-            <!-- Hero 1: Goku -->
-            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-yellow-500 shadow-2xl cursor-pointer" data-char-idx="1" style="transform: translateX(180px) scale(0.85); z-index: 20; opacity: 0.8;">
-              <img alt="Son Goku" class="w-full h-full object-cover" src="Images/g.jpg"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <span class="px-2 py-0.5 bg-yellow-500 text-black text-[10px] font-bold rounded">DRAGON BALL Z</span>
-                <h3 class="akira-font text-lg text-white mt-1">SON GOKU</h3>
+              <!-- Hero 1: Goku -->
+              <div class="character-card border border-yellow-500 shadow-2xl" data-char-idx="1" style="transform: translateX(180px) scale(0.85); z-index: 20; opacity: 0.8;">
+                <img alt="Son Goku" src="Images/g.jpg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <span class="px-2 py-0.5 bg-yellow-500 text-black text-[10px] font-bold rounded">DRAGON BALL Z</span>
+                  <h3 class="akira-font text-lg text-white mt-1">SON GOKU</h3>
+                </div>
               </div>
-            </div>
 
-            <!-- Hero 2: Naruto -->
-            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-blue-500 shadow-2xl cursor-pointer" data-char-idx="2" style="transform: translateX(0px) scale(0.65); z-index: 10; opacity: 0;">
-              <img alt="Naruto Uzumaki" class="w-full h-full object-cover" src="Images/n.jpg"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <span class="px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold rounded">SHIPPUDEN</span>
-                <h3 class="akira-font text-lg text-white mt-1">NARUTO</h3>
+              <!-- Hero 2: Naruto -->
+              <div class="character-card border border-blue-500 shadow-2xl" data-char-idx="2" style="transform: translateX(0px) scale(0.65); z-index: 10; opacity: 0;">
+                <img alt="Naruto Uzumaki" src="Images/n.jpg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <span class="px-2 py-0.5 bg-blue-600 text-white text-[10px] font-bold rounded">SHIPPUDEN</span>
+                  <h3 class="akira-font text-lg text-white mt-1">NARUTO</h3>
+                </div>
               </div>
-            </div>
 
-            <!-- Hero 3: Luffy -->
-            <div class="character-card absolute w-[260px] sm:w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border border-purple-500 shadow-2xl cursor-pointer" data-char-idx="3" style="transform: translateX(-180px) scale(0.85); z-index: 20; opacity: 0.8;">
-              <img alt="Monkey D. Luffy" class="w-full h-full object-cover" src="Images/op.jpg"/>
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <span class="px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded">ONE PIECE</span>
-                <h3 class="akira-font text-lg text-white mt-1">LUFFY</h3>
+              <!-- Hero 3: Luffy -->
+              <div class="character-card border border-purple-500 shadow-2xl" data-char-idx="3" style="transform: translateX(-180px) scale(0.85); z-index: 20; opacity: 0.8;">
+                <img alt="Monkey D. Luffy" src="Images/op.jpg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <span class="px-2 py-0.5 bg-purple-600 text-white text-[10px] font-bold rounded">ONE PIECE</span>
+                  <h3 class="akira-font text-lg text-white mt-1">LUFFY</h3>
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
 
           <!-- Synchronized Lore Slide (Right 5 Cols) -->
@@ -910,7 +976,7 @@
 
 
     <!-- ==================== SECTION 6: ANIME GENRES & UNIVERSES ==================== -->
-    <section id="section-6" class="py-20 px-6 bg-[#080b12] border-t border-white/10">
+    <section id="section-6" class="anime-section bg-[#080b12]">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
           <div>
@@ -957,7 +1023,7 @@
 
 
     <!-- ==================== SECTION 7: AIRING SCHEDULE & SIMULCASTS ==================== -->
-    <section id="section-7" class="py-20 px-6 bg-[#06080d] border-t border-white/10">
+    <section id="section-7" class="anime-section bg-[#06080d]">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-4 mb-10 gap-3">
           <div>
@@ -1036,7 +1102,7 @@
 
 
     <!-- ==================== SECTION 8: OTAKU CLUB & NEWSLETTER ==================== -->
-    <section id="section-8" class="py-24 px-6 bg-[#080b12] border-t border-white/10">
+    <section id="section-8" class="anime-section bg-[#080b12]">
       <div class="max-w-4xl mx-auto text-center">
         <div class="text-xs text-red-500 tracking-[0.25em] mb-2">08 // COMMUNITY PORTAL</div>
         <h2 class="akira-font text-3xl sm:text-5xl text-white">JOIN THE OTAKU CLUB</h2>
@@ -1237,17 +1303,17 @@
       mangaCards.forEach(function(card, idx) {
         const diff = (idx - currentManga + totalManga) % totalManga;
         if (diff === 0) {
-          card.style.transform = 'translateY(0px) scale(1.05)';
+          card.style.transform = 'translateY(0px) scale(1.04)';
           card.style.zIndex = '30';
           card.style.opacity = '1';
         } else if (diff === 1) {
           card.style.transform = 'translateY(40px) scale(0.95)';
           card.style.zIndex = '20';
-          card.style.opacity = '0.8';
+          card.style.opacity = '0.85';
         } else {
           card.style.transform = 'translateY(80px) scale(0.85)';
           card.style.zIndex = '10';
-          card.style.opacity = '0.6';
+          card.style.opacity = '0.65';
         }
       });
       if (mangaCounter) mangaCounter.textContent = (currentManga + 1) + ' / ' + totalManga;
@@ -1274,10 +1340,10 @@
       charCards.forEach(function(card, idx) {
         const diff = (idx - currentChar + totalChars) % totalChars;
         const isMobile = window.innerWidth < 768;
-        const xOffset = isMobile ? 110 : 200;
+        const xOffset = isMobile ? 100 : 180;
 
         if (diff === 0) {
-          card.style.transform = 'translateX(0px) scale(1.08)';
+          card.style.transform = 'translateX(0px) scale(1.05)';
           card.style.opacity = '1';
           card.style.zIndex = '30';
           card.style.filter = 'brightness(1.1)';
