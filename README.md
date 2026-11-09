@@ -1,154 +1,74 @@
-# ⚡ Anime World — The Ultimate Anime & Manga Experience
+# Anime-world
 
-An immersive anime and manga discovery portal designed for anime enthusiasts. Explore trending anime, legendary manga, iconic characters, and different anime universes through a visually engaging digital experience.
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-Semantic-E34F26?style=flat-square&logo=html5" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-Cyberpunk%20Theme-1572B6?style=flat-square&logo=css3" alt="CSS3" />
+  <img src="https://img.shields.io/badge/TailwindCSS-v3-38B2AC?style=flat-square&logo=tailwindcss" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/JavaScript-Interactive-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License" />
+</p>
+
+An immersive, cinematic anime & manga discovery portal featuring trending anime rankings, 3D character showcases, legendary manga archives, weekly simulcast airing schedules, and ambient anime audio.
 
 ---
 
-## 🌟 Overview
+## 📸 Hero Preview
 
-Anime World brings the anime universe together in one place with a futuristic dark-themed interface, interactive elements, 3D visual effects, and smooth animations.
+<p align="center">
+  <img src="docs/screenshots/anime-hero.png" width="100%" alt="Anime World Hero Showcase" />
+</p>
 
-Whether you're exploring trending anime, discovering manga masterpieces, or checking out legendary characters, Anime World offers an engaging experience for every otaku.
+## 🖼️ UI Snapshot Gallery
+
+<p align="center">
+  <img src="docs/screenshots/anime-trending.png" width="49%" alt="Trending Anime Rankings" />
+  <img src="docs/screenshots/anime-spotlight.png" width="49%" alt="Character Spotlight & Manga Showcase" />
+</p>
+
+---
 
 ## ✨ Features
 
-### 🎬 Anime Showcase
-- Anime-inspired hero section.
-- Featured anime artwork and descriptions.
-- Trending anime collections.
-- All-time anime rankings.
-- Anime ratings, studios, and episode information.
-
-### 📚 Manga Collection
-- Interactive 3D manga card layouts.
-- Manga covers and descriptions.
-- Author and creator information.
-- Ratings and manga details.
-
-### ⚔️ Character Spotlight
-- Interactive 3D character carousel.
-- Iconic anime character showcases.
-- Character descriptions and abilities.
-- Dynamic character presentation.
-
-### 🌌 Anime Genres & Universes
-Explore different anime genres and storytelling styles:
-- Shonen
-- Seinen
-- Isekai
-- Psychological Thriller
-- Cyberpunk
-- Slice of Life
-
-### 📅 Weekly Anime Schedule
-- Weekly anime airing schedule.
-- Day-wise anime listings.
-- Japan Standard Time (JST) reference.
-
-### 🎧 Audio Experience
-- Background OST player.
-- Animated audio equalizer.
-- Interactive music controls.
-
-### 🏯 Otaku Community
-- Community-focused content.
-- Watchlist and newsletter concepts.
-- Discord community integration.
-
-## 🎨 UI & User Experience
-
-- Modern dark-themed interface.
-- Crimson-inspired visual accents.
-- Interactive 3D card effects.
-- Smooth scrolling navigation.
-- Animated visual elements.
-- Responsive layouts.
-- Section-based navigation using IntersectionObserver.
-
-## 🛠️ Technology Stack
-
-| Technology | Purpose |
-|---|---|
-| HTML5 | Website structure |
-| CSS3 | Styling and animations |
-| JavaScript | Interactive functionality |
-| CSS 3D Transforms | 3D card effects |
-| IntersectionObserver API | Scroll-based navigation |
-| HTML5 Audio | Background music |
-| HTML5 Video | Media integration |
-
-## 📂 Project Structure
-
-The repository contains the following major directories and files:
-
-- `Images/` – Anime artwork and visual assets.
-- `css/` – Stylesheets and animations.
-- `ccs_js/` – JavaScript resources.
-- `fonts/` – Custom fonts.
-- `matrix/` – Visual effect resources.
-- `breakupanimation/` – Animation-related assets.
-- `index.html` – Main website entry point.
-- `Index.htm` – Additional HTML page.
-- `car.html` – Character carousel page.
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- A modern web browser.
-- Visual Studio Code (recommended).
-- Live Server extension (recommended).
-
-### 1. Clone the Repository
-
-Clone the project using Git:
-
-    git clone https://github.com/soorajstudio/Anime-world.git
-
-### 2. Navigate to the Project Directory
-
-    cd Anime-world
-
-### 3. Run the Application
-
-Open the project folder in Visual Studio Code.
-
-Right-click `index.html` and select **Open with Live Server**.
-
-Alternatively, open `index.html` directly in your browser.
-
-## 📸 Screenshots
-
-Screenshots of the application can be added here to showcase its design and functionality.
-
-Recommended screenshots:
-
-- Homepage and anime hero section.
-- Trending anime collection.
-- 3D manga collection.
-- Character spotlight carousel.
-- Weekly airing schedule.
-- Mobile responsive interface.
-
-## 🎯 Project Objective
-
-The primary objective of Anime World is to explore creative frontend development through modern UI/UX design, interactive animations, 3D visual effects, and engaging digital experiences.
-
-The project demonstrates how traditional web technologies can be used to build visually rich and interactive websites.
-
-## 👨‍💻 Developer
-
-**Sooraj MS**
-
-- GitHub: [@soorajstudio](https://github.com/soorajstudio)
-- Portfolio: [Visit GitHub Profile](https://github.com/soorajstudio)
-
-## ⭐ Support
-
-If you enjoy this project, consider giving the repository a star!
-
-Your support is appreciated.
+- 🎬 **Trending & Top-Rated Anime** - Discover iconic anime titles with studio information, season ratings, and episode counts.
+- ⚔️ **3D Character Spotlight** - Interactive character cards highlighting famous abilities, factions, and character lore.
+- 📚 **Manga Masterpieces** - Curated library of legendary manga with author credits, synopsis cards, and status tags.
+- 📅 **Weekly Airing Schedule** - Day-wise simulcast anime release calendar aligned with Japan Standard Time (JST).
+- 🎧 **Atmospheric OST Player** - Integrated background anime music player complete with an animated sound equalizer.
+- 🌌 **Futuristic Dark Aesthetic** - High-energy neon typography, custom Akira fonts, and smooth micro-animations.
 
 ---
 
-**Made with ❤️ by Sooraj Studio | For the love of Anime.**
+## 🛠️ Tech Stack
+
+- **Frontend**: HTML5, Tailwind CSS, Custom Modern CSS
+- **Interactivity**: Vanilla JavaScript (ES6+), Audio Web Controls
+- **Typography**: Michroma, Akira Expanded, Space Grotesk, Bebas Neue
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/soorajstudio/Anime-world.git
+cd Anime-world
+```
+
+### 2. Run locally
+```bash
+# Using Python
+python -m http.server 8080
+
+# Or using Node
+npx serve .
+```
+
+Open [http://localhost:8080](http://localhost:8080) in your browser.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+Developed with ❤️ by [Sooraj Studio](https://github.com/soorajstudio).
